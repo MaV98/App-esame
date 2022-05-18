@@ -38,13 +38,15 @@ dependencies:
   http:
   carousel_slider: ^4.1.1
   shimmer: ^2.0.0
+  shared_preferences: ^2.0.15
+  salomon_bottom_bar: ^3.3.0
+  pie_chart: ^5.3.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   
-  salomon_bottom_bar: ^3.3.0
-  pie_chart: ^5.3.0
+
 
 
 dev_dependencies:

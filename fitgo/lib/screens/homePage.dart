@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fitgo/screens/homePage.dart';
 import 'package:fitgo/screens/loginPage.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //import 'package:app_demo/Charts/physical_activity.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -264,7 +265,11 @@ class HomePage extends StatelessWidget {
   }
 }
 
-void _toLoginPage(BuildContext context) {
+void _toLoginPage(BuildContext context) async {
+  //Unset the 'username' filed in SharedPreference
+  final sp = await SharedPreferences.getInstance();
+  sp.remove('username');
+
   //Pop the drawer first
   Navigator.pop(context);
   //Then pop the HomePage

@@ -8,7 +8,7 @@ import 'package:fitgo/screens/loginPage.dart';
 //import 'package:fitgo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/homePage.dart';
 //import 'package:fitgo/screens/trainingPage.dart';
-//import 'package:fitgo/screens/shopPage.dart';
+import 'package:fitgo/screens/shopPage.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -35,8 +35,8 @@ class _BottomBarState extends State<BottomNavBar> {
     _pagina1 = HomePage(); //const
     //_pagina2 = const TrainingPage();
     //_pagina3 = const FriendsPage();
-    //_pagina4 = const ShopPage();
-    _pages = [_pagina1]; //, _pagina2, _pagina3, _pagina4];
+    _pagina4 = const ShopPage();
+    _pages = [_pagina1, _pagina4]; //, _pagina2, _pagina3, _pagina4];
     _currentIndex = 0;
     _currentPage = _pagina1;
   }
@@ -50,7 +50,7 @@ class _BottomBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    print('${BottomBar.routename} built');
+    print('${BottomNavBar.routename} built');
     return Scaffold(
       body: _currentPage,
       bottomNavigationBar: SalomonBottomBar(
@@ -79,27 +79,28 @@ class _BottomBarState extends State<BottomNavBar> {
           // ],
 
           // bottom navigation bar stile diverso
+          // Home
           SalomonBottomBarItem(
             icon: Icon(Icons.home),
             title: Text("Home"),
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
 
-          /// Likes
+          // Training
           SalomonBottomBarItem(
             icon: Icon(Icons.sports_gymnastics),
             title: Text("Training"),
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
 
-          /// Search
+          // Friends
           SalomonBottomBarItem(
             icon: Icon(Icons.people),
             title: Text("Friends"),
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
 
-          /// Profile
+          // Shop
           SalomonBottomBarItem(
             icon: Icon(Icons.shop),
             title: Text("Shop"),
