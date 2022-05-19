@@ -108,7 +108,9 @@ class ShopPage extends StatelessWidget {
   }
 }
 
-void _tocryptogPage(BuildContext context) {}
+void _tocryptogPage(BuildContext context) {
+  Navigator.pushNamed(context, '/crypto/');
+}
 
 void _toCartPage(BuildContext context) {}
 

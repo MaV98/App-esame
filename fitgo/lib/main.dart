@@ -1,7 +1,7 @@
 //import 'package:app_demo/screens/cartPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
 //import 'package:app_demo/screens/ProfilePage.dart';
-//import 'package:app_demo/screens/cryptoPage.dart';
+import 'package:fitgo/screens/cryptoPage.dart';
 //import 'package:app_demo/screens/friendsPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
 import 'package:fitgo/screens/homePage.dart';
@@ -17,7 +17,7 @@ import 'package:provider/provider.dart';
 //import 'dart:html';
 
 //cryptoAPI
-//import 'package:app_demo/cryptoAPI/screens/favoriteCryptopage.dart';
+import 'package:fitgo/cryptoAPI/screens/favoriteCryptopage.dart';
 
 //storeAPI
 //import 'package:app_demo/storeAPI/screens/favoriteStorepage.dart';
@@ -51,9 +51,9 @@ class MyApp extends StatelessWidget {
           ShopPage.route: (context) => ShopPage(),
           //WalkingPage.route: (context) => WalkingPage(),
           //WalkingPage1.route: (context) => WalkingPage1(),
-          //CryptoPage.route: (context) => CryptoPage(),
+          CryptoPage.route: (context) => CryptoPage(),
           //StorePage.route: (context) => StorePage(),
-          //FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
+          FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
           //FavoriteStorePage.route: (context) => FavoriteStorePage(),
           //CartPage.route: (context) => CartPage(),
         },
