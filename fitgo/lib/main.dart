@@ -8,7 +8,7 @@ import 'package:fitgo/screens/homePage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
 //import 'package:app_demo/screens/settingsPage.dart';
-//import 'package:app_demo/screens/storePage.dart';
+import 'package:fitgo/screens/storePage.dart';
 //import 'package:app_demo/screens/walking1.dart';
 //import 'package:app_demo/screens/trainingPage.dart';
 //import 'package:app_demo/screens/walkingPage.dart';
@@ -20,7 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:fitgo/cryptoAPI/screens/favoriteCryptopage.dart';
 
 //storeAPI
-//import 'package:app_demo/storeAPI/screens/favoriteStorepage.dart';
+import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 
 //weatherAPI
 import 'dart:html';
@@ -52,9 +52,9 @@ class MyApp extends StatelessWidget {
           //WalkingPage.route: (context) => WalkingPage(),
           //WalkingPage1.route: (context) => WalkingPage1(),
           CryptoPage.route: (context) => CryptoPage(),
-          //StorePage.route: (context) => StorePage(),
+          StorePage.route: (context) => StorePage(),
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
-          //FavoriteStorePage.route: (context) => FavoriteStorePage(),
+          FavoriteStorePage.route: (context) => FavoriteStorePage(),
           //CartPage.route: (context) => CartPage(),
         },
       ),
