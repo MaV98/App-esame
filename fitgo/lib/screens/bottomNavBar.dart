@@ -121,8 +121,8 @@ class _BottomBarState extends State<BottomNavBar> {
     //Navigator.pushNamed(context, '/');
   }
 
-  void _toProfilePage(BuildContext context) {
-    //Then pop the HomePage
-    Navigator.of(context).pushReplacementNamed(ProfilePage.route);
-  }
+  // void _toProfilePage(BuildContext context) {
+  //   //Then pop the HomePage
+  //   Navigator.of(context).pushReplacementNamed(ProfilePage.route);
+  // }
 } //HomePage

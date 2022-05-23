@@ -23,12 +23,16 @@ import 'package:fitgo/cryptoAPI/screens/favoriteCryptopage.dart';
 import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 
 //weatherAPI
-import 'dart:html';
+//import 'dart:html';
 //import 'package:app_demo/weatherAPI/data_service.dart';
 //import 'package:app_demo/weatherAPI/models.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 } //main
 
 class MyApp extends StatelessWidget {
