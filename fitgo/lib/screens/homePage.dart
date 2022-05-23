@@ -19,7 +19,7 @@ import '../utils/strings.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
-  static const route = '/home/';
+  static const route = '/homepage/';
   static const routename = 'HomePage';
 
   @override

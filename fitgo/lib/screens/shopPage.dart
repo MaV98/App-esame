@@ -112,7 +112,9 @@ void _tocryptogPage(BuildContext context) {
   Navigator.pushNamed(context, '/crypto/');
 }
 
-void _toCartPage(BuildContext context) {}
+void _toCartPage(BuildContext context) {
+  Navigator.pushNamed(context, '/cart/');
+}
 
 void _tostorePage(BuildContext context) {
   Navigator.pushNamed(context, '/store/');

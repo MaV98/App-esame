@@ -1,4 +1,4 @@
-//import 'package:app_demo/screens/cartPage.dart';
+import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
 //import 'package:app_demo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           StorePage.route: (context) => StorePage(),
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
           FavoriteStorePage.route: (context) => FavoriteStorePage(),
-          //CartPage.route: (context) => CartPage(),
+          CartPage.route: (context) => CartPage(),
         },
       ),
     );
