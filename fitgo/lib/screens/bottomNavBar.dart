@@ -31,59 +31,57 @@ class BottomNavBar extends StatefulWidget {
 class _BottomBarState extends State<BottomNavBar> {
   Map<String, dynamic>? dati;
 
-  // late List<Widget> _pages;
-  // late Widget _pagina1;
-  // late Widget _pagina2;
-  // late Widget _pagina3;
-  // late Widget _pagina4;
-  // late int _currentIndex;
-  // late Widget _currentPage;
+  late List<Widget> _pages;
+  late Widget _pagina1;
+  late Widget _pagina2;
+  late Widget _pagina3;
+  late Widget _pagina4;
+  late int _currentIndex;
+  late Widget _currentPage;
 
-  @override
-  void initState() {
-    //StartFunc();
-    super.initState();
-    getData().then((values) {
-      setState(() {
-        dati = values;
-      });
-    });
-  }
-
-  Widget getPage(int index) {
-    switch (index) {
-      case 0:
-        return HomePage(topass: dati);
-        break;
-      case 1:
-        return FriendsPage(data: dati);
-        break;
-      default:
-        return HomePage(
-          topass: dati,
-        );
-        break;
-    }
-  }
-
-  int _currentIndex = 0;
-
-  onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
   // @override
   // void initState() {
+  //   //StartFunc();
   //   super.initState();
-  //   _pagina1 = HomePage(); //const
-  //   //_pagina2 = const TrainingPage();
-  //   _pagina3 = const FriendsPage();
-  //   _pagina4 = const ShopPage();
-  //   _pages = [_pagina1, _pagina3, _pagina4]; //, _pagina2, _pagina3, _pagina4];
-  //   _currentIndex = 0;
-  //   _currentPage = _pagina1;
+  //   getData().then((values) {
+  //     setState(() {
+  //       dati = values;
+  //     });
+  //   });
   // }
+
+  // Widget getPage(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       return HomePage(topass: dati);
+  //       break;
+  //     case 1:
+  //       return FriendsPage(data: dati);
+  //       break;
+  //     default:
+  //       return HomePage();
+  //       break;
+  //   }
+  // }
+
+  // int _currentIndex = 0;
+
+  // onTabTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
+  @override
+  void initState() {
+    super.initState();
+    _pagina1 = HomePage(topass: dati); //const
+    //_pagina2 = const TrainingPage();
+    _pagina3 = FriendsPage(data: dati);
+    _pagina4 = const ShopPage();
+    _pages = [_pagina1, _pagina3, _pagina4]; //, _pagina2, _pagina3, _pagina4];
+    _currentIndex = 0;
+    _currentPage = _pagina1;
+  }
 
   // void _changeTab(int index) {
   //   setState(() {
@@ -101,11 +99,8 @@ class _BottomBarState extends State<BottomNavBar> {
     print('${BottomNavBar.routename} built');
     return Scaffold(
       //body: _currentPage,
-      body:
-          //   IndexedStack(
-          // index: _currentIndex,
-          // children: _pages,
-          getPage(_currentIndex),
+      body: IndexedStack(index: _currentIndex, children: _pages),
+      //getPage(_currentIndex),
 
       bottomNavigationBar: SalomonBottomBar(
         items: [
@@ -136,13 +131,13 @@ class _BottomBarState extends State<BottomNavBar> {
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
         ],
-        onTap: onTabTapped,
+        //onTap: onTabTapped,
         currentIndex: _currentIndex,
-        // onTap: (index) {
-        //   setState(() {
-        //     _currentIndex = index;
-        //   });
-        // },
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   } //build

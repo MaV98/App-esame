@@ -18,7 +18,7 @@ import 'package:pie_chart/pie_chart.dart';
 import '../utils/strings.dart';
 
 class HomePage extends StatefulWidget {
-  final Map<String, dynamic>? topass;
+  Map<String, dynamic>? topass;
 
   HomePage({Key? key, this.topass}) : super(key: key);
   static const route = '/homepage/';
@@ -29,7 +29,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Map<String, dynamic>? topass;
+  Map<String, dynamic>? topass;
   final passi_totali = fitbit_data();
 
   final calorie_totali = fitbit_data();
@@ -38,16 +38,16 @@ class _HomePageState extends State<HomePage> {
 
   //dati di prova
   final dataMap = <String, double>{
-    "Pre work out": 10,
-    "Walking": 15,
-    "Running": 35,
+    "Steps objective": 80,
+    //"Walking": 15,
+    //"Running": 35,
   };
 
   // final List<PhysicalActivity> data = [
   final colorList = <Color>[
     Colors.green,
-    Colors.blue,
-    Colors.red,
+    //Colors.blue,
+    //Colors.red,
   ];
 
   _HomePageState(this.topass);
@@ -120,8 +120,9 @@ class _HomePageState extends State<HomePage> {
                     calorie_totali;
                   });
                   //print(passi_totali.value());
-
-                  topass!['prop'] = passi_totali.value();
+                  setState(() {
+                    topass!['prop'] = passi_totali.value();
+                  });
                 },
               ),
               ListTile(
@@ -243,6 +244,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onPressed: () {},
                       child: PieChart(
+                        totalValue: 100,
                         dataMap: dataMap,
                         colorList: colorList,
                         centerText: passi_totali.getName!,
