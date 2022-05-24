@@ -1,3 +1,4 @@
+import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:fitgo/screens/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,7 +31,7 @@ class _MyLoginPageState extends State<LoginPage> {
     final sp = await SharedPreferences.getInstance();
     if (sp.getString('username') != null) {
       //If username is set, show the homepage
-      Navigator.of(context).pushReplacementNamed(HomePage.route);
+      Navigator.of(context).pushReplacementNamed(BottomNavBar.route);
     } //if
   } //_checkLogin
 
@@ -106,7 +107,7 @@ class _MyLoginPageState extends State<LoginPage> {
                         final sp = await SharedPreferences.getInstance();
                         sp.setString('username', _username);
                         //5TrNgP5Wd
-                        Navigator.pushNamed(context, '/homepage/');
+                        Navigator.pushNamed(context, '/bottombar/');
                         //Navigator.of(context).pushReplacementNamed(HomePage.route);
                       } else {
                         await ScaffoldMessenger.of(context)

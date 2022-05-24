@@ -41,23 +41,22 @@ class _BottomBarState extends State<BottomNavBar> {
     _currentPage = _pagina1;
   }
 
-  void _changeTab(int index) {
-    setState(() {
-      _currentIndex = index;
-      _currentPage = _pages[index];
-    });
-  }
+  // void _changeTab(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //     _currentPage = _pages[index];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     print('${BottomNavBar.routename} built');
     return Scaffold(
-      body: _currentPage,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
       bottomNavigationBar: SalomonBottomBar(
-        onTap: (index) {
-          _changeTab(index);
-        },
-        currentIndex: _currentIndex,
         items: [
           // bottom navigation bar stile classico
           //   BottomNavigationBarItem(
@@ -107,6 +106,12 @@ class _BottomBarState extends State<BottomNavBar> {
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
         ],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   } //build
