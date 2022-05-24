@@ -3,6 +3,7 @@
 //import 'dart:html';
 
 //import 'package:fitgo/screens/friendsPage.dart';
+import 'package:fitgo/screens/friendsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:fitgo/screens/loginPage.dart';
 //import 'package:fitgo/screens/ProfilePage.dart';
@@ -11,75 +12,103 @@ import 'package:fitgo/screens/homePage.dart';
 import 'package:fitgo/screens/shopPage.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../main.dart';
+
+// Future<Map<String, dynamic>> getData() async {
+//   return Future.delayed(Duration(seconds: 1), () => {'prop1': 'value1'});
+// }
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
   static const route = '/bottombar/';
   static const routename = 'BottomNavBar';
+
   @override
   State<BottomNavBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomNavBar> {
-  late List<Widget> _pages;
-  late Widget _pagina1;
-  late Widget _pagina2;
-  late Widget _pagina3;
-  late Widget _pagina4;
-  late int _currentIndex;
-  late Widget _currentPage;
+  Map<String, dynamic>? dati;
+
+  // late List<Widget> _pages;
+  // late Widget _pagina1;
+  // late Widget _pagina2;
+  // late Widget _pagina3;
+  // late Widget _pagina4;
+  // late int _currentIndex;
+  // late Widget _currentPage;
 
   @override
   void initState() {
+    //StartFunc();
     super.initState();
-    _pagina1 = HomePage(); //const
-    //_pagina2 = const TrainingPage();
-    //_pagina3 = const FriendsPage();
-    _pagina4 = const ShopPage();
-    _pages = [_pagina1, _pagina4]; //, _pagina2, _pagina3, _pagina4];
-    _currentIndex = 0;
-    _currentPage = _pagina1;
-  }
-
-  void _changeTab(int index) {
-    setState(() {
-      _currentIndex = index;
-      _currentPage = _pages[index];
+    getData().then((values) {
+      setState(() {
+        dati = values;
+      });
     });
   }
+
+  Widget getPage(int index) {
+    switch (index) {
+      case 0:
+        return HomePage(topass: dati);
+        break;
+      case 1:
+        return FriendsPage(data: dati);
+        break;
+      default:
+        return HomePage(
+          topass: dati,
+        );
+        break;
+    }
+  }
+
+  int _currentIndex = 0;
+
+  onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _pagina1 = HomePage(); //const
+  //   //_pagina2 = const TrainingPage();
+  //   _pagina3 = const FriendsPage();
+  //   _pagina4 = const ShopPage();
+  //   _pages = [_pagina1, _pagina3, _pagina4]; //, _pagina2, _pagina3, _pagina4];
+  //   _currentIndex = 0;
+  //   _currentPage = _pagina1;
+  // }
+
+  // void _changeTab(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //     //_currentPage = _pages[index];
+  //     _currentPage = IndexedStack(
+  //       index: _currentIndex,
+  //       children: _pages,
+  //     );
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     print('${BottomNavBar.routename} built');
     return Scaffold(
-      body: _currentPage,
-      bottomNavigationBar: SalomonBottomBar(
-        onTap: (index) {
-          _changeTab(index);
-        },
-        currentIndex: _currentIndex,
-        items: [
-          // bottom navigation bar stile classico
-          //   BottomNavigationBarItem(
-          //     icon: Icon(Icons.home),
-          //     label: 'Home',
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: Icon(Icons.sports_gymnastics),
-          //     label: 'Training',
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: Icon(Icons.people),
-          //     label: 'Friends',
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: Icon(Icons.shop),
-          //     label: 'Shop',
-          //   ),
-          // ],
+      //body: _currentPage,
+      body:
+          //   IndexedStack(
+          // index: _currentIndex,
+          // children: _pages,
+          getPage(_currentIndex),
 
-          // bottom navigation bar stile diverso
-          // Home
+      bottomNavigationBar: SalomonBottomBar(
+        items: [
           SalomonBottomBarItem(
             icon: Icon(Icons.home),
             title: Text("Home"),
@@ -107,6 +136,13 @@ class _BottomBarState extends State<BottomNavBar> {
             selectedColor: Color.fromARGB(255, 33, 150, 243),
           ),
         ],
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        // onTap: (index) {
+        //   setState(() {
+        //     _currentIndex = index;
+        //   });
+        // },
       ),
     );
   } //build

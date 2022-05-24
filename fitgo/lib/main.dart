@@ -2,7 +2,7 @@ import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
 //import 'package:app_demo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
-//import 'package:app_demo/screens/friendsPage.dart';
+import 'package:fitgo/screens/friendsPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
 import 'package:fitgo/screens/homePage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
@@ -35,6 +35,10 @@ void main() async {
   runApp(MyApp());
 } //main
 
+Future<Map<String, dynamic>> getData() async {
+  return Future.delayed(Duration(seconds: 1), () => {'prop1': 'value1'});
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
           HomePage.route: (context) => HomePage(),
           //SettingsPage.route: (context) => SettingsPage(),
           //TrainingPage.route: (context) => TrainingPage(),
-          //FriendsPage.route: (context) => FriendsPage(),
+          FriendsPage.route: (context) => FriendsPage(),
           ShopPage.route: (context) => ShopPage(),
           //WalkingPage.route: (context) => WalkingPage(),
           //WalkingPage1.route: (context) => WalkingPage1(),

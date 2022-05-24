@@ -1,3 +1,7 @@
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert';
+
 class fitbit_data {
   double? list_data;
 
@@ -16,5 +20,9 @@ class fitbit_data {
 
   String? get getName {
     return list_data.toString();
+  }
+
+  double? value() {
+    return list_data;
   }
 }

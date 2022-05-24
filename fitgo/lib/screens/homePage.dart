@@ -18,15 +18,18 @@ import 'package:pie_chart/pie_chart.dart';
 import '../utils/strings.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  final Map<String, dynamic>? topass;
+
+  HomePage({Key? key, this.topass}) : super(key: key);
   static const route = '/homepage/';
   static const routename = 'HomePage';
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(this.topass);
 }
 
 class _HomePageState extends State<HomePage> {
+  final Map<String, dynamic>? topass;
   final passi_totali = fitbit_data();
 
   final calorie_totali = fitbit_data();
@@ -47,9 +50,14 @@ class _HomePageState extends State<HomePage> {
     Colors.red,
   ];
 
+  _HomePageState(this.topass);
+
   @override
   Widget build(BuildContext context) {
     print('${HomePage.routename} built');
+    //setState(() {
+    //passi_totali;
+    //});
     //print(data[1].minutes);
     return Scaffold(
         appBar: AppBar(
@@ -111,6 +119,9 @@ class _HomePageState extends State<HomePage> {
                     passi_totali;
                     calorie_totali;
                   });
+                  //print(passi_totali.value());
+
+                  topass!['prop'] = passi_totali.value();
                 },
               ),
               ListTile(
@@ -174,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'Calorie totali' + calorie_totali.getName!,
+                        calorie_totali.getName!,
                         style: TextStyle(
                             fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
                       ),

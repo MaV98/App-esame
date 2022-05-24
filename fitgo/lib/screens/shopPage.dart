@@ -10,7 +10,7 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF2196F3),
           title: Text(ShopPage.routename),
           actions: [
