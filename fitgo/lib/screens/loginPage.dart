@@ -58,7 +58,7 @@ class _MyLoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Benvenuto!',
+                    'Welcome!',
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
@@ -71,54 +71,68 @@ class _MyLoginPageState extends State<LoginPage> {
                     'Log in ',
                     style: TextStyle(fontSize: 20),
                   )),
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _username = value;
-                  });
-                },
-                onSubmitted: (String username) {},
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'User Name',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (String value) {
+                    setState(() {
+                      _username = value;
+                    });
+                  },
+                  onSubmitted: (String username) {},
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'User Name',
+                  ),
                 ),
               ),
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _password = value;
-                  });
-                },
-                onSubmitted: (String password) {},
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (String value) {
+                    setState(() {
+                      _password = value;
+                    });
+                  },
+                  onSubmitted: (String password) {},
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
                 ),
               ),
               Container(
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ElevatedButton(
-                    child: Text('Login'),
-                    onPressed: () async {
-                      if ((_username == 'a') & //bug@expert.com
-                          (_password == 'b')) {
-                        final sp = await SharedPreferences.getInstance();
-                        sp.setString('username', _username);
-                        //5TrNgP5Wd
-                        Navigator.pushNamed(context, '/bottombar/');
-                        //Navigator.of(context).pushReplacementNamed(HomePage.route);
-                      } else {
-                        await ScaffoldMessenger.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                              content: _username != 'a'
-                                  ? Text('Wrong username')
-                                  : Text('Wrong password')));
-                      }
-                    }),
-              ),
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                      child: Text('Login'),
+                      onPressed: () async {
+                        if ((_username == 'a') & //bug@expert.com
+                            (_password == 'b')) {
+                          final sp = await SharedPreferences.getInstance();
+                          sp.setString('username', _username);
+                          //5TrNgP5Wd
+                          Navigator.pushNamed(context, '/bottombar/');
+                          //Navigator.of(context).pushReplacementNamed(HomePage.route);
+                        } else {
+                          await ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                backgroundColor: Colors.red,
+                                content: (_username != 'a') & (_password != 'b')
+                                    ? Text('Wrong username and password',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold))
+                                    : _username != 'a'
+                                        ? Text('Wrong username',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))
+                                        : Text('Wrong password',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))));
+                        }
+                      })),
               Row(
                 children: <Widget>[
                   const Text('Does not have account?'),

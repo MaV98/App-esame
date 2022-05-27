@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 ///Class that implement a custom-made [ListTile] to manage textboxes containing strings in a [Form].
 ///You must provide a controller, a label that is shown as helper, and an icon. This is checked via a regex.
@@ -55,7 +56,11 @@ class FormNumberTile extends ListTile {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(
+        icon,
+        color: Theme.of(context).accentColor,
+        size: 50,
+      ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

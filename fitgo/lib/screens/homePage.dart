@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'Calorie totali' + calorie_totali.getName!,
+                        'Calories: ' + calorie_totali.getName!,
                         style: TextStyle(
                             fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
                       ),

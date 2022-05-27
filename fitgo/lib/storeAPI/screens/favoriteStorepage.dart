@@ -23,19 +23,60 @@ class FavoriteStorePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final store = favorites.favorites_s[index];
                 return Card(
-                  elevation: 5,
-                  child: ListTile(
-                      leading: Image.network('https://' + store.image),
-                      trailing: Icon(MdiIcons.arrowRightBold),
-                      title: Text(store.name!.toUpperCase()),
-                      onTap: () => favorites.showOptions_s(context, store,
-                          index) //favorites.removeFavorite_s(index),
-                      ),
-                );
+                    elevation: 5,
+                    child: Dismissible(
+                        key: UniqueKey(),
+                        background: Container(
+                          color: Colors.green,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Row(
+                              children: [
+                                Icon(MdiIcons.cart, color: Colors.white),
+                                Text('Add to Cart',
+                                    style: TextStyle(color: Colors.white)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        secondaryBackground: Container(
+                          color: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text('Remove from favourites',
+                                    style: TextStyle(color: Colors.white)),
+                                Icon(MdiIcons.delete, color: Colors.white),
+                              ],
+                            ),
+                          ),
+                        ),
+                        child: ListTile(
+                          leading: Image.network('https://' + store.image),
+                          trailing: Icon(MdiIcons.arrowLeftRightBold),
+                          title: Text(store.name!.toUpperCase()),
+                          //onTap: () => favorites.showOptions_s(context, store,
+                          //    index) //favorites.removeFavorite_s(index),
+                        ),
+                        onDismissed: (DismissDirection direction) async {
+                          if (direction == DismissDirection.startToEnd) {
+                            Provider.of<Favorites>(context, listen: false)
+                                .addCart(store);
+                            final snackBar = SnackBar(
+                                content: Text(store.name! + ' added to cart'));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            favorites.removeFavorite_s(index);
+                          }
+                          //favorites_c.removeAt(index);
+                          //notifyListeners();
+                        }));
               });
         }),
       ),
     );
   } //build
-
-} //HomePage
+}
