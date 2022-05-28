@@ -503,6 +503,7 @@ class _StorePageState extends State<StorePage> {
     String _baseUrl = "https://asos2.p.rapidapi.com/products/v3/detail?id=$id";
     const Map<String, String> _headers = {
       "x-rapidapi-key": "e31897ad6bmsh0107bb7ae9cd6f1p13f2acjsna4db557e4490",
+      //"x-rapidapi-key": "fc970a41cfmshadf736207c8cbcfp1e119fjsn94ccf9dac26b",
       "x-rapidapi-host": "asos2.p.rapidapi.com",
     };
     Uri uri = Uri.parse(

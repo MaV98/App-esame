@@ -26,7 +26,7 @@ class Favorites extends ChangeNotifier {
   }
 
   Future<void> addCart(dynamic toAdd) async {
-    if (_alreadyIn(toAdd) == false) {
+    if (alreadyIn(toAdd) == false) {
       favorites.add(toAdd);
       notifyListeners();
     }
@@ -65,7 +65,7 @@ class Favorites extends ChangeNotifier {
     return false;
   }
 
-  bool _alreadyIn(dynamic i) {
+  bool alreadyIn(dynamic i) {
     for (var f in favorites) {
       if (f.id == i.id) {
         return true;

@@ -9,8 +9,9 @@ class Store {
   final String image;
   final double? price;
   final String? size;
+  dynamic price_chose;
 
-  const Store({
+  Store({
     required this.id,
     required this.name,
     required this.brand_name,
@@ -26,7 +27,7 @@ class Store {
       name: json['name'],
       brand_name: json['brand']['name'],
       image: json['media']['images'][0]['url'],
-      price: json['price']['current']['value'] * 0.96, //è in euro così
+      price: json['price']['current']['value'] * 0.93, //è in euro così
       size: json['sizeGuide'],
     );
   } //Store.fromJson

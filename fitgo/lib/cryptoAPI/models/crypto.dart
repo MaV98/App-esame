@@ -7,9 +7,10 @@ class Crypto {
   final String name;
   final String simbol;
   final int market_cap_rank;
-  dynamic price;
-  final price_24h;
+  final dynamic price;
+  final double price_24h;
   final String image;
+  dynamic price_chose;
 
   Crypto({
     required this.id,
