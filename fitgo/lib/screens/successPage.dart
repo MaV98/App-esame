@@ -49,8 +49,10 @@ class _SuccessPageState extends State<SuccessPage> {
                   textAlign: TextAlign.center),
               const SizedBox(height: 30.0),
               ElevatedButton(
-                  onPressed: (() => Navigator.pushReplacementNamed(
-                      context, BottomNavBar.route)),
+                  onPressed: (() {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }),
                   child: Text('Back to home')),
             ],
           ),

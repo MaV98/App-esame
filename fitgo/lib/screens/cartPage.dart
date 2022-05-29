@@ -240,7 +240,10 @@ class _CartPageState extends State<CartPage> {
                                       });
                                     });
                                   },
-                                  onFinish: () async {
+                                  onFinish: //() {
+                                      //Navigator.pushReplacementNamed(
+                                      //  context, SuccessPage.route);
+                                      () async {
                                     await Navigator.push(
                                         context,
                                         PageTransition(
