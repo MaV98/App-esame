@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "927852132008",
+    "project_id": "fitgo-26550",
+    "storage_bucket": "fitgo-26550.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927852132008:android:93e3da1639c6b18fedf49d",
+        "android_client_info": {
+          "package_name": "com.example.fitgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927852132008-2folg58l4p2ti8baeoo5brt93dv36n20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB12U52OCDqmiJOfN17WGYgU8nDqp74_VA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927852132008-2folg58l4p2ti8baeoo5brt93dv36n20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
