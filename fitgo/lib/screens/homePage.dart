@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                                 'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
                           ),
                         ),
-                        Text('Leonardo Palmeiro',
+                        Text('Giorgio Cappon',
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               fontSize: 16.0,

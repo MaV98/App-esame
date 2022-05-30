@@ -1,7 +1,7 @@
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/successPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
-//import 'package:app_demo/screens/ProfilePage.dart';
+import 'package:fitgo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
 //import 'package:app_demo/screens/friendsPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         routes: {
           LoginPage.route: (context) => LoginPage(),
           BottomNavBar.route: (context) => BottomNavBar(),
-          //ProfilePage.route: (context) => ProfilePage(),
+          ProfilePage.route: (context) => ProfilePage(),
           HomePage.route: (context) => HomePage(),
           //SettingsPage.route: (context) => SettingsPage(),
           //TrainingPage.route: (context) => TrainingPage(),
