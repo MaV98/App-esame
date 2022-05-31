@@ -10,6 +10,7 @@ import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
 //import 'package:app_demo/screens/settingsPage.dart';
 import 'package:fitgo/screens/storePage.dart';
+import 'package:fitgo/screens/weatherPage.dart';
 //import 'package:app_demo/screens/walking1.dart';
 //import 'package:app_demo/screens/trainingPage.dart';
 //import 'package:app_demo/screens/walkingPage.dart';
@@ -25,8 +26,8 @@ import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 
 //weatherAPI
 //import 'dart:html';
-//import 'package:app_demo/weatherAPI/data_service.dart';
-//import 'package:app_demo/weatherAPI/models.dart';
+import 'package:fitgo/weatherAPI/data_service.dart';
+import 'package:fitgo/weatherAPI/models.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           FavoriteStorePage.route: (context) => FavoriteStorePage(),
           CartPage.route: (context) => CartPage(),
           SuccessPage.route: (context) => SuccessPage(),
+          WeatherPage.route:(context) => WeatherPage()
         },
       ),
     );

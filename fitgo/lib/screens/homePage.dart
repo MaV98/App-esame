@@ -3,6 +3,7 @@
 //import 'package:App-esame/screens/profilePage.dart';
 //import 'package:App-esame/screens/settingsPage.dart';
 import 'package:fitbitter/fitbitter.dart';
+import 'package:fitgo/screens/weatherPage.dart';
 import 'package:fitgo/utils/fitbit_data.dart';
 import 'package:fitgo/utils/fitbit_data_class.dart';
 import 'package:flutter/material.dart';
@@ -148,12 +149,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                child: Text("Welcome back Leonardo!",
+                child: Text("Welcome back Giorgio!",
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {Navigator.pushNamed(context, WeatherPage.route);},
                 //icon: Icon(Icons.sunny),
                 icon: Icon(MdiIcons.weatherPartlyCloudy),
                 color: Colors.blue,
