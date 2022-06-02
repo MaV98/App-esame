@@ -7,11 +7,12 @@ class Crypto {
   final String name;
   final String simbol;
   final int market_cap_rank;
-  final price;
-  final price_24h;
+  final dynamic price;
+  final double price_24h;
   final String image;
+  dynamic price_chose;
 
-  const Crypto({
+  Crypto({
     required this.id,
     required this.name,
     required this.simbol,

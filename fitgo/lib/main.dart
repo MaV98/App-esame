@@ -1,14 +1,18 @@
 import 'package:fitgo/screens/cartPage.dart';
+import 'package:fitgo/screens/homepage.dart';
+import 'package:fitgo/screens/scores.dart';
+import 'package:fitgo/screens/successPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
-//import 'package:app_demo/screens/ProfilePage.dart';
+import 'package:fitgo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
 import 'package:fitgo/screens/friendsPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
-import 'package:fitgo/screens/homePage.dart';
+import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
 //import 'package:app_demo/screens/settingsPage.dart';
 import 'package:fitgo/screens/storePage.dart';
+import 'package:fitgo/screens/weatherPage.dart';
 //import 'package:app_demo/screens/walking1.dart';
 //import 'package:app_demo/screens/trainingPage.dart';
 //import 'package:app_demo/screens/walkingPage.dart';
@@ -24,8 +28,10 @@ import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 
 //weatherAPI
 //import 'dart:html';
-//import 'package:app_demo/weatherAPI/data_service.dart';
-//import 'package:app_demo/weatherAPI/models.dart';
+import 'package:fitgo/weatherAPI/data_service.dart';
+import 'package:fitgo/weatherAPI/models.dart';
+
+import 'models/navBar.dart';
 
 //import 'package:firebase_core/firebase_core.dart';
 
@@ -43,16 +49,23 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Favorites>(
-      create: (context) => Favorites(),
+    return MultiProvider(providers: 
+      [
+        ChangeNotifierProvider<Favorites>(
+          create: (context) => Favorites(),),
+        ChangeNotifierProvider<NavBar>(
+      //This specifies the app entrypoint
+          create: (context) => NavBar(),),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: LoginPage.route,
         routes: {
           LoginPage.route: (context) => LoginPage(),
-          BottomNavBar.route: (context) => BottomNavBar(),
-          //ProfilePage.route: (context) => ProfilePage(),
+          ProfilePage.route: (context) => ProfilePage(),
           HomePage.route: (context) => HomePage(),
+          TodayPage.route: (context) => TodayPage(),
+          ScoresPage.route: (context) => ScoresPage(),
           //SettingsPage.route: (context) => SettingsPage(),
           //TrainingPage.route: (context) => TrainingPage(),
           FriendsPage.route: (context) => FriendsPage(),
@@ -64,6 +77,8 @@ class MyApp extends StatelessWidget {
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
           FavoriteStorePage.route: (context) => FavoriteStorePage(),
           CartPage.route: (context) => CartPage(),
+          SuccessPage.route: (context) => SuccessPage(),
+          WeatherPage.route:(context) => WeatherPage()
         },
       ),
     );

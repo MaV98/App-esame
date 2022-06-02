@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 //import 'package:app_demo/screens/loginPage.dart';
-import 'package:fitgo/screens/homePage.dart';
+import 'package:fitgo/screens/TodayPage.dart';
 
 class FriendsPage extends StatelessWidget {
   final Map<String, dynamic>? data;
@@ -36,5 +36,5 @@ void _updateDB(passitotali) {
   //var check = FirebaseFirestore.instance.collection('Passi');
 
   Map<String, dynamic> toadd = {'Passi': passitotali};
-  FirebaseFirestore.instance.collection('Passi').add(toadd);
+  //FirebaseFirestore.instance.collection('Passi').add(toadd);
 }
