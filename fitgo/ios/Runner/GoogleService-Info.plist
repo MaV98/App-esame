@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>927852132008-7975plnu3t1bo7637q6fkpnbs42bl6et.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.927852132008-7975plnu3t1bo7637q6fkpnbs42bl6et</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCz2jXFdVkWeLJb8pUlXBtYwxS5MShJ_CU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>927852132008</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fitgo</string>
+	<key>PROJECT_ID</key>
+	<string>fitgo-26550</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fitgo-26550.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:927852132008:ios:a64150615ef775f4edf49d</string>
+</dict>
+</plist>
