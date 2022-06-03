@@ -1,4 +1,5 @@
 import 'package:fitgo/screens/cartPage.dart';
+import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/successPage.dart';
@@ -49,13 +50,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: 
-      [
+    return MultiProvider(
+      providers: [
         ChangeNotifierProvider<Favorites>(
-          create: (context) => Favorites(),),
+          create: (context) => Favorites(),
+        ),
         ChangeNotifierProvider<NavBar>(
-      //This specifies the app entrypoint
-          create: (context) => NavBar(),),
+          //This specifies the app entrypoint
+          create: (context) => NavBar(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -78,7 +81,8 @@ class MyApp extends StatelessWidget {
           FavoriteStorePage.route: (context) => FavoriteStorePage(),
           CartPage.route: (context) => CartPage(),
           SuccessPage.route: (context) => SuccessPage(),
-          WeatherPage.route:(context) => WeatherPage()
+          WeatherPage.route: (context) => WeatherPage(),
+          DevicePage.route: (context) => DevicePage(),
         },
       ),
     );

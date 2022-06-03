@@ -6,7 +6,7 @@ import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/screens/scores.dart';
 //import 'package:fitgo/screens/scores.dart';
-
+import 'package:fitgo/screens/shopPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -29,30 +29,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: dati,
-      child:
-       Scaffold(
+      child: Scaffold(
         body: _getBody(context),
         bottomNavigationBar: BottomNavBar(),
-      ),);
-
+      ),
+    );
   }
 
   Widget _getBody(BuildContext context) {
     final page = Provider.of<NavBar>(context).setIndex();
     //final passi = Provider.of<Passi>(context).passi_fatti;
-    
+
     if (page == 0) {
       //print(passi.printPassi());
       //Future<List<dynamic>>lista = data.fetchData();
       //passi_tot.copy(lista.steps());
       return TodayPage(passi_1: dati.printPassi(), cal: dati.printCalorie());
-      }
-        
-      
-    else if (page == 1)
+    } else if (page == 1)
       return ScoresPage(
         calorie: dati.printCalorie(),
       );
+    else if (page == 3) return ShopPage();
 
     return Container(
       color: Colors.green,

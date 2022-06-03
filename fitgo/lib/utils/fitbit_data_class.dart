@@ -5,6 +5,7 @@ class fitbit_data_class {
   dynamic? stepsData;
   dynamic? caloriesData;
   List<double?> lista_data = [];
+  List<dynamic> fitbitDeviceData = [];
 
   fitbit_data_class();
 
@@ -57,5 +58,22 @@ class fitbit_data_class {
 
   dynamic retVal() {
     return this.lista_data;
+  }
+
+  Future<List> fetchDevicedata(context) async {
+    //Instantiate a proper data manager
+    FitbitDeviceDataManager fitbitDeviceDataManager = FitbitDeviceDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    //fetch data
+    FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
+      userID: Strings.userID,
+    );
+
+    //get data
+    return fitbitDeviceData =
+        await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
   }
 }

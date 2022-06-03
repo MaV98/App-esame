@@ -446,10 +446,15 @@ class _CartPageState extends State<CartPage> {
                     SizedBox(
                       height: 50,
                     ),
-                    Text(
-                      'The change refers to the initial ${i.name} price ${i.price}€.',
-                      textAlign: TextAlign.center,
-                    ),
+                    i is Crypto
+                        ? Text(
+                            'The change refers to the initial ${i.name} price ${i.price}€.',
+                            textAlign: TextAlign.center,
+                          )
+                        : Text(
+                            'The change refers to the initial ${i.name} price ${i.price!.toStringAsFixed(3)}€.',
+                            textAlign: TextAlign.center,
+                          ),
                     SizedBox(
                       height: 50,
                     ),

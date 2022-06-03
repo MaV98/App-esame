@@ -102,7 +102,7 @@ class FavoriteStorePage extends StatelessWidget {
                                                         height: 40,
                                                       ),
                                                       Text(
-                                                        'Price: ${store.price}€',
+                                                        'Price: ${store.price!.toStringAsFixed(3)}€',
                                                         textAlign:
                                                             TextAlign.center,
                                                       ),
@@ -156,11 +156,15 @@ class FavoriteStorePage extends StatelessWidget {
                             },
                             child: ListTile(
                               leading: Image.network('https://' + store.image),
+                              subtitle: Text(
+                                  'Price: ${store.price!.toStringAsFixed(3)}€'),
                               trailing: Icon(MdiIcons.arrowLeftRightBold),
                               title: Text(store.name!.toUpperCase()),
                             ),
                             onDismissed: (DismissDirection direction) async {
                               if (direction == DismissDirection.startToEnd) {
+                                store.price_chose = store.price! *
+                                    double.parse(_Controller.text);
                                 Provider.of<Favorites>(context, listen: false)
                                     .addCart(store);
                                 final snackBar = SnackBar(
