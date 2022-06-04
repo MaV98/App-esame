@@ -104,11 +104,13 @@ class TodayPage extends StatelessWidget {
                         ],
                       )),
                 ),
-                ListTile(
-                  leading: Icon(Icons.watch),
-                  title: Text('Device'),
-                  onTap: () => _toDevicePage(context, deviceData),
-                ),
+                Consumer<Dati>(builder: (context, deviceData, _) {
+                  return ListTile(
+                    leading: Icon(Icons.watch),
+                    title: Text('Device'),
+                    onTap: () => _toDevicePage(context, deviceData),
+                  );
+                }),
                 ListTile(
                   leading: Icon(Icons.check_circle),
                   title: Text('Authorize'),
@@ -116,8 +118,8 @@ class TodayPage extends StatelessWidget {
                     List<dynamic> lista = await data.fetchdata(context);
                     List<dynamic> device_data =
                         await data.fetchDevicedata(context);
+                    device_data = device_data[0].toString().split(' ');
                     print(device_data);
-
                     passi_totali.copy(lista[0]);
                     passi_totali.stampa();
 

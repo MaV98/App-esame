@@ -9,10 +9,9 @@ class DevicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device_data =
+    print('${DevicePage.routename} built');
+    Map<dynamic, dynamic> device_data =
         ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
-    print(device_data['device_data']);
-    print(device_data['device_data'].printDeviceId());
 
     return Scaffold(
         appBar: AppBar(
@@ -62,8 +61,14 @@ class DevicePage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             )),
-                        Text('Battery level ',
-                            style: TextStyle(color: Colors.white, fontSize: 18))
+                        device_data['device_data'].isEmpty()
+                            ? Text('No data available',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))
+                            : Text(
+                                'Battery level: ${device_data['device_data'].printBatteryLevel()}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))
                       ],
                     )
                   ])),
@@ -78,22 +83,30 @@ class DevicePage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.watch),
             title: Text('Device type'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: device_data['device_data'].isEmpty()
+                ? Text('No data available')
+                : Text(device_data['device_data'].printType()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchExport),
             title: Text('Device version'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: device_data['device_data'].isEmpty()
+                ? Text('No data available')
+                : Text(device_data['device_data'].printDeviceVersion()),
           ),
           ListTile(
             leading: Icon(MdiIcons.chartBubble),
             title: Text('Device Id'),
-            trailing: Icon(Icons.arrow_right),
+            trailing: device_data['device_data'].isEmpty()
+                ? Text('No data available')
+                : Text(device_data['device_data'].printDeviceId()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchVibrate),
-            title: Text('Last synchronization'),
-            trailing: Icon(Icons.arrow_right),
+            title: Text('Last synch.'),
+            trailing: device_data['device_data'].isEmpty()
+                ? Text('No data available')
+                : Text(device_data['device_data'].printLastSyncTime()),
           ),
         ]));
   }

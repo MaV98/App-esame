@@ -3,7 +3,22 @@ import 'package:flutter/material.dart';
 class Dati extends ChangeNotifier {
   double _passi = 0;
   double _calorie = 0;
-  List<dynamic> _devicedata = [];
+  List<dynamic> _devicedata = []; // = [
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   '',
+  //   ''
+  // ];
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -34,28 +49,44 @@ class Dati extends ChangeNotifier {
   }
 
   //metodi per device data
-  set deviceData(newdevicedata) {
+  set deviceData(List<dynamic> newdevicedata) {
     _devicedata = newdevicedata;
     notifyListeners();
   }
 
   String printDeviceId() {
-    return _devicedata[0][1].toString();
+    int endIndex = _devicedata[3].toString().length - 1;
+    return _devicedata[3].substring(0, endIndex).toString();
   }
 
   String printDeviceVersion() {
-    return _devicedata[2].toString();
+    int endIndex6 = _devicedata[6].toString().length - 1;
+    dynamic version = _devicedata[5].toString() + ' ';
+    return version + _devicedata[6].substring(0, endIndex6).toString();
   }
 
   String printBatteryLevel() {
-    return _devicedata[3].toString();
+    int endIndex = _devicedata[8].toString().length - 1;
+    return _devicedata[8].substring(0, endIndex).toString();
   }
 
   String printLastSyncTime() {
-    return _devicedata[4].toString();
+    int endIndex11 = _devicedata[11].toString().length - 1;
+    dynamic version = _devicedata[10].toString() + ' ';
+    return version + _devicedata[11].substring(0, endIndex11).toString();
   }
 
   String printType() {
-    return _devicedata[5].toString();
+    int endIndex = _devicedata[13].toString().length - 1;
+    return _devicedata[13].substring(0, endIndex).toString();
+  }
+
+  bool isEmpty() {
+    if (_devicedata.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+    //return _devicedata.isEmpty;
   }
 }
