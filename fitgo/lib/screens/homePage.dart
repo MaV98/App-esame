@@ -11,14 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:fitgo/screens/loginPage.dart';
 
 import '../utils/fitbit_data.dart';
 import '../utils/fitbit_data_class.dart';
 
 class HomePage extends StatelessWidget {
-  //Double? passi;
-  //HomePage({this.passi});
-  //HomePage({Key? key}) : super(key: key);
+  int? index;
+  HomePage({Key? key, this.index}) : super(key: key);
+  
   static const route = '/homepage';
   static const routename = 'Home';
   final dati = Dati();
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
       //print(passi.printPassi());
       //Future<List<dynamic>>lista = data.fetchData();
       //passi_tot.copy(lista.steps());
-      return TodayPage(passi_1: dati.printPassi(), cal: dati.printCalorie());
+      return TodayPage(passi_1: dati.printPassi(), cal: dati.printCalorie(), index:index);
     } else if (page == 1)
       return ScoresPage(
         calorie: dati.printCalorie(),
@@ -55,4 +56,7 @@ class HomePage extends StatelessWidget {
       color: Colors.green,
     );
   }
+}
+
+class Index{
 }

@@ -24,7 +24,8 @@ class TodayPage extends StatelessWidget {
   //Map<String, dynamic>? topass;
   String? passi_1;
   String? cal;
-  TodayPage({this.passi_1, this.cal});
+  final index;
+  TodayPage({this.passi_1, this.cal, this.index});
 
   static const route = '/todaypage/';
   static const routename = 'TodayPage';
@@ -37,7 +38,7 @@ class TodayPage extends StatelessWidget {
 //   Map<String, dynamic>? topass;
   final passi_totali = fitbit_data();
   final calorie_totali = fitbit_data();
-  final data = fitbit_data_class();
+  final data1 = fitbit_data_class();
 
   Dati passi = Dati();
   Dati deviceData = Dati();
@@ -58,13 +59,48 @@ class TodayPage extends StatelessWidget {
   ];
 
   // _HomePageState(this.topass);
+  @override
+  Widget build(BuildContext context){
+    //final index = Provider.of<IndicePag>(context).setIndex();
+    print('l''indice é: ' + index.toString());
+    return selectSituation(context, index, data1);
+        //Scaffold(
+          // appBar: AppBar(
+          //   title: Text(TodayPage.routename),),
+          //body: selectSituation(context, index_1, data1),);
+            
+  }
+}
+
+Widget selectSituation(BuildContext context, index, data1){
+  if (index == 1){
+    return situation1();
+  }else{
+    return situation2();
+  }
+}
+
+class situation1 extends StatelessWidget{
+  final dataMap = <String, double>{
+    "Steps objective": 80,
+    //"Walking": 15,
+    //"Running": 35,
+  };
+
+  // final List<PhysicalActivity> data = [
+  final colorList = <Color>[
+    Colors.green,
+    //Colors.blue,
+    //Colors.red,
+  ];
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Dati>(context);
+    dynamic data1 = fitbit_data_class();
     print('${TodayPage.routename} built');
 
-    return Consumer<Dati>(builder: (context, value, _) {
+    
       return Scaffold(
           appBar: AppBar(
             title: Text('Home Page'),
@@ -94,7 +130,7 @@ class TodayPage extends StatelessWidget {
                                   'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
                             ),
                           ),
-                          Text('Giorgio Cappon',
+                          Text('Giacomo Cappon',
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 fontSize: 16.0,
@@ -111,26 +147,7 @@ class TodayPage extends StatelessWidget {
                     onTap: () => _toDevicePage(context, deviceData),
                   );
                 }),
-                ListTile(
-                  leading: Icon(Icons.check_circle),
-                  title: Text('Authorize'),
-                  onTap: () async {
-                    List<dynamic> lista = await data.fetchdata(context);
-                    List<dynamic> device_data =
-                        await data.fetchDevicedata(context);
-                    device_data = device_data[0].toString().split(' ');
-                    print(device_data);
-                    passi_totali.copy(lista[0]);
-                    passi_totali.stampa();
-
-                    calorie_totali.copy(lista[1]);
-                    calorie_totali.stampa();
-
-                    provider.passi = lista[0];
-                    provider.calorie = lista[1];
-                    provider.deviceData = device_data;
-                  },
-                ),
+                
                 ListTile(
                   leading: Icon(Icons.smoke_free),
                   title: Text('Unauthorize'),
@@ -149,24 +166,33 @@ class TodayPage extends StatelessWidget {
               ],
             ),
           ),
-          body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(15),
-                  margin: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
+          body: FutureBuilder<List>(
+            initialData: null,
+                  future: data1.fetchData(), 
+                  builder: (context, snapshot){
+                    if (snapshot.hasData){
+                      final dati = snapshot.data as List;
+                      provider.passi = dati[0];
+                      provider.calorie = dati[1];
+                      return
+            Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    margin: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
                       new BoxShadow(
                         color: Colors.white30,
                         //offset: new Offset(6.0, 6.0),
                       ),
                     ],
                   ),
-                  child: Text("Welcome back Giorgio!",
+                  child: Text("Welcome back Giacomo!",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
@@ -278,21 +304,62 @@ class TodayPage extends StatelessWidget {
                     )
                   ]),
             )
-          ]));
-    });
+          ]);}else{
+            return Center(
+              child:
+                CircularProgressIndicator(),
+            );
+          }}
+          ),
+    );
+  }
+}
+
+class situation2 extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    //var provider = Provider.of<Passi>(context);
+    // List<dynamic> lista = data.fetchData();
+    // provider.passi = lista[0];
+    // provider.calorie = lista[1];
+    print('${TodayPage.routename} built');
+    
+    return 
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Situation2'),
+            automaticallyImplyLeading: false,
+          ),
+          body: Center(
+            child:
+                Column(
+                  children: [
+                    Text('not auth'),
+                    ElevatedButton(onPressed: () async{
+                      final sp = await SharedPreferences.getInstance();
+                      sp.remove('UserName');
+                      //final index = await SharedPreferences.getInstance();
+                      sp.remove('indice');
+                      Navigator.pushNamed(context, LoginPage.route);
+
+                    }, 
+                      child: Text('LogOut'))]
+                ),           
+      ),);
+   //build
   }
 }
 
 void _toLoginPage(BuildContext context) async {
   //Unset the 'username' filed in SharedPreference
   final sp = await SharedPreferences.getInstance();
-  sp.remove('username');
+  sp.remove('UserName');
+  sp.remove('indice');
 
   //Pop the drawer first
-  Navigator.pop(context);
   //Then pop the HomePage
   //Navigator.pushNamed(context, '/');
-  Navigator.of(context).pushReplacementNamed(LoginPage.route);
+  Navigator.pushNamed(context,LoginPage.route);
 }
 
 void _toDevicePage(BuildContext context, device_data) {
