@@ -4,6 +4,9 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:fitgo/models/passi.dart';
 
 class DevicePage extends StatelessWidget {
+  Map? device_data;
+  DevicePage({this.device_data});
+
   static const route = '/devicepage/';
   static const routename = 'DevicePage';
 
