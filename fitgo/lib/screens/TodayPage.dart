@@ -103,13 +103,15 @@ import 'package:fitgo/screens/devicePage.dart';
       print('${TodayPage.routename} built');
 
       
-        return FutureBuilder<Map>(
+        return FutureBuilder<List<dynamic>>(
           initialData: null,
                     future: data_device.fetchDevicedata(context),
                     builder: (context, snapshot){
                       if (snapshot.hasData){
-                        final dati_dev = snapshot.data as List;
-                        provider.deviceData = dati_dev;
+                        final dati_dev = snapshot.data as List<dynamic>;
+                        final dati_device = dati_dev[0].toString().split(' ');
+                        provider.deviceData = dati_device;
+                        print('DATI DEVICE: '+dati_device[0]);
                         return
         Scaffold(
             appBar: AppBar(
@@ -374,15 +376,13 @@ import 'package:fitgo/screens/devicePage.dart';
     Navigator.pushNamed(context,LoginPage.route);
   }
 
-  void _toDevicePage(BuildContext context, device_data) {
+  void _toDevicePage(BuildContext context, dati_device) {
     //Pop the drawer first
     //Navigator.pop(context);
     //Navigator.of(context).pushReplacementNamed(SettingsPage.route);
-    // Navigator.pushNamed(context, '/devicepage/', //MASTRO
-    //     arguments: {'device_data': device_data}); //MASTRO
+    Navigator.pushNamed(context, '/devicepage/', 
+        arguments: {'device_data': dati_device}); 
 
-    Navigator.of(context)
-    .push(MaterialPageRoute(builder: (context)=>DevicePage(device_data:device_data)));
     //Navigator.pushNamed(context, );
     //Navigator.of(context).pushReplacementNamed(LoginPage.route);
   }
