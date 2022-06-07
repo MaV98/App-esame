@@ -1,7 +1,10 @@
+import 'package:fitgo/database/database.dart';
+import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
+import 'package:fitgo/screens/signin.dart';
 import 'package:fitgo/screens/successPage.dart';
 import 'package:fitgo/screens/loginPage.dart';
 import 'package:fitgo/screens/ProfilePage.dart';
@@ -31,16 +34,27 @@ import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 //import 'dart:html';
 import 'package:fitgo/weatherAPI/data_service.dart';
 import 'package:fitgo/weatherAPI/models.dart';
+import 'package:provider/single_child_widget.dart';
 
 import 'models/navBar.dart';
 
 //import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
-  runApp(MyApp());
-} //main
+ // await Firebase.initializeApp();
+  final AppDatabase database =
+      await $FloorAppDatabase.databaseBuilder('fitgo.db').build();
+  //This creates a new DatabaseRepository from the AppDatabase instance just initialized
+  final databaseRepository = DatabaseRepository(database: database);
+
+  //Here, we run the app and we provide to the whole widget tree the instance of the DatabaseRepository. 
+  //That instance will be then shared through the platform and will be unique.
+  runApp(ChangeNotifierProvider<DatabaseRepository>(
+    create: (context) => databaseRepository,
+    child: MyApp(),
+  ));
+}//main
 
 Future<Map<String, dynamic>> getData() async {
   return Future.delayed(Duration(seconds: 1), () => {'prop1': 'value1'});
@@ -65,6 +79,7 @@ class MyApp extends StatelessWidget {
         initialRoute: LoginPage.route,
         routes: {
           LoginPage.route: (context) => LoginPage(),
+          SigninPage.route: (context) => SigninPage(),
           ProfilePage.route: (context) => ProfilePage(),
           HomePage.route: (context) => HomePage(),
           TodayPage.route: (context) => TodayPage(),

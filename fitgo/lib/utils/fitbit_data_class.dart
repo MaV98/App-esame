@@ -9,14 +9,17 @@ class fitbit_data_class {
 
   fitbit_data_class();
 
-  Future<List> fetchdata(context) async {
+  void authorize(context) async {
     String? userId = await FitbitConnector.authorize(
         context: context,
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
         redirectUri: Strings.fitbitRedirectUri,
         callbackUrlScheme: Strings.fitbitCallbackScheme);
+  }
 
+  Future<List> fetchData() async {
+    
     //Instantiate a proper data manager
     FitbitActivityTimeseriesDataManager fitbit_steps =
         FitbitActivityTimeseriesDataManager(

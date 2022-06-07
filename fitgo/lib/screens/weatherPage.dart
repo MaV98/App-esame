@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fitgo/weatherAPI/data_service.dart';
 import 'package:fitgo/weatherAPI/models.dart';
 import 'package:fitgo/screens/HomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class WeatherPage extends StatefulWidget {
@@ -71,9 +72,11 @@ class _WeatherPageState extends State<WeatherPage> {
     );
   } //build
 
-  void _toHomePage(BuildContext context){
-    
-    Navigator.pushNamed(context, HomePage.route);
+  void _toHomePage(BuildContext context) async{
+    final sp = await SharedPreferences.getInstance();
+    final pag = sp.getInt('indice');
+    Navigator.of(context).
+        push(MaterialPageRoute(builder: (context)=>HomePage(index:pag)));
   }
 
   void _search() async {
