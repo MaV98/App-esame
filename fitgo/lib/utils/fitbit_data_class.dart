@@ -4,7 +4,7 @@ import '../utils/strings.dart';
 class fitbit_data_class {
   dynamic? stepsData;
   dynamic? caloriesData;
-  List<double?> lista_data = [];
+  List<dynamic?> lista_data = [];
   List<dynamic> fitbitDeviceData = [];
 
   fitbit_data_class();
@@ -52,6 +52,25 @@ class fitbit_data_class {
 
     lista_data.add(stepsData[0].value);
     lista_data.add(caloriesData[0].value);
+
+// fetch account data
+    FitbitAccountDataManager fitbitAccountDataManager =
+        FitbitAccountDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    FitbitUserAPIURL fitbitUserApiUrl =
+        FitbitUserAPIURL.withUserID(userID: Strings.userID);
+
+    final fitbitAccountDatas =
+        await fitbitAccountDataManager.fetch(fitbitUserApiUrl);
+    FitbitAccountData fitbitAccountData =
+        fitbitAccountDatas[0] as FitbitAccountData;
+
+    lista_data.add(fitbitAccountData);
+    //FitbitAccountData;
+
     return lista_data;
     // caloriesData;
   }

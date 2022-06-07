@@ -3,22 +3,8 @@ import 'package:flutter/material.dart';
 class Dati extends ChangeNotifier {
   double _passi = 0;
   double _calorie = 0;
-  List<dynamic> _devicedata = []; // = [
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   '',
-  //   ''
-  // ];
+  List<dynamic> _devicedata = [];
+  List<dynamic> _accountdata = [];
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -88,5 +74,16 @@ class Dati extends ChangeNotifier {
       return false;
     }
     //return _devicedata.isEmpty;
+  }
+
+  //metodi per account data
+  set accountData(List<dynamic> newaccountdata) {
+    _devicedata = newaccountdata;
+    notifyListeners();
+  }
+
+  String printName() {
+    int endIndex = _accountdata[28].toString().length - 1;
+    return _accountdata[28].substring(0, endIndex).toString();
   }
 }

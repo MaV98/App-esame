@@ -41,6 +41,7 @@ class TodayPage extends StatelessWidget {
 
   Dati passi = Dati();
   Dati deviceData = Dati();
+  Dati accountData = Dati();
   double passi_fatti = 0;
 
   //dati di prova
@@ -119,7 +120,9 @@ class TodayPage extends StatelessWidget {
                     List<dynamic> device_data =
                         await data.fetchDevicedata(context);
                     device_data = device_data[0].toString().split(' ');
+                    var account_data = lista[2].toString().split(' ');
                     print(device_data);
+                    print(account_data[28]);
                     passi_totali.copy(lista[0]);
                     passi_totali.stampa();
 
@@ -129,6 +132,7 @@ class TodayPage extends StatelessWidget {
                     provider.passi = lista[0];
                     provider.calorie = lista[1];
                     provider.deviceData = device_data;
+                    provider.accountData = account_data;
                   },
                 ),
                 ListTile(
@@ -154,22 +158,23 @@ class TodayPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(15),
-                  margin: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.white30,
-                        //offset: new Offset(6.0, 6.0),
-                      ),
-                    ],
-                  ),
-                  child: Text("Welcome back Giorgio!",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                ),
+                    padding: EdgeInsets.all(15),
+                    margin: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.white30,
+                          //offset: new Offset(6.0, 6.0),
+                        ),
+                      ],
+                    ),
+                    child: Consumer<Dati>(builder: (context, deviceData, _) {
+                      return Text("Welcome back ${accountData.printName()}!",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold));
+                    })),
                 IconButton(
                   onPressed: () {
                     Navigator.pushNamed(context, WeatherPage.route);
