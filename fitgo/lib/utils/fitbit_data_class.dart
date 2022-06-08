@@ -19,7 +19,6 @@ class fitbit_data_class {
   }
 
   Future<List> fetchData() async {
-    
     //Instantiate a proper data manager
     FitbitActivityTimeseriesDataManager fitbit_steps =
         FitbitActivityTimeseriesDataManager(
@@ -55,6 +54,23 @@ class fitbit_data_class {
 
     lista_data.add(stepsData[0].value);
     lista_data.add(caloriesData[0].value);
+
+//fetchdevicedata
+    FitbitDeviceDataManager fitbitDeviceDataManager = FitbitDeviceDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    //fetch data
+    FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
+      userID: Strings.userID,
+    );
+
+    //get data
+    fitbitDeviceData = await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
+
+    lista_data.add(fitbitDeviceData);
+//fetch devicedata
 
 // fetch account data
     FitbitAccountDataManager fitbitAccountDataManager =

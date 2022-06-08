@@ -43,6 +43,7 @@ class TodayPage extends StatelessWidget {
 
   Dati passi = Dati();
   Dati deviceData = Dati();
+  Dati accountData = Dati();
   double passi_fatti = 0;
 
   //dati di prova
@@ -101,255 +102,278 @@ class situation1 extends StatelessWidget {
     dynamic data_device = fitbit_data_class();
     print('${TodayPage.routename} built');
 
-    return FutureBuilder<List<dynamic>>(
+    return FutureBuilder<List>(
         initialData: null,
-        future: data_device.fetchDevicedata(context),
+        future: data1.fetchData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final dati_dev = snapshot.data as List<dynamic>;
-            final dati_device = dati_dev[0].toString().split(' ');
+            final dati = snapshot.data as List;
+            final dati_device = dati[2].toString().split(' ');
+            final dati_account = dati[3].toString().split(' ');
             provider.deviceData = dati_device;
-            print('DATI DEVICE: ' + dati_device[0]);
+            provider.accountData = dati_account;
+            print('DATI DEVICE:');
+            print(dati_device);
+            provider.passi = dati[0];
+            provider.calorie = dati[1];
+
+            //FutureBuilder<List<dynamic>>(
+            // initialData: null,
+            // future: data_device.fetchDevicedata(context),
+            // builder: (context, snapshot) {
+            //   if (snapshot.hasData) {
+            //     final dati_dev = snapshot.data as List<dynamic>;
+            //     final dati_device = dati_dev[0].toString().split(' ');
+            //     provider.deviceData = dati_device;
+            //     print('DATI DEVICE: ' + dati_device[0]);
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Home Page'),
-              ),
-              drawer: Drawer(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/profile/'),
-                      //Navigator.of(context)
-                      //.pushReplacementNamed(ProfilePage.route),
-                      child: DrawerHeader(
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.white,
-                                minRadius: 35.0,
-                                maxRadius: 45.0,
-                                child: CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundImage: NetworkImage(
-                                      'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
-                                ),
-                              ),
-                              Text('Giacomo Cappon',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ))
-                            ],
-                          )),
-                    ),
-                    Consumer<Dati>(builder: (context, deviceData, _) {
-                      return ListTile(
-                        leading: Icon(Icons.watch),
-                        title: Text('Device'),
-                        onTap: () => _toDevicePage(context, deviceData),
-                      );
-                    }),
-                    ListTile(
-                      leading: Icon(Icons.smoke_free),
-                      title: Text('Unauthorize'),
-                      onTap: () async {
-                        await FitbitConnector.unauthorize(
-                          clientID: Strings.fitbitClientID,
-                          clientSecret: Strings.fitbitClientSecret,
-                        );
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.logout),
-                      title: Text('Logout'),
-                      onTap: () => _toLoginPage(context),
-                    ),
-                  ],
+                appBar: AppBar(
+                  title: Text('Home Page'),
                 ),
-              ),
-              body: FutureBuilder<List>(
-                  initialData: null,
-                  future: data1.fetchData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final dati = snapshot.data as List;
-                      provider.passi = dati[0];
-                      provider.calorie = dati[1];
-                      return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                drawer: Drawer(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      Consumer<Dati>(builder: (context, accountData, _) {
+                        return ElevatedButton(
+                          onPressed: () => _toProfilePage(context, accountData),
+                          //Navigator.of(context)
+                          //.pushReplacementNamed(ProfilePage.route),
+                          child: DrawerHeader(
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    minRadius: 35.0,
+                                    maxRadius: 45.0,
+                                    child: CircleAvatar(
+                                      radius: 40.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
+                                    ),
+                                  ),
+                                  Text('Giacomo Cappon',
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ))
+                                ],
+                              )),
+                        );
+                      }),
+                      Consumer<Dati>(builder: (context, deviceData, _) {
+                        return ListTile(
+                          leading: Icon(Icons.watch),
+                          title: Text('Device'),
+                          onTap: () => _toDevicePage(context, deviceData),
+                        );
+                      }),
+                      ListTile(
+                        leading: Icon(Icons.smoke_free),
+                        title: Text('Unauthorize'),
+                        onTap: () async {
+                          await FitbitConnector.unauthorize(
+                            clientID: Strings.fitbitClientID,
+                            clientSecret: Strings.fitbitClientSecret,
+                          );
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.logout),
+                        title: Text('Logout'),
+                        onTap: () => _toLoginPage(context),
+                      ),
+                    ],
+                  ),
+                ),
+                body:
+                    // FutureBuilder<List>(
+                    //     initialData: null,
+                    //     future: data1.fetchData(),
+                    //     builder: (context, snapshot) {
+                    //       if (snapshot.hasData) {
+                    //         final dati = snapshot.data as List;
+                    //         final dati_device = dati[2].toString().split(' ');
+                    //         final dati_account = dati[3].toString().split(' ');
+                    //         provider.deviceData = dati_device;
+                    //         provider.accountData = dati_account;
+                    //         print('DATI DEVICE:');
+                    //         print(dati_device);
+                    //         provider.passi = dati[0];
+                    //         provider.calorie = dati[1];
+                    //return
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.all(15),
+                              margin: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.blue, width: 2),
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.white30,
+                                    //offset: new Offset(6.0, 6.0),
+                                  ),
+                                ],
+                              ),
+                              child: Consumer<Dati>(
+                                  builder: (context, accountData, _) {
+                                return Text(
+                                    "Welcome back ${accountData.printName()}!",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold));
+                              })),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, WeatherPage.route);
+                            },
+                            //icon: Icon(Icons.sunny),
+                            icon: Icon(MdiIcons.weatherPartlyCloudy),
+                            color: Colors.blue,
+                            iconSize: 40,
+                          )
+                        ],
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(15),
-                                  margin: EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.blue, width: 2),
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: [
-                                      new BoxShadow(
-                                        color: Colors.white30,
-                                        //offset: new Offset(6.0, 6.0),
+                            SizedBox(
+                                height: 75,
+                                width: 150,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
+                                  ),
+                                  onPressed: () {},
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Consumer<Dati>(
+                                          builder: (context, passi, _) {
+                                        return Text(
+                                          passi.printCalorie(),
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0)),
+                                        );
+                                      }),
+                                      Icon(
+                                        Icons.local_fire_department_rounded,
+                                        color: Color.fromARGB(255, 0, 0, 0),
                                       ),
                                     ],
                                   ),
-                                  child: Text("Welcome back Giacomo!",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, WeatherPage.route);
-                                  },
-                                  //icon: Icon(Icons.sunny),
-                                  icon: Icon(MdiIcons.weatherPartlyCloudy),
-                                  color: Colors.blue,
-                                  iconSize: 40,
-                                )
-                              ],
+                                )),
+                            SizedBox(
+                              height: 75,
+                              width: 20,
                             ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                      height: 75,
-                                      width: 150,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors.white,
-                                        ),
-                                        onPressed: () {},
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Consumer<Dati>(
-                                                builder: (context, passi, _) {
-                                              return Text(
-                                                passi.printCalorie(),
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0)),
-                                              );
-                                            }),
-                                            Icon(
-                                              Icons
-                                                  .local_fire_department_rounded,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                  SizedBox(
-                                    height: 75,
-                                    width: 20,
+                            SizedBox(
+                                height: 75,
+                                width: 150,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
                                   ),
-                                  SizedBox(
-                                      height: 75,
-                                      width: 150,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors.white,
-                                        ),
-                                        onPressed: () {},
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(
-                                              "Sleep",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0)),
-                                            ),
-                                            Icon(
-                                              Icons.nightlight_round_rounded,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                ]),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                0,
-                                15,
-                                0,
-                                0,
-                              ),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SizedBox(
-                                      height: 150,
-                                      width: 320,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors.white,
-                                        ),
-                                        onPressed: () {},
-                                        child: Consumer<Dati>(
-                                            builder: (context, passi, _) {
-                                          return PieChart(
-                                            totalValue: 100,
-                                            dataMap: dataMap,
-                                            colorList: colorList,
-                                            centerText: passi.printPassi(),
-                                            chartType: ChartType.ring,
-                                            animationDuration:
-                                                Duration(milliseconds: 800),
-                                            chartLegendSpacing: 32,
-                                            chartRadius: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                3.2,
-                                            legendOptions: LegendOptions(
-                                              legendTextStyle: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                            chartValuesOptions:
-                                                ChartValuesOptions(
-                                                    showChartValues: false,
-                                                    showChartValuesOutside:
-                                                        false),
-                                          );
-                                        }),
+                                  onPressed: () {},
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        "Sleep",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color:
+                                                Color.fromARGB(255, 0, 0, 0)),
                                       ),
-                                    )
-                                  ]),
-                            )
-                          ]);
-                    } else
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                  }),
-            );
-          } else {
+                                      Icon(
+                                        Icons.nightlight_round_rounded,
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                      )
+                                    ],
+                                  ),
+                                )),
+                          ]),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          0,
+                          15,
+                          0,
+                          0,
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: 150,
+                                width: 320,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
+                                  ),
+                                  onPressed: () {},
+                                  child: Consumer<Dati>(
+                                      builder: (context, passi, _) {
+                                    return PieChart(
+                                      totalValue: 100,
+                                      dataMap: dataMap,
+                                      colorList: colorList,
+                                      centerText: passi.printPassi(),
+                                      chartType: ChartType.ring,
+                                      animationDuration:
+                                          Duration(milliseconds: 800),
+                                      chartLegendSpacing: 32,
+                                      chartRadius:
+                                          MediaQuery.of(context).size.width /
+                                              3.2,
+                                      legendOptions: LegendOptions(
+                                        legendTextStyle:
+                                            TextStyle(color: Colors.black),
+                                      ),
+                                      chartValuesOptions: ChartValuesOptions(
+                                          showChartValues: false,
+                                          showChartValuesOutside: false),
+                                    );
+                                  }),
+                                ),
+                              )
+                            ]),
+                      )
+                    ]));
+          } else
             return Center(
               child: CircularProgressIndicator(),
             );
-          }
         });
   }
 }
+
+// } else {
+//   return Center(
+//     child: CircularProgressIndicator(),
+//   );
+// }
+//}
+//);
+//}
+//}
 
 class situation2 extends StatelessWidget {
   @override
@@ -405,4 +429,9 @@ void _toDevicePage(BuildContext context, dati_device) {
 
   //Navigator.pushNamed(context, );
   //Navigator.of(context).pushReplacementNamed(LoginPage.route);
+}
+
+void _toProfilePage(BuildContext context, dati_account) {
+  Navigator.pushNamed(context, '/profile/',
+      arguments: {'account_data': dati_account});
 }

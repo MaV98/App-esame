@@ -78,12 +78,17 @@ class Dati extends ChangeNotifier {
 
   //metodi per account data
   set accountData(List<dynamic> newaccountdata) {
-    _devicedata = newaccountdata;
+    _accountdata = newaccountdata;
     notifyListeners();
   }
 
   String printName() {
     int endIndex = _accountdata[28].toString().length - 1;
     return _accountdata[28].substring(0, endIndex).toString();
+  }
+
+  String printAge() {
+    int endIndex = _accountdata[3].toString().length - 1;
+    return _accountdata[3].substring(0, endIndex).toString();
   }
 }
