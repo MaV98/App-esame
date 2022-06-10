@@ -82,27 +82,27 @@ class TodayPage extends StatelessWidget {
 Widget selectSituation(BuildContext context, index, creat, data1) {
   var provider = Provider.of<Dati>(context);
   dynamic data1 = fitbit_data_class();
-  if ((index == 1) & (creat == 1)){
-    return 
-    FutureBuilder<List>(
-    initialData: null,
-    future: data1.fetchData(), 
-    builder: (context, snapshot){
-      if (snapshot.hasData){
-        final dati = snapshot.data as List;
-        final dati_device = dati[2].toString().split(' ');
-        final dati_account = dati[3].toString().split(' ');
-        provider.deviceData = dati_device;
-        provider.accountData = dati_account;
-        provider.passi = dati[0];
-        provider.calorie = dati[1];
-      return  
-        situation1();
-      }else{return Center(child: CircularProgressIndicator());} 
-      });
-  }else if ((index == 1) & (creat > 1)){
+  if ((index == 1) & (creat == 1)) {
+    return FutureBuilder<List>(
+        initialData: null,
+        future: data1.fetchData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final dati = snapshot.data as List;
+            final dati_device = dati[2].toString().split(' ');
+            final dati_account = dati[3].toString().split(' ');
+            provider.deviceData = dati_device;
+            provider.accountData = dati_account;
+            provider.passi = dati[0];
+            provider.calorie = dati[1];
+            return situation1();
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        });
+  } else if ((index == 1) & (creat > 1)) {
     return situation1();
-  }else{
+  } else {
     return situation2();
   }
 }
@@ -131,233 +131,214 @@ class situation1 extends StatelessWidget {
     dynamic data_device = fitbit_data_class();
     print('${TodayPage.routename} built');
 
-
     // _refresh(context, data1);
     //print(data1.refresh(context));
-            return Scaffold(
-                appBar: AppBar(
-                  title: Text('Home Page'),
-                ),
-                drawer: Drawer(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: [
-                      Consumer<Dati>(builder: (context, accountData, _) {
-                        return ElevatedButton(
-                          onPressed: () => _toProfilePage(context, accountData),
-                          //Navigator.of(context)
-                          //.pushReplacementNamed(ProfilePage.route),
-                          child: DrawerHeader(
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    minRadius: 35.0,
-                                    maxRadius: 45.0,
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage: NetworkImage(
-                                          'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
-                                    ),
-                                  ),
-                                  Text('Giacomo Cappon',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ))
-                                ],
-                              )),
-                        );
-                      }),
-                      Consumer<Dati>(builder: (context, deviceData, _) {
-                        return ListTile(
-                          leading: Icon(Icons.watch),
-                          title: Text('Device'),
-                          onTap: () => _toDevicePage(context, deviceData),
-                        );
-                      }),
-                      ListTile(
-                        leading: Icon(Icons.smoke_free),
-                        title: Text('Unauthorize'),
-                        onTap: () async {
-                          await FitbitConnector.unauthorize(
-                            clientID: Strings.fitbitClientID,
-                            clientSecret: Strings.fitbitClientSecret,
-                          );
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text('Logout'),
-                        onTap: () => _toLoginPage(context),
-                      ),
-                    ],
-                  ),
-                ),
-                body:
-                RefreshIndicator(
-            
-                  onRefresh: () async{
-                    List dati = await data1.fetchData();
-                    provider.passi = dati[0];
-                    provider.calorie = dati[1];
-                  },
-                  child: ListView(
-                    children: <Widget>[
-                    Container(
-                      child:
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                               Consumer<Dati>(
-                                  builder: (context, accountData, _) {
-                                return Text(
-                                    "Welcome back ${accountData.printName()}!",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold));
-                              }),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, WeatherPage.route);
-                            },
-                            //icon: Icon(Icons.sunny),
-                            icon: Icon(MdiIcons.weatherPartlyCloudy),
-                            color: Colors.blue,
-                            iconSize: 40,
-                          )],
-                        
-                      ),),
-                      Container(
-                        child:
-                        Column(
-                          children: [ 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                                height: 75,
-                                width: 145,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                  ),
-                                  onPressed: () {},
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Consumer<Dati>(
-                                          builder: (context, passi, _) {
-                                        return Text(
-                                          passi.printCalorie(),
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0)),
-                                        );
-                                      }),
-                                      Icon(
-                                        Icons.local_fire_department_rounded,
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                            SizedBox(
-                              height: 75,
-                              width: 10,
-                            ),
-                            SizedBox(
-                                height: 75,
-                                width: 145,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                  ),
-                                  onPressed: () {},
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        "Sleep",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color:
-                                                Color.fromARGB(255, 0, 0, 0)),
-                                      ),
-                                      Icon(
-                                        Icons.nightlight_round_rounded,
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                      )
-                                    ],
-                                  ),
-                                )),
-                          ]),])),
-                      Container(
-                        child:
-                        Column(
-                          children:[
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                          0,
-                          15,
-                          0,
-                          0,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Consumer<Dati>(builder: (context, accountData, _) {
+              return ElevatedButton(
+                onPressed: () => _toProfilePage(context, accountData),
+                //Navigator.of(context)
+                //.pushReplacementNamed(ProfilePage.route),
+                child: DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          minRadius: 35.0,
+                          maxRadius: 45.0,
+                          child: CircleAvatar(
+                            radius: 40.0,
+                            backgroundImage: NetworkImage(
+                                'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
+                          ),
                         ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                height: 150,
-                                width: 300,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                  ),
-                                  onPressed: () {},
-                                  child: Consumer<Dati>(
-                                      builder: (context, passi, _) {
-                                    return PieChart(
-                                      initialAngleInDegree: 0,
-                                      totalValue: 100,
-                                      dataMap: dataMap,
-                                      colorList: colorList,
-                                      centerText: passi.printPassi(),
-                                      chartType: ChartType.ring,
-                                      animationDuration:
-                                          Duration(milliseconds: 1000),
-                                      chartLegendSpacing: 32,
-                                      chartRadius:
-                                          MediaQuery.of(context).size.width /
-                                              3.2,
-                                      legendOptions: LegendOptions(
-                                        legendTextStyle:
-                                            TextStyle(color: Colors.black),
-                                      ),
-                                      chartValuesOptions: ChartValuesOptions(
-                                          showChartValues: false,
-                                          showChartValuesOutside: false,
-                                          showChartValuesInPercentage: true),
-                                    );
-                                  }),
+                        Text('Giacomo Cappon',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ))
+                      ],
+                    )),
+              );
+            }),
+            Consumer<Dati>(builder: (context, deviceData, _) {
+              return ListTile(
+                leading: Icon(Icons.watch),
+                title: Text('Device'),
+                onTap: () => _toDevicePage(context, deviceData),
+              );
+            }),
+            ListTile(
+              leading: Icon(Icons.smoke_free),
+              title: Text('Unauthorize'),
+              onTap: () async {
+                await FitbitConnector.unauthorize(
+                  clientID: Strings.fitbitClientID,
+                  clientSecret: Strings.fitbitClientSecret,
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () => _toLoginPage(context),
+            ),
+          ],
+        ),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          List dati = await data1.fetchData();
+          provider.passi = dati[0];
+          provider.calorie = dati[1];
+        },
+        child: ListView(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Consumer<Dati>(builder: (context, accountData, _) {
+                  return Text("Welcome back ${accountData.printName()}!",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
+                }),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, WeatherPage.route);
+                  },
+                  //icon: Icon(Icons.sunny),
+                  icon: Icon(MdiIcons.weatherPartlyCloudy),
+                  color: Colors.blue,
+                  iconSize: 40,
+                )
+              ],
+            ),
+            Container(
+                child: Column(children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                SizedBox(
+                    height: 75,
+                    width: 145,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Consumer<Dati>(builder: (context, passi, _) {
+                            return Text(
+                              passi.printCalorie(),
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 0, 0, 0)),
+                            );
+                          }),
+                          Icon(
+                            Icons.local_fire_department_rounded,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                          ),
+                        ],
+                      ),
+                    )),
+                SizedBox(
+                  height: 75,
+                  width: 10,
+                ),
+                SizedBox(
+                    height: 75,
+                    width: 145,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Sleep",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                          Icon(
+                            Icons.nightlight_round_rounded,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                          )
+                        ],
+                      ),
+                    )),
+              ]),
+            ])),
+            Container(
+              child: Column(children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    0,
+                    15,
+                    0,
+                    0,
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: 150,
+                          width: 300,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                            ),
+                            onPressed: () {},
+                            child: Consumer<Dati>(builder: (context, passi, _) {
+                              return PieChart(
+                                initialAngleInDegree: 0,
+                                totalValue: 100,
+                                dataMap: dataMap,
+                                colorList: colorList,
+                                centerText: passi.printPassi(),
+                                chartType: ChartType.ring,
+                                animationDuration: Duration(milliseconds: 1000),
+                                chartLegendSpacing: 32,
+                                chartRadius:
+                                    MediaQuery.of(context).size.width / 3.2,
+                                legendOptions: LegendOptions(
+                                  legendTextStyle:
+                                      TextStyle(color: Colors.black),
                                 ),
-                              )
-                            ]),
-                      )
-                    ]),),],),),);
-          } 
-        }
-  
-
+                                chartValuesOptions: ChartValuesOptions(
+                                    showChartValues: false,
+                                    showChartValuesOutside: false,
+                                    showChartValuesInPercentage: true),
+                              );
+                            }),
+                          ),
+                        )
+                      ]),
+                )
+              ]),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 // } else {
 //   return Center(

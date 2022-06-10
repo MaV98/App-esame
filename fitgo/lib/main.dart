@@ -18,7 +18,7 @@ import 'package:fitgo/repository/favorites.dart';
 //import 'package:app_demo/screens/settingsPage.dart';
 import 'package:fitgo/screens/storePage.dart';
 import 'package:fitgo/screens/weatherPage.dart';
-//import 'package:app_demo/screens/walking1.dart';
+import 'package:fitgo/screens/walking1.dart';
 //import 'package:app_demo/screens/trainingPage.dart';
 //import 'package:app_demo/screens/walkingPage.dart';
 import 'package:flutter/material.dart';
@@ -43,19 +43,19 @@ import 'models/navBar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
- // await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   final AppDatabase database =
       await $FloorAppDatabase.databaseBuilder('fitgo.db').build();
   //This creates a new DatabaseRepository from the AppDatabase instance just initialized
   final databaseRepository = DatabaseRepository(database: database);
 
-  //Here, we run the app and we provide to the whole widget tree the instance of the DatabaseRepository. 
+  //Here, we run the app and we provide to the whole widget tree the instance of the DatabaseRepository.
   //That instance will be then shared through the platform and will be unique.
   runApp(ChangeNotifierProvider<DatabaseRepository>(
     create: (context) => databaseRepository,
     child: MyApp(),
   ));
-}//main
+} //main
 
 Future<Map<String, dynamic>> getData() async {
   return Future.delayed(Duration(seconds: 1), () => {'prop1': 'value1'});
@@ -74,9 +74,7 @@ class MyApp extends StatelessWidget {
           //This specifies the app entrypoint
           create: (context) => NavBar(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => IndicePag()
-        ),
+        ChangeNotifierProvider(create: (context) => IndicePag()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -93,7 +91,7 @@ class MyApp extends StatelessWidget {
           FriendsPage.route: (context) => FriendsPage(),
           ShopPage.route: (context) => ShopPage(),
           //WalkingPage.route: (context) => WalkingPage(),
-          //WalkingPage1.route: (context) => WalkingPage1(),
+          WalkingPage1.route: (context) => WalkingPage1(),
           CryptoPage.route: (context) => CryptoPage(),
           StorePage.route: (context) => StorePage(),
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
@@ -106,4 +104,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   } //build
-}//MyApp
+} //MyApp

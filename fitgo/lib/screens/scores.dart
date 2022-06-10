@@ -1,4 +1,5 @@
 import 'package:fitbitter/fitbitter.dart';
+import 'package:fitgo/screens/walking1.dart';
 import 'package:flutter/material.dart';
 import 'package:fitgo/screens/homepage.dart';
 import '../utils/strings.dart';
@@ -37,6 +38,9 @@ class ScoresPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(calorie!),
+            ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, '/walking1/'),
+                child: Text('pagina col grafico'))
           ],
         ),
       ),
