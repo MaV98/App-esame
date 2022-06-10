@@ -73,8 +73,8 @@ class Dati extends ChangeNotifier {
     } else {
       return false;
     }
-    //return _devicedata.isEmpty;
   }
+  //fine metodi devicedata
 
   //metodi per account data
   set accountData(List<dynamic> newaccountdata) {
@@ -91,4 +91,45 @@ class Dati extends ChangeNotifier {
     int endIndex = _accountdata[3].toString().length - 1;
     return _accountdata[3].substring(0, endIndex).toString();
   }
+
+  String printImage() {
+    int endIndex = _accountdata[13].toString().length - 1;
+    return _accountdata[13].substring(0, endIndex).toString();
+  }
+
+  String printAverageDailySteps() {
+    int endIndex = _accountdata[15].toString().length - 1;
+    return _accountdata[15].substring(0, endIndex).toString();
+  }
+
+  String printTimeDisplayFormat() {
+    int endIndex = _accountdata[18].toString().length - 1;
+    return _accountdata[18].substring(0, endIndex).toString();
+  }
+
+  String printBirthday() {
+    int endIndex = _accountdata[25].toString().length - 1;
+    return _accountdata[25].substring(0, endIndex).toString();
+  }
+
+  String printMeasurementUnit() {
+    int endIndex = _accountdata[31].toString().length - 1;
+    return _accountdata[31].substring(0, endIndex).toString();
+  }
+
+  String printGender() {
+    int endIndex = _accountdata[43].toString().length - 1;
+    return _accountdata[43].substring(0, endIndex).toString();
+  }
+
+  String printHeight() {
+    int endIndex = _accountdata[47].toString().length - 1;
+    return _accountdata[47].substring(0, endIndex).toString();
+  }
+
+  String printMemberSince() {
+    int endIndex = _accountdata[65].toString().length - 1;
+    return _accountdata[65].substring(0, endIndex).toString();
+  }
+  //fine metodi account data
 }

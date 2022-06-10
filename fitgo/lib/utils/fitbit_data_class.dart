@@ -53,14 +53,14 @@ class fitbit_data_class {
 
     dynamic stepsData =
         await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 1)),
+      date: DateTime.now(), //.subtract(Duration(days: 1)),
       userID: Strings.userID,
       resource: fitbit_steps.type,
     )) as List<FitbitActivityTimeseriesData>;
 
     dynamic caloriesData = await fitbit_calories
         .fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 1)),
+      date: DateTime.now(), //.subtract(Duration(days: 1)),
       userID: Strings.userID,
       resource: fitbit_calories.type,
     )) as List<FitbitActivityTimeseriesData>;

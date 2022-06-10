@@ -151,25 +151,41 @@ class situation1 extends StatelessWidget {
                       color: Colors.blue,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.white,
                           minRadius: 35.0,
                           maxRadius: 45.0,
                           child: CircleAvatar(
-                            radius: 40.0,
-                            backgroundImage: NetworkImage(
-                                'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
-                          ),
+                              radius: 40.0,
+                              backgroundImage:
+                                  NetworkImage(accountData.printImage())
+                              //NetworkImage(
+                              //  'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
+                              ),
                         ),
-                        Text('Giacomo Cappon',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ))
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(accountData.printName(),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )),
+                            Text(
+                                'Average daily steps: ${accountData.printAverageDailySteps()}',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )),
+                          ],
+                        )
                       ],
                     )),
               );
@@ -213,7 +229,7 @@ class situation1 extends StatelessWidget {
                 Consumer<Dati>(builder: (context, accountData, _) {
                   return Text("Welcome back ${accountData.printName()}!",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold));
                 }),
                 IconButton(
                   onPressed: () {
