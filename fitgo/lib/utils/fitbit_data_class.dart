@@ -18,6 +18,19 @@ class fitbit_data_class {
         callbackUrlScheme: Strings.fitbitCallbackScheme);
   }
 
+  // Future<dynamic>? refresh(context) async{
+  //   dynamic? ref_token;
+  //   // bool valid = await FitbitConnector.isTokenValid();
+  //   // if (valid == false){
+  //   //   await FitbitConnector.refreshToken(
+  //   //     userID: Strings.userID,
+  //   //     clientID: Strings.fitbitClientID,
+  //   //     clientSecret: Strings.fitbitClientSecret);
+  //   // }
+  //   ref_token = await FitbitConnector.storage.read(key: 'fitbitRefreshToken');
+  //   return ref_token!;
+  // }
+
   Future<List> fetchData() async {
     //Instantiate a proper data manager
     FitbitActivityTimeseriesDataManager fitbit_steps =
@@ -98,20 +111,20 @@ class fitbit_data_class {
     return this.lista_data;
   }
 
-  Future<List> fetchDevicedata(context) async {
-    //Instantiate a proper data manager
-    FitbitDeviceDataManager fitbitDeviceDataManager = FitbitDeviceDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-    );
+  // Future<List> fetchDevicedata(context) async {
+  //   //Instantiate a proper data manager
+  //   FitbitDeviceDataManager fitbitDeviceDataManager = FitbitDeviceDataManager(
+  //     clientID: Strings.fitbitClientID,
+  //     clientSecret: Strings.fitbitClientSecret,
+  //   );
 
-    //fetch data
-    FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
-      userID: Strings.userID,
-    );
+  //   //fetch data
+  //   FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
+  //     userID: Strings.userID,
+  //   );
 
-    //get data
-    return fitbitDeviceData =
-        await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
-  }
+  //   //get data
+  //   return fitbitDeviceData =
+  //       await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
+  // }
 }

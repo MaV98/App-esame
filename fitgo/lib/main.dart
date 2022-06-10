@@ -1,4 +1,5 @@
 import 'package:fitgo/database/database.dart';
+import 'package:fitgo/models/index.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
@@ -72,6 +73,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<NavBar>(
           //This specifies the app entrypoint
           create: (context) => NavBar(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => IndicePag()
         ),
       ],
       child: MaterialApp(

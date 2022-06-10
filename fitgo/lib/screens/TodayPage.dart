@@ -3,6 +3,7 @@
 //import 'package:App-esame/screens/profilePage.dart';
 //import 'package:App-esame/screens/settingsPage.dart';
 import 'package:fitbitter/fitbitter.dart';
+import 'package:fitgo/models/index.dart';
 import 'package:fitgo/models/passi.dart';
 import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/weatherPage.dart';
@@ -46,6 +47,8 @@ class TodayPage extends StatelessWidget {
   Dati accountData = Dati();
   double passi_fatti = 0;
 
+  dynamic data1 = fitbit_data_class();
+
   //dati di prova
   final dataMap = <String, double>{
     "Steps objective": 80,
@@ -63,9 +66,12 @@ class TodayPage extends StatelessWidget {
   // _HomePageState(this.topass);
   @override
   Widget build(BuildContext context) {
+    final creation = Provider.of<IndicePag>(context);
+    creation.currentCreation = creation.setCreation() + 1;
+    final creat = creation.setCreation();
     //final index = Provider.of<IndicePag>(context).setIndex();
     print('l' 'indice é: ' + index.toString());
-    return selectSituation(context, index);
+    return selectSituation(context, index, creat, data1);
     //Scaffold(
     // appBar: AppBar(
     //   title: Text(TodayPage.routename),),
@@ -73,15 +79,38 @@ class TodayPage extends StatelessWidget {
   }
 }
 
-Widget selectSituation(BuildContext context, index) {
-  if (index == 1) {
+Widget selectSituation(BuildContext context, index, creat, data1) {
+  var provider = Provider.of<Dati>(context);
+  dynamic data1 = fitbit_data_class();
+  if ((index == 1) & (creat == 1)){
+    return 
+    FutureBuilder<List>(
+    initialData: null,
+    future: data1.fetchData(), 
+    builder: (context, snapshot){
+      if (snapshot.hasData){
+        final dati = snapshot.data as List;
+        final dati_device = dati[2].toString().split(' ');
+        final dati_account = dati[3].toString().split(' ');
+        provider.deviceData = dati_device;
+        provider.accountData = dati_account;
+        provider.passi = dati[0];
+        provider.calorie = dati[1];
+      return  
+        situation1();
+      }else{return Center(child: CircularProgressIndicator());} 
+      });
+  }else if ((index == 1) & (creat > 1)){
     return situation1();
-  } else {
+  }else{
     return situation2();
   }
 }
 
 class situation1 extends StatelessWidget {
+  // final dati_device;
+  // final dati_account;
+  // situation1({this.dati_device,this.dati_account});
   final dataMap = <String, double>{
     "Steps objective": 80,
     //"Walking": 15,
@@ -102,30 +131,9 @@ class situation1 extends StatelessWidget {
     dynamic data_device = fitbit_data_class();
     print('${TodayPage.routename} built');
 
-    return FutureBuilder<List>(
-        initialData: null,
-        future: data1.fetchData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final dati = snapshot.data as List;
-            final dati_device = dati[2].toString().split(' ');
-            final dati_account = dati[3].toString().split(' ');
-            provider.deviceData = dati_device;
-            provider.accountData = dati_account;
-            print('DATI DEVICE:');
-            print(dati_device);
-            provider.passi = dati[0];
-            provider.calorie = dati[1];
 
-            //FutureBuilder<List<dynamic>>(
-            // initialData: null,
-            // future: data_device.fetchDevicedata(context),
-            // builder: (context, snapshot) {
-            //   if (snapshot.hasData) {
-            //     final dati_dev = snapshot.data as List<dynamic>;
-            //     final dati_device = dati_dev[0].toString().split(' ');
-            //     provider.deviceData = dati_device;
-            //     print('DATI DEVICE: ' + dati_device[0]);
+    // _refresh(context, data1);
+    //print(data1.refresh(context));
             return Scaffold(
                 appBar: AppBar(
                   title: Text('Home Page'),
@@ -194,49 +202,28 @@ class situation1 extends StatelessWidget {
                   ),
                 ),
                 body:
-                    // FutureBuilder<List>(
-                    //     initialData: null,
-                    //     future: data1.fetchData(),
-                    //     builder: (context, snapshot) {
-                    //       if (snapshot.hasData) {
-                    //         final dati = snapshot.data as List;
-                    //         final dati_device = dati[2].toString().split(' ');
-                    //         final dati_account = dati[3].toString().split(' ');
-                    //         provider.deviceData = dati_device;
-                    //         provider.accountData = dati_account;
-                    //         print('DATI DEVICE:');
-                    //         print(dati_device);
-                    //         provider.passi = dati[0];
-                    //         provider.calorie = dati[1];
-                    //return
+                RefreshIndicator(
+            
+                  onRefresh: () async{
+                    List dati = await data1.fetchData();
+                    provider.passi = dati[0];
+                    provider.calorie = dati[1];
+                  },
+                  child: ListView(
+                    children: <Widget>[
+                    Container(
+                      child:
                     Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                              padding: EdgeInsets.all(15),
-                              margin: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.blue, width: 2),
-                                borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
-                                  new BoxShadow(
-                                    color: Colors.white30,
-                                    //offset: new Offset(6.0, 6.0),
-                                  ),
-                                ],
-                              ),
-                              child: Consumer<Dati>(
+                               Consumer<Dati>(
                                   builder: (context, accountData, _) {
                                 return Text(
                                     "Welcome back ${accountData.printName()}!",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold));
-                              })),
+                              }),
                           IconButton(
                             onPressed: () {
                               Navigator.pushNamed(context, WeatherPage.route);
@@ -245,15 +232,19 @@ class situation1 extends StatelessWidget {
                             icon: Icon(MdiIcons.weatherPartlyCloudy),
                             color: Colors.blue,
                             iconSize: 40,
-                          )
-                        ],
-                      ),
-                      Row(
+                          )],
+                        
+                      ),),
+                      Container(
+                        child:
+                        Column(
+                          children: [ 
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                                 height: 75,
-                                width: 150,
+                                width: 145,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.white,
@@ -282,11 +273,11 @@ class situation1 extends StatelessWidget {
                                 )),
                             SizedBox(
                               height: 75,
-                              width: 20,
+                              width: 10,
                             ),
                             SizedBox(
                                 height: 75,
-                                width: 150,
+                                width: 145,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.white,
@@ -310,7 +301,11 @@ class situation1 extends StatelessWidget {
                                     ],
                                   ),
                                 )),
-                          ]),
+                          ]),])),
+                      Container(
+                        child:
+                        Column(
+                          children:[
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                           0,
@@ -323,7 +318,7 @@ class situation1 extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height: 150,
-                                width: 320,
+                                width: 300,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.white,
@@ -332,13 +327,14 @@ class situation1 extends StatelessWidget {
                                   child: Consumer<Dati>(
                                       builder: (context, passi, _) {
                                     return PieChart(
+                                      initialAngleInDegree: 0,
                                       totalValue: 100,
                                       dataMap: dataMap,
                                       colorList: colorList,
                                       centerText: passi.printPassi(),
                                       chartType: ChartType.ring,
                                       animationDuration:
-                                          Duration(milliseconds: 800),
+                                          Duration(milliseconds: 1000),
                                       chartLegendSpacing: 32,
                                       chartRadius:
                                           MediaQuery.of(context).size.width /
@@ -349,21 +345,19 @@ class situation1 extends StatelessWidget {
                                       ),
                                       chartValuesOptions: ChartValuesOptions(
                                           showChartValues: false,
-                                          showChartValuesOutside: false),
+                                          showChartValuesOutside: false,
+                                          showChartValuesInPercentage: true),
                                     );
                                   }),
                                 ),
                               )
                             ]),
                       )
-                    ]));
-          } else
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-        });
-  }
-}
+                    ]),),],),),);
+          } 
+        }
+  
+
 
 // } else {
 //   return Center(
@@ -435,3 +429,8 @@ void _toProfilePage(BuildContext context, dati_account) {
   Navigator.pushNamed(context, '/profile/',
       arguments: {'account_data': dati_account});
 }
+
+
+// Future<void> _refresh(context, data1) async{
+//   data1.refresh(context);
+// }
