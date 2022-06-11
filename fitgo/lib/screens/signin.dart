@@ -4,6 +4,7 @@ import 'package:fitgo/repository copy/databaseRepository.dart';
 import 'package:fitgo/screens/loginPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class SigninPage extends StatefulWidget {
@@ -16,7 +17,6 @@ class SigninPage extends StatefulWidget {
   State<SigninPage> createState() => _SigninPageState();
 }
 
-
 class _SigninPageState extends State<SigninPage> {
   String _name = '';
 
@@ -25,7 +25,6 @@ class _SigninPageState extends State<SigninPage> {
   String _password = '';
 
   final myController = TextEditingController();
-
 
   @override
   void initState() {
@@ -54,62 +53,82 @@ class _SigninPageState extends State<SigninPage> {
         title: Text(SigninPage.routename),
       ),
       body: Center(
-        child: ListView(children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _name = value;
-                  });
-                },
-                onSubmitted: (String name) {},
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
+        child: ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset('assets/106680-login-and-sign-up.json'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    onChanged: (String value) {
+                      setState(() {
+                        _name = value;
+                      });
+                    },
+                    onSubmitted: (String name) {},
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
+                    ),
+                  ),
                 ),
-              ),
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _username = value;
-                  });
-                },
-                onSubmitted: (String username) {},
-                obscureText: false,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Username',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    onChanged: (String value) {
+                      setState(() {
+                        _username = value;
+                      });
+                    },
+                    onSubmitted: (String username) {},
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Username',
+                    ),
+                  ),
                 ),
-              ),
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _password = value;
-                  });
-                },
-                onSubmitted: (String password) {},
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    onChanged: (String value) {
+                      setState(() {
+                        _password = value;
+                      });
+                    },
+                    onSubmitted: (String password) {},
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
                 ),
-              ),
-              Container(
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ElevatedButton(
+                Container(
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
                     child: Text('Create account'),
                     onPressed: () async {
                       //final profilo = Profile(_name, _username, _password);
-                      await Provider.of<DatabaseRepository>(context, listen: false)
-                      .insertProfile(Profile(1,_name,_username,_password));
+                      await Provider.of<DatabaseRepository>(context,
+                              listen: false)
+                          .insertProfile(
+                              Profile(1, _name, _username, _password));
                       Navigator.pushReplacementNamed(context, LoginPage.route);
-                        },),),],),],
-                      
-                    ),
-              ),);}
-       
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
+}
