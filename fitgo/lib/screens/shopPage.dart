@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({Key? key}) : super(key: key);
@@ -65,9 +66,11 @@ class ShopPage extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 25,
                                 color: Color.fromARGB(255, 0, 0, 0))),
-                        Image.asset(
-                          'assets/crypto_graph_t.png',
-                        )
+                        //Image.asset(
+                        //'assets/crypto_graph_t.png',
+                        //)
+                        Lottie.asset(
+                            'assets/102720-cryptocurrency-bitcoin-working-loop.json')
                       ],
                     ),
                   )),
@@ -96,9 +99,10 @@ class ShopPage extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 25,
                                 color: Color.fromARGB(255, 0, 0, 0))),
-                        Image.asset(
-                          'assets/tshirt.png',
-                        )
+                        //Image.asset(
+                        //'assets/tshirt.png',
+                        //)
+                        Lottie.asset('assets/99745-sales-man.json')
                       ],
                     ),
                   )),

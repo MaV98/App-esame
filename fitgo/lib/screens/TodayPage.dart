@@ -190,12 +190,14 @@ class situation1 extends StatelessWidget {
                     )),
               );
             }),
-            Consumer<Dati>(builder: (context, deviceData, _) {
-              return ListTile(
-                leading: Icon(Icons.watch),
-                title: Text('Device'),
-                onTap: () => _toDevicePage(context, deviceData),
-              );
+            Consumer<Dati>(builder: (context, accountData, _) {
+              return Consumer<Dati>(builder: (context, deviceData, _) {
+                return ListTile(
+                  leading: Icon(Icons.watch),
+                  title: Text('Device'),
+                  onTap: () => _toDevicePage(context, deviceData, accountData),
+                );
+              });
             }),
             ListTile(
               leading: Icon(Icons.smoke_free),
@@ -411,12 +413,12 @@ void _toLoginPage(BuildContext context) async {
   Navigator.pushNamed(context, LoginPage.route);
 }
 
-void _toDevicePage(BuildContext context, dati_device) {
+void _toDevicePage(BuildContext context, dati_device, dati_account) {
   //Pop the drawer first
   //Navigator.pop(context);
   //Navigator.of(context).pushReplacementNamed(SettingsPage.route);
   Navigator.pushNamed(context, '/devicepage/',
-      arguments: {'device_data': dati_device});
+      arguments: {'device_data': dati_device, 'account_data': dati_account});
 
   //Navigator.pushNamed(context, );
   //Navigator.of(context).pushReplacementNamed(LoginPage.route);

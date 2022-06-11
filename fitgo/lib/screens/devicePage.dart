@@ -13,7 +13,7 @@ class DevicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('${DevicePage.routename} built');
-    Map<dynamic, dynamic> device_data =
+    Map<dynamic, dynamic> fetch_data =
         ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
 
     return Scaffold(
@@ -33,7 +33,7 @@ class DevicePage extends StatelessWidget {
           //   ),
           // ),
           Container(
-              height: 180,
+              height: 190,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -58,18 +58,23 @@ class DevicePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('"name" Fitbit',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            )),
-                        device_data['device_data'].isEmpty()
+                        fetch_data['device_data'].isEmpty()
                             ? Text('No data available',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18))
                             : Text(
-                                'Battery level: ${device_data['device_data'].printBatteryLevel()}',
+                                "${fetch_data['account_data'].printName()}'s Fitbit",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )),
+                        fetch_data['device_data'].isEmpty()
+                            ? Text('No data available',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))
+                            : Text(
+                                'Battery level: ${fetch_data['device_data'].printBatteryLevel()}',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18))
                       ],
@@ -86,30 +91,30 @@ class DevicePage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.watch),
             title: Text('Device type'),
-            trailing: device_data['device_data'].isEmpty()
+            trailing: fetch_data['device_data'].isEmpty()
                 ? Text('No data available')
-                : Text(device_data['device_data'].printType()),
+                : Text(fetch_data['device_data'].printType()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchExport),
             title: Text('Device version'),
-            trailing: device_data['device_data'].isEmpty()
+            trailing: fetch_data['device_data'].isEmpty()
                 ? Text('No data available')
-                : Text(device_data['device_data'].printDeviceVersion()),
+                : Text(fetch_data['device_data'].printDeviceVersion()),
           ),
           ListTile(
             leading: Icon(MdiIcons.chartBubble),
             title: Text('Device Id'),
-            trailing: device_data['device_data'].isEmpty()
+            trailing: fetch_data['device_data'].isEmpty()
                 ? Text('No data available')
-                : Text(device_data['device_data'].printDeviceId()),
+                : Text(fetch_data['device_data'].printDeviceId()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchVibrate),
             title: Text('Last synch.'),
-            trailing: device_data['device_data'].isEmpty()
+            trailing: fetch_data['device_data'].isEmpty()
                 ? Text('No data available')
-                : Text(device_data['device_data'].printLastSyncTime()),
+                : Text(fetch_data['device_data'].printLastSyncTime()),
           ),
         ]));
   }

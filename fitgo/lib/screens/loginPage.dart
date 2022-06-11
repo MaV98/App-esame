@@ -125,84 +125,91 @@ class _MyLoginPageState extends State<LoginPage> {
                 ),
               ),
               Container(
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ElevatedButton(
-                    child: Text('Login'),
-                    onPressed: () async {
-                      final profile = await Provider.of<DatabaseRepository>(
-                              context,
-                              listen: false)
-                          .findAllUsernames(_username);
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: ElevatedButton(
+                      child: Text('Login'),
+                      onPressed: () async {
+                        final profile = await Provider.of<DatabaseRepository>(
+                                context,
+                                listen: false)
+                            .findAllUsernames(_username);
 
-                      if ((profile!.retUsername() == _username) &
-                          (_password == profile.retPassword())) {
-                        final sp = await SharedPreferences.getInstance();
-                        sp.setString('UserName', _username);
+                        // if ((profile?.retUsername() == null) &
+                        //     (profile?.retPassword() == null)) {
+                        //   ScaffoldMessenger.of(context)
+                        //     ..removeCurrentSnackBar()
+                        //     ..showSnackBar(SnackBar(
+                        //         backgroundColor: Colors.red,
+                        //         content: Text('Create an account first!')));
+                        //} else
+                        if ((profile?.retUsername() == _username) &
+                            (_password == profile?.retPassword())) {
+                          final sp = await SharedPreferences.getInstance();
+                          sp.setString('UserName', _username);
 
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Container(
-                              height: 200,
-                              color: Colors.orange,
-                              child: Center(
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                    ElevatedButton(
-                                        onPressed: () async {
-                                          await data.authorize(context);
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                height: 200,
+                                color: Colors.orange,
+                                child: Center(
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            await data.authorize(context);
 
-                                          int pag = 1;
-                                          sp.setInt('indice', pag);
+                                            int pag = 1;
+                                            sp.setInt('indice', pag);
 
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomePage(index: pag)));
-                                          print('indice login: ' +
-                                              sp.getInt('indice').toString());
-                                        },
-                                        child: Text('Tap to authorize')),
-                                    ElevatedButton(
-                                        onPressed: () async {
-                                          int pag1 = 0;
-                                          sp.setInt('indice', pag1);
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage(index: pag)));
+                                            print('indice login: ' +
+                                                sp.getInt('indice').toString());
+                                          },
+                                          child: Text('Tap to authorize')),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            int pag1 = 0;
+                                            sp.setInt('indice', pag1);
 
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomePage(index: pag1)));
-                                        },
-                                        child:
-                                            Text('Continue without authorize'))
-                                  ])),
-                            );
-                          },
-                        );
-                      } else {
-                        await ScaffoldMessenger.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                              backgroundColor: Colors.red,
-                              content: (_username != profile.retUsername()) &
-                                      (_password != profile.retPassword())
-                                  ? Text('Wrong username and password',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold))
-                                  : _username != profile.retUsername()
-                                      ? Text('Wrong username',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold))
-                                      : Text('Wrong password',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold))));
-                      }
-                    }),
-              ),
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage(index: pag1)));
+                                          },
+                                          child: Text(
+                                              'Continue without authorize'))
+                                    ])),
+                              );
+                            },
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                backgroundColor: Colors.red,
+                                content: (_username != profile?.retUsername()) &
+                                        (_password != profile?.retPassword())
+                                    ? Text('Wrong username and password',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold))
+                                    : _username != profile?.retUsername()
+                                        ? Text('Wrong username',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))
+                                        : Text('Wrong password',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))));
+                        }
+                      })),
               Row(
                 children: <Widget>[
                   const Text('Does not have account?'),

@@ -1,4 +1,5 @@
 import 'package:fitgo/database/database.dart';
+import 'package:fitgo/database/entities/profile.dart';
 import 'package:fitgo/models/index.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
