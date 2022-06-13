@@ -1,5 +1,6 @@
 import 'package:fitgo/screens/TodayPage.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:app_demo/screens/loginPage.dart';
 
 import 'package:http/http.dart';
@@ -21,171 +22,123 @@ class ProfilePage extends StatelessWidget {
     print('${ProfilePage.routename} built');
     Map<dynamic, dynamic> account_data =
         ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
-    TextEditingController _textEditingControllerName = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 146, 202, 247), // colore sfondo
       appBar: AppBar(
         // automaticallyImplyLeading: true,
         backgroundColor: Colors.blue,
-        title: Text(ProfilePage.routename),
+        title: Text('Profile'),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        SizedBox(
-          height: 20,
-          width: 20,
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-            width: 130,
-            height: 130,
-            decoration: BoxDecoration(
-                border: Border.all(
-                    width: 4, color: Theme.of(context).scaffoldBackgroundColor),
-                boxShadow: [
-                  BoxShadow(
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      color: Colors.black.withOpacity(0.1),
-                      offset: Offset(0, 10))
-                ],
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      "https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4",
-                    ))),
-          ),
-        ]),
+      body: ListView(children: [
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 20,
-              width: 20,
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        height: 200.0,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    'https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80'
+                                    //'https://media-exp1.licdn.com/dms/image/C4D1BAQE-k_tY7oGbfw/company-background_10000/0/1615994099909?e=2147483647&v=beta&t=AJN1_icrI13dtNppvpPeEcMBnPNJGPWFLgne6pibY1c'
+                                    //'https://timelinecovers.pro/facebook-cover/download/stunning-little-flowers-facebook-cover.jpg'
+                                    ))),
+                      ),
+                    )
+                  ],
+                ),
+                Positioned(
+                  top: 117.0,
+                  child: Container(
+                    height: 160.0,
+                    width: 160.0,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              account_data['account_data'].printImage()),
+                        ),
+                        border: Border.all(color: Colors.white, width: 6.0)),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
-                height: 75,
-                width: 230,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                          title: Text("Change your name"),
-                          content: TextField(
-                            controller: _textEditingControllerName,
-                          ),
-                          actions: [
-                            TextButton(child: Text('OK'), onPressed: () {}),
-                            TextButton(
-                              child: Text('BACK'),
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          ]),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.person,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                      Text(
-                        'Giacomo Cappon',
-                        style: TextStyle(
-                            fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ],
-                  ),
-                )),
-            SizedBox(
-              height: 20,
-              width: 20,
+              height: 85,
             ),
-            SizedBox(
-                height: 75,
-                width: 230,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                                title: Text("Change your e-mail"),
-                                content: TextField(),
-                                actions: [
-                                  TextButton(
-                                      child: Text('OK'), onPressed: () {}),
-                                  TextButton(
-                                    child: Text('BACK'),
-                                    onPressed: () => Navigator.pop(context),
-                                  ),
-                                ]));
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.email,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                      Text(
-                        " giorgiocappon@gmail.com",
-                        style: TextStyle(
-                            fontSize: 12, color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ],
-                  ),
-                )),
-            SizedBox(
-              height: 20,
-              width: 20,
-            ),
-            Card(
-              child: Container(
-                height: 150,
-                width: 230,
-                padding: EdgeInsets.all(16),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('Your data',
-                          style: TextStyle(
-                              fontSize: 13, fontWeight: FontWeight.bold)),
-                      const SizedBox(
-                        height: 13,
-                      ),
-                      Text(
-                        'Altri Dati da scrivere',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.normal),
-                      ),
-                      const SizedBox(
-                        height: 13,
-                      ),
-                      Text(
-                        'Age: ${account_data['account_data'].printAge()}',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.normal),
-                      ),
-                    ]),
-              ),
-            ),
+            Text(account_data['account_data'].printName(),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            Text(
+                'Memeber since ${account_data['account_data'].printMemberSince()}',
+                style: TextStyle(fontSize: 15))
           ],
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.cakeVariantOutline),
+          title: Text('Birthday'),
+          trailing: Text(account_data['account_data'].printBirthday()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.cardAccountDetailsOutline),
+          title: Text('Age'),
+          trailing: Text(account_data['account_data'].printAge()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.accountCircleOutline),
+          title: Text('Gender'),
+          trailing: Text(account_data['account_data'].printGender()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.humanMaleHeightVariant),
+          title: Text('Height'),
+          trailing: Text(account_data['account_data'].printHeight() + ' cm'),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.weightKilogram),
+          title: Text('Weight'),
+          trailing: Text(account_data['account_data'].printWeight() + ' kg'),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.walk),
+          title: Text('Stride length walking'),
+          trailing: Text(
+              account_data['account_data'].printstrideLengthWalking() + ' cm'),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.run),
+          title: Text('Stride length running'),
+          trailing: Text(
+              account_data['account_data'].printstrideLengthRunning() + ' cm'),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.axisArrow),
+          title: Text('Measurement Unit'),
+          trailing: Text(account_data['account_data'].printMeasurementUnit()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.mapClockOutline),
+          title: Text('Time zone'),
+          trailing: Text(account_data['account_data'].printtimezone()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.calendarWeekendOutline),
+          title: Text('Start day of week'),
+          trailing: Text(account_data['account_data'].printstartDayOfWeek()),
+        ),
+        ListTile(
+          leading: Icon(MdiIcons.shieldStarOutline),
+          title: Text('Ambassador'),
+          trailing: Text(account_data['account_data'].printAmbassador()),
         ),
       ]),
     );
   } //build
 
-  void _responseName() {}
 } //ProfilePage
-//ProfilePage
-
-

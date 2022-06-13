@@ -102,34 +102,70 @@ class Dati extends ChangeNotifier {
     return _accountdata[15].substring(0, endIndex).toString();
   }
 
-  String printTimeDisplayFormat() {
-    int endIndex = _accountdata[18].toString().length - 1;
-    return _accountdata[18].substring(0, endIndex).toString();
-  }
-
   String printBirthday() {
     int endIndex = _accountdata[25].toString().length - 1;
     return _accountdata[25].substring(0, endIndex).toString();
   }
 
   String printMeasurementUnit() {
-    int endIndex = _accountdata[31].toString().length - 1;
-    return _accountdata[31].substring(0, endIndex).toString();
+    int endIndex = _accountdata[40].toString().length - 1;
+    return _accountdata[40].substring(0, endIndex).toString();
   }
 
   String printGender() {
-    int endIndex = _accountdata[43].toString().length - 1;
-    return _accountdata[43].substring(0, endIndex).toString();
+    int endIndex = _accountdata[38].toString().length - 1;
+    return _accountdata[38].substring(0, endIndex).toString();
   }
 
   String printHeight() {
-    int endIndex = _accountdata[47].toString().length - 1;
-    return _accountdata[47].substring(0, endIndex).toString();
+    int endIndex = _accountdata[42].toString().length - 1;
+    return _accountdata[42].substring(0, endIndex).toString();
   }
 
   String printMemberSince() {
-    int endIndex = _accountdata[65].toString().length - 1;
-    return _accountdata[65].substring(0, endIndex).toString();
+    //int endIndex = _accountdata[60].toString().length - 1;
+    //return _accountdata[60].substring(0, endIndex).toString();
+    return _accountdata[60].toString();
+  }
+
+  String printstrideLengthRunning() {
+    int endIndex = _accountdata[73].toString().length - 1;
+    return _accountdata[73].substring(0, endIndex).toString();
+  }
+
+  String printstrideLengthRunningType() {
+    int endIndex = _accountdata[78].toString().length - 1;
+    return _accountdata[78].substring(0, endIndex).toString();
+  }
+
+  String printstrideLengthWalking() {
+    int endIndex = _accountdata[77].toString().length - 1;
+    return _accountdata[77].substring(0, endIndex).toString();
+  }
+
+  String printstrideLengthWalkingType() {
+    int endIndex = _accountdata[83].toString().length - 1;
+    return _accountdata[83].substring(0, endIndex).toString();
+  }
+
+  String printWeight() {
+    int endIndex = _accountdata[89].toString().length - 1;
+    return _accountdata[89].substring(0, endIndex).toString();
+  }
+
+  String printtimezone() {
+    int endIndex = _accountdata[83].toString().length - 1;
+    return _accountdata[83].substring(0, endIndex).toString();
+  }
+
+  String printstartDayOfWeek() {
+    int endIndex = _accountdata[71].toString().length - 1;
+    return _accountdata[71].substring(0, endIndex).toString();
+  }
+
+  String printAmbassador() {
+    int endIndex = _accountdata[5].toString().length - 1;
+    return _accountdata[5].substring(0, endIndex).toString();
   }
   //fine metodi account data
 }
