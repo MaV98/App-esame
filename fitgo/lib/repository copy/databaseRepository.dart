@@ -1,5 +1,6 @@
 import 'package:fitgo/database/database.dart';
 import 'package:fitgo/database/entities/profile.dart';
+import 'package:fitgo/database/entities/dati.dart';
 import 'package:flutter/material.dart';
 
 class DatabaseRepository extends ChangeNotifier{
@@ -39,5 +40,20 @@ class DatabaseRepository extends ChangeNotifier{
   //   await database.profileDao.returnPassword(username);
   //   //notifyListeners();
   //   }//removeTodo
+
+  Future<DatiDB?> findAllUserId(String profileName) async{
+    final result = await database.dataDao.findAllUserId(profileName);
+    return result;
+  }
+
+  Future<void> insertData(DatiDB dati) async{
+    await database.dataDao.insertData(dati);
+    notifyListeners();
+  }
+
+  // Future<void> updatePassi(double newdati) async{
+  //   await database.dataDao.updatePassi(newdati);
+  //   notifyListeners();
+  // }
   
 }//DatabaseRepository

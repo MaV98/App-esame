@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   ProfileDao? _profileDaoInstance;
 
+  DataDao? _dataDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -82,7 +84,9 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Profile` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `profile` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `DatiDB` (`profileName` TEXT, `passi_today` REAL NOT NULL, `profile_id` INTEGER NOT NULL, PRIMARY KEY (`profileName`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -94,6 +98,11 @@ class _$AppDatabase extends AppDatabase {
   ProfileDao get profileDao {
     return _profileDaoInstance ??= _$ProfileDao(database, changeListener);
   }
+
+  @override
+  DataDao get dataDao {
+    return _dataDaoInstance ??= _$DataDao(database, changeListener);
+  }
 }
 
 class _$ProfileDao extends ProfileDao {
@@ -101,7 +110,7 @@ class _$ProfileDao extends ProfileDao {
       : _queryAdapter = QueryAdapter(database),
         _profileInsertionAdapter = InsertionAdapter(
             database,
-            'Profile',
+            'profile',
             (Profile item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
@@ -110,7 +119,7 @@ class _$ProfileDao extends ProfileDao {
                 }),
         _profileDeletionAdapter = DeletionAdapter(
             database,
-            'Profile',
+            'profile',
             ['id'],
             (Profile item) => <String, Object?>{
                   'id': item.id,
@@ -158,5 +167,39 @@ class _$ProfileDao extends ProfileDao {
   @override
   Future<void> deleteProfile(Profile profile) async {
     await _profileDeletionAdapter.delete(profile);
+  }
+}
+
+class _$DataDao extends DataDao {
+  _$DataDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _datiDBInsertionAdapter = InsertionAdapter(
+            database,
+            'DatiDB',
+            (DatiDB item) => <String, Object?>{
+                  'profileName': item.profileName,
+                  'passi_today': item.passi_today,
+                  'profile_id': item.profile_id
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<DatiDB> _datiDBInsertionAdapter;
+
+  @override
+  Future<DatiDB?> findAllUserId(String username) async {
+    return _queryAdapter.query('SELECT * FROM DatiDB WHERE profileName = ?1',
+        mapper: (Map<String, Object?> row) => DatiDB(row['profile_id'] as int,
+            row['passi_today'] as double, row['profileName'] as String?),
+        arguments: [username]);
+  }
+
+  @override
+  Future<void> insertData(DatiDB dati) async {
+    await _datiDBInsertionAdapter.insert(dati, OnConflictStrategy.abort);
   }
 }

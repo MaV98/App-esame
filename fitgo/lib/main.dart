@@ -1,5 +1,6 @@
 import 'package:fitgo/database/database.dart';
 import 'package:fitgo/models/index.dart';
+import 'package:fitgo/models/profileCheck.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
@@ -7,7 +8,8 @@ import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
 import 'package:fitgo/screens/successPage.dart';
-import 'package:fitgo/screens/loginPage.dart';
+//import 'package:fitgo/screens/loginPage.dart';
+import 'package:fitgo/screens/loginPage_2.dart';
 import 'package:fitgo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
 import 'package:fitgo/screens/friendsPage.dart';
@@ -74,9 +76,12 @@ class MyApp extends StatelessWidget {
           //This specifies the app entrypoint
           create: (context) => NavBar(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<IndicePag>(
           create: (context) => IndicePag()
         ),
+        ChangeNotifierProvider<ProfileCheck>(
+          create: (context) => ProfileCheck()
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
