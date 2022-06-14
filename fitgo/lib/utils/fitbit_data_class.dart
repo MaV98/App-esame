@@ -16,6 +16,11 @@ class fitbit_data_class {
         clientSecret: Strings.fitbitClientSecret,
         redirectUri: Strings.fitbitRedirectUri,
         callbackUrlScheme: Strings.fitbitCallbackScheme);
+
+    await FitbitConnector.refreshToken(
+        userID: Strings.userID,
+        clientID: Strings.fitbitClientID,
+        clientSecret: Strings.fitbitClientSecret);
   }
 
   // Future<dynamic>? refresh(context) async{
@@ -53,14 +58,14 @@ class fitbit_data_class {
 
     dynamic stepsData =
         await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now(), //.subtract(Duration(days: 1)),
+      date: DateTime.now().subtract(Duration(days: 0)),
       userID: Strings.userID,
       resource: fitbit_steps.type,
     )) as List<FitbitActivityTimeseriesData>;
 
     dynamic caloriesData = await fitbit_calories
         .fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now(), //.subtract(Duration(days: 1)),
+      date: DateTime.now().subtract(Duration(days: 0)),
       userID: Strings.userID,
       resource: fitbit_calories.type,
     )) as List<FitbitActivityTimeseriesData>;

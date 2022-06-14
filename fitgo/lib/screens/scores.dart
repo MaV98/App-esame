@@ -1,7 +1,10 @@
 import 'package:fitbitter/fitbitter.dart';
-import 'package:fitgo/screens/walking1.dart';
+import 'package:fitgo/database/entities/dati.dart';
+import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:fitgo/screens/homepage.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/strings.dart';
 import '../utils/fitbit_data.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -9,7 +12,8 @@ import 'package:fitgo/utils/fitbit_data_class.dart';
 
 class ScoresPage extends StatelessWidget {
   String? calorie;
-  ScoresPage({this.calorie});
+  String? usern;
+  ScoresPage({this.calorie, this.usern});
 
   static const route = '/scores';
   static const routename = 'ScoresPage';
@@ -25,6 +29,7 @@ class ScoresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Usern SCORES: '+usern!);
     print('${ScoresPage.routename} built');
     // setState(() {
     //   this.passi_totali;
@@ -33,9 +38,19 @@ class ScoresPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(ScoresPage.routename),
       ),
-      body: Center(
+      body: FutureBuilder<dynamic>(
+        initialData: null,
+        future: dbQuery(context,usern),
+        builder: (context, snapshot){
+          if (snapshot.hasData){
+          final passi_db = snapshot.data as double; 
+        
+        return
+      Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+          Row(
           children: [
             Text(calorie!),
             ElevatedButton(
@@ -43,8 +58,20 @@ class ScoresPage extends StatelessWidget {
                 child: Text('pagina col grafico'))
           ],
         ),
-      ),
-    );
+        
+          Row(children: [Text('Passi DB: '+ passi_db.toString())],),]
+        )
+      );
+        }else{
+          return Center(child: CircularProgressIndicator());
+        }}
+    ),);
   } //build
 
+
+Future<double> dbQuery(context,usern)async{
+  final user = await Provider.of<DatabaseRepository>(context, listen: false)
+  .findAllUserId(usern);
+  return user!.passi_today;
+}
 } //HomePage

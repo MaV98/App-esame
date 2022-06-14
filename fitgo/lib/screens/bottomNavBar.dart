@@ -6,7 +6,8 @@
 import 'package:fitgo/screens/friendsPage.dart';
 import 'package:fitgo/screens/homePage.dart';
 import 'package:flutter/material.dart';
-import 'package:fitgo/screens/loginPage.dart';
+//import 'package:fitgo/screens/loginPage.dart';
+import 'package:fitgo/screens/loginPage_2.dart';
 import 'package:fitgo/screens/profilePage.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 //import 'package:fitgo/screens/trainingPage.dart';

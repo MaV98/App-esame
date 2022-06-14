@@ -1,7 +1,8 @@
 import 'package:fitgo/database/database.dart';
 import 'package:fitgo/database/entities/profile.dart';
 import 'package:fitgo/repository copy/databaseRepository.dart';
-import 'package:fitgo/screens/loginPage.dart';
+//import 'package:fitgo/screens/loginPage.dart';
+import 'package:fitgo/screens/loginPage_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -113,10 +114,8 @@ class _SigninPageState extends State<SigninPage> {
                     child: Text('Create account'),
                     onPressed: () async {
                       //final profilo = Profile(_name, _username, _password);
-                      await Provider.of<DatabaseRepository>(context,
-                              listen: false)
-                          .insertProfile(
-                              Profile(1, _name, _username, _password));
+                      await Provider.of<DatabaseRepository>(context, listen: false)
+                      .insertProfile(Profile(null,_name,_username,_password));
                       Navigator.pushReplacementNamed(context, LoginPage.route);
                     },
                   ),

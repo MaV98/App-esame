@@ -5,7 +5,8 @@ import 'package:fitgo/models/passi.dart';
 
 class DevicePage extends StatelessWidget {
   List<dynamic>? device_data;
-  DevicePage({this.device_data});
+  //List<dynamic>? account_data;
+  DevicePage({this.device_data}); //, this.account_data
 
   static const route = '/devicepage/';
   static const routename = 'DevicePage';
@@ -63,7 +64,7 @@ class DevicePage extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18))
                             : Text(
-                                "${fetch_data['account_data'].printName()}'s Fitbit",
+                                "${fetch_data['device_data'].printName()}'s Fitbit", //account_data
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class IndicePag extends ChangeNotifier{
   int _index = 0;
   int _creation = 0;
+  String _username = '';
 
   int setIndex(){
     return _index;
@@ -10,6 +11,10 @@ class IndicePag extends ChangeNotifier{
 
   int setCreation(){
     return _creation;
+  }
+
+  String setUserName(){
+    return _username;
   }
 
   set currentIndex(int index) {
@@ -21,4 +26,11 @@ class IndicePag extends ChangeNotifier{
     _creation = creation;
     notifyListeners();
   }
+
+  set currentUserName(String username){
+    _username = username;
+    notifyListeners();
+  }
+
 }
+
