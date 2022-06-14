@@ -36,6 +36,7 @@ class ScoresPage extends StatelessWidget {
     // });
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(ScoresPage.routename),
       ),
       body: FutureBuilder<dynamic>(
