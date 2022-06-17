@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:fitgo/repository/favorites.dart';
 import 'package:provider/provider.dart';
@@ -185,10 +186,11 @@ class FavoriteCryptoPage extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
-                  Icon(
-                    MdiIcons.fileRemoveOutline,
-                    size: 100,
-                  )
+                  Lottie.asset('assets/71390-shopping-cart-loader.json'),
+                  // Icon(
+                  //   MdiIcons.fileRemoveOutline,
+                  //   size: 100,
+                  // )
                 ]);
         }),
       ),

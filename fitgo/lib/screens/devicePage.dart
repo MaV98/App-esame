@@ -34,7 +34,7 @@ class DevicePage extends StatelessWidget {
           //   ),
           // ),
           Container(
-              height: 190,
+              height: 200,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
