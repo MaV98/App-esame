@@ -37,13 +37,11 @@ class fitbit_data_class {
   // }
 
   Future<List> fetchData() async {
-    //Instantiate a proper data manager
     FitbitActivityTimeseriesDataManager fitbit_steps =
         FitbitActivityTimeseriesDataManager(
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret,
       type: 'steps',
-      //type: 'calories',
     );
 
     FitbitActivityTimeseriesDataManager fitbit_calories =
@@ -51,7 +49,6 @@ class fitbit_data_class {
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret,
       type: 'calories',
-      //type: 'calories',
     );
 
     //Fetch data
@@ -79,12 +76,10 @@ class fitbit_data_class {
       clientSecret: Strings.fitbitClientSecret,
     );
 
-    //fetch data
     FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
       userID: Strings.userID,
     );
 
-    //get data
     fitbitDeviceData = await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
 
     lista_data.add(fitbitDeviceData);
@@ -106,10 +101,26 @@ class fitbit_data_class {
         fitbitAccountDatas[0] as FitbitAccountData;
 
     lista_data.add(fitbitAccountData);
-    //FitbitAccountData;
+//FitbitAccountData;
+
+// fetch heart data
+    FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.weekWithUserID(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+    );
+
+    FitbitHeartData fitbitHeartData = await fitbitHeartDataManager
+        .fetch(fitbitHeartApiUrl) as FitbitHeartData;
+
+    lista_data.add(fitbitHeartData);
+//fetch heartdata
 
     return lista_data;
-    // caloriesData;
   }
 
   dynamic retVal() {

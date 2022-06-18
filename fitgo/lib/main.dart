@@ -5,6 +5,7 @@ import 'package:fitgo/models/profileCheck.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
+import 'package:fitgo/screens/heartDataPage.dart';
 import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
@@ -77,12 +78,9 @@ class MyApp extends StatelessWidget {
           //This specifies the app entrypoint
           create: (context) => NavBar(),
         ),
-        ChangeNotifierProvider<IndicePag>(
-          create: (context) => IndicePag()
-        ),
+        ChangeNotifierProvider<IndicePag>(create: (context) => IndicePag()),
         ChangeNotifierProvider<ProfileCheck>(
-          create: (context) => ProfileCheck()
-        )
+            create: (context) => ProfileCheck())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -108,6 +106,7 @@ class MyApp extends StatelessWidget {
           SuccessPage.route: (context) => SuccessPage(),
           WeatherPage.route: (context) => WeatherPage(),
           DevicePage.route: (context) => DevicePage(),
+          HeartDataPage.route: (context) => HeartDataPage(),
         },
       ),
     );

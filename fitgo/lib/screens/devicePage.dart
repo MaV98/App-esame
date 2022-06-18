@@ -55,31 +55,26 @@ class DevicePage extends StatelessWidget {
                         'assets/fit2.png',
                       ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        fetch_data['device_data'].isEmpty()
-                            ? Text('No data available',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18))
-                            : Text(
-                                "${fetch_data['device_data'].printName()}'s Fitbit", //account_data
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )),
-                        fetch_data['device_data'].isEmpty()
-                            ? Text('No data available',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18))
-                            : Text(
-                                'Battery level: ${fetch_data['device_data'].printBatteryLevel()}',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18))
-                      ],
-                    )
+                    fetch_data['device_data'].isEmpty()
+                        ? Text('Data not available',
+                            style: TextStyle(color: Colors.white, fontSize: 18))
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  "${fetch_data['device_data'].printName()}'s Fitbit", //account_data
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  )),
+                              Text(
+                                  'Battery level: ${fetch_data['device_data'].printBatteryLevel()}',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18))
+                            ],
+                          )
                   ])),
           // SizedBox(
           //   height: 30,
@@ -93,28 +88,28 @@ class DevicePage extends StatelessWidget {
             leading: Icon(Icons.watch),
             title: Text('Device type'),
             trailing: fetch_data['device_data'].isEmpty()
-                ? Text('No data available')
+                ? Text('Data not available')
                 : Text(fetch_data['device_data'].printType()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchExport),
             title: Text('Device version'),
             trailing: fetch_data['device_data'].isEmpty()
-                ? Text('No data available')
+                ? Text('Data not available')
                 : Text(fetch_data['device_data'].printDeviceVersion()),
           ),
           ListTile(
             leading: Icon(MdiIcons.chartBubble),
             title: Text('Device Id'),
             trailing: fetch_data['device_data'].isEmpty()
-                ? Text('No data available')
+                ? Text('Data not available')
                 : Text(fetch_data['device_data'].printDeviceId()),
           ),
           ListTile(
             leading: Icon(MdiIcons.watchVibrate),
             title: Text('Last synch.'),
             trailing: fetch_data['device_data'].isEmpty()
-                ? Text('No data available')
+                ? Text('Data not available')
                 : Text(fetch_data['device_data'].printLastSyncTime()),
           ),
         ]));

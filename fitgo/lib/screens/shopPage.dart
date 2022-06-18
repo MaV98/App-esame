@@ -43,70 +43,82 @@ class ShopPage extends StatelessWidget {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                18,
-                0,
-                18,
-                18,
-              ),
-              child: SizedBox(
-                  height: 200,
-                  //This action is used to navigate to the Crypto Page
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.fromLTRB(
+                  18,
+                  0,
+                  18,
+                  18,
+                ),
+                child:
+                    //SizedBox(
+                    //  height: 200,
+                    //This action is used to navigate to the Crypto Page
+                    //child:
+                    ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 200),
                       primary: Colors.white,
-                    ),
-                    onPressed: () {
-                      _tocryptogPage(context);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Crypto',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Color.fromARGB(255, 0, 0, 0))),
-                        //Image.asset(
-                        //'assets/crypto_graph_t.png',
-                        //)
-                        Lottie.asset(
-                            'assets/102720-cryptocurrency-bitcoin-working-loop.json')
-                      ],
-                    ),
-                  )),
-            ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  //style: ElevatedButton.styleFrom(
+                  //primary: Colors.white,
+                  //),
+                  onPressed: () {
+                    _tocryptogPage(context);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('Crypto',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Color.fromARGB(255, 0, 0, 0))),
+                      //Image.asset(
+                      //'assets/crypto_graph_t.png',
+                      //)
+                      Lottie.asset(
+                          'assets/102720-cryptocurrency-bitcoin-working-loop.json')
+                    ],
+                  ),
+                )),
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                18,
-                0,
-                18,
-                18,
-              ),
-              child: SizedBox(
-                  height: 200,
-                  //This action is used to navigate to the Store Page
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.fromLTRB(
+                  18,
+                  0,
+                  18,
+                  18,
+                ),
+                child:
+                    //SizedBox(
+                    //  height: 200,
+                    //This action is used to navigate to the Store Page
+                    //child:
+                    ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 200),
                       primary: Colors.white,
-                    ),
-                    onPressed: () {
-                      _tostorePage(context);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('Clothing',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Color.fromARGB(255, 0, 0, 0))),
-                        //Image.asset(
-                        //'assets/tshirt.png',
-                        //)
-                        Lottie.asset('assets/99745-sales-man.json')
-                      ],
-                    ),
-                  )),
-            ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  // style: ElevatedButton.styleFrom(
+                  //   primary: Colors.white,
+                  // ),
+                  onPressed: () {
+                    _tostorePage(context);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('Clothing',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Color.fromARGB(255, 0, 0, 0))),
+                      //Image.asset(
+                      //'assets/tshirt.png',
+                      //)
+                      Lottie.asset('assets/99745-sales-man.json')
+                    ],
+                  ),
+                )),
           ],
         ));
   }

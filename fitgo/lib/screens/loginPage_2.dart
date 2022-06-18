@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
     var providerPC = Provider.of<ProfileCheck>(context);
     return Scaffold(
       appBar: AppBar(
-        //automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: Text(LoginPage.routename),
       ),
       body: Center(

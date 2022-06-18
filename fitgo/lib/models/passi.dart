@@ -5,6 +5,7 @@ class Dati extends ChangeNotifier {
   double _calorie = 0;
   List<dynamic> _devicedata = [];
   List<dynamic> _accountdata = [];
+  List<dynamic> _heartdata = [];
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -167,5 +168,20 @@ class Dati extends ChangeNotifier {
     int endIndex = _accountdata[5].toString().length - 1;
     return _accountdata[5].substring(0, endIndex).toString();
   }
+
+  bool isEmptyAccount() {
+    if (_accountdata.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   //fine metodi account data
+
+  //metodi heart data
+  set heartData(List<dynamic> newheartdata) {
+    _heartdata = newheartdata;
+    notifyListeners();
+  }
+  //fine metodi heart data
 }

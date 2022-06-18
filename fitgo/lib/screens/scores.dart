@@ -29,7 +29,7 @@ class ScoresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Usern SCORES: '+usern!);
+    print('Usern SCORES: ' + usern!);
     print('${ScoresPage.routename} built');
     // setState(() {
     //   this.passi_totali;
@@ -40,39 +40,44 @@ class ScoresPage extends StatelessWidget {
         title: Text(ScoresPage.routename),
       ),
       body: FutureBuilder<dynamic>(
-        initialData: null,
-        future: dbQuery(context,usern),
-        builder: (context, snapshot){
-          if (snapshot.hasData){
-          final passi_db = snapshot.data as double; 
-        
-        return
-      Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-          Row(
-          children: [
-            Text(calorie!),
-            ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/walking1/'),
-                child: Text('pagina col grafico'))
-          ],
-        ),
-        
-          Row(children: [Text('Passi DB: '+ passi_db.toString())],),]
-        )
-      );
-        }else{
-          return Center(child: CircularProgressIndicator());
-        }}
-    ),);
+          initialData: null,
+          future: dbQuery(context, usern),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final passi_db = snapshot.data as double;
+
+              return Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                    Row(
+                      children: [
+                        Text(calorie!),
+                        ElevatedButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/walking1/'),
+                            child: Column(
+                              children: [
+                                Text('pagina col grafico'),
+                                Icon(Icons.abc)
+                              ],
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [Text('Passi DB: ' + passi_db.toString())],
+                    ),
+                  ]));
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+    );
   } //build
 
-
-Future<double> dbQuery(context,usern)async{
-  final user = await Provider.of<DatabaseRepository>(context, listen: false)
-  .findAllUserId(usern);
-  return user!.passi_today;
-}
+  Future<double> dbQuery(context, usern) async {
+    final user = await Provider.of<DatabaseRepository>(context, listen: false)
+        .findAllUserId(usern);
+    return user!.passi_today;
+  }
 } //HomePage

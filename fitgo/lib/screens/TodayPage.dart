@@ -13,9 +13,9 @@ import 'package:fitgo/utils/fitbit_data.dart';
 import 'package:fitgo/utils/fitbit_data_class.dart';
 import 'package:flutter/material.dart';
 //import 'package:app_demo/screens/LoginPage.dart';
-//import 'package:fitgo/screens/TodayPage.dart';
 //import 'package:fitgo/screens/loginPage.dart';
 import 'package:fitgo/screens/loginPage_2.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,6 +49,7 @@ class TodayPage extends StatelessWidget {
   Dati passi = Dati();
   Dati deviceData = Dati();
   Dati accountData = Dati();
+  Dati heartData = Dati();
   double passi_fatti = 0;
 
   dynamic data1 = fitbit_data_class();
@@ -88,6 +89,17 @@ class TodayPage extends StatelessWidget {
           Scaffold(
               appBar: AppBar(
                 title: Text('Home Page'),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, WeatherPage.route);
+                    },
+                    //icon: Icon(Icons.sunny),
+                    icon: Icon(MdiIcons.weatherPartlyCloudy),
+                    color: Colors.white,
+                    iconSize: 35,
+                  )
+                ],
               ),
               drawer: Drawer(
                 child: ListView(
@@ -113,42 +125,55 @@ class TodayPage extends StatelessWidget {
                                   maxRadius: 45.0,
                                   child: CircleAvatar(
                                       radius: 40.0,
-                                      backgroundImage:
-                                          NetworkImage(accountData.printImage())
+                                      backgroundImage: accountData
+                                              .isEmptyAccount()
+                                          ? NetworkImage(
+                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFoqpTEH65bi07UUM1Osre6jjvLzRi7Tb-6DP_ee5k3DXs6wur3_qHZHG0o4KC2ZQIxw&usqp=CAU')
+                                          : NetworkImage(
+                                              accountData.printImage())
                                       //NetworkImage(
                                       //  'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
                                       ),
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(accountData.printName(),
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        )),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                        'Average daily steps:', // ${accountData.printAverageDailySteps()}',
-                                        //textAlign: TextAlign.right,
-                                        style: TextStyle(
-                                          fontSize: 13.5,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        )),
-                                    Text(accountData.printAverageDailySteps(),
-                                        style: TextStyle(
-                                          fontSize: 13.5,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ))
-                                  ],
-                                )
+                                accountData.isEmptyAccount()
+                                    ? Text(
+                                        'Data not available',
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    : Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(accountData.printName(),
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              )),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                              'Average daily steps:', // ${accountData.printAverageDailySteps()}',
+                                              //textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                fontSize: 13.5,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              )),
+                                          Text(
+                                              accountData
+                                                  .printAverageDailySteps(),
+                                              style: TextStyle(
+                                                fontSize: 13.5,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ))
+                                        ],
+                                      )
                               ],
                             )),
                       );
@@ -169,6 +194,10 @@ class TodayPage extends StatelessWidget {
                           clientID: Strings.fitbitClientID,
                           clientSecret: Strings.fitbitClientSecret,
                         );
+                        final snackBar = SnackBar(
+                            //backgroundColor: Colors.green,
+                            content: Text('Unauthorisation confirmed'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                     ),
                     ListTile(
@@ -215,12 +244,16 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final dati = snapshot.data as List;
-            final dati_device = dati[2].toString().split(' ');
-            final dati_account = dati[3].toString().split(' ');
-            provider.deviceData = dati_device;
-            provider.accountData = dati_account;
             provider.passi = dati[0];
             provider.calorie = dati[1];
+            final dati_device = dati[2].toString().split(' ');
+            final dati_account = dati[3].toString().split(' ');
+            final dati_heart = dati[4].toString().split(' ');
+            provider.deviceData = dati_device;
+            provider.accountData = dati_account;
+            provider.heartData = dati_heart;
+            print(dati_heart);
+
             _addDataDB(context, dati[0], usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
             // .insertData(DatiDB(1,dati[0],usern));
@@ -340,33 +373,107 @@ class situation1 extends StatelessWidget {
           List dati = await data1.fetchData();
           provider.passi = dati[0];
           provider.calorie = dati[1];
-          final dati_account = dati[3].toString().split(' ');
           final dati_device = dati[2].toString().split(' ');
+          final dati_account = dati[3].toString().split(' ');
+          final dati_heart = dati[4].toString().split(' ');
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
+          provider.heartData = dati_heart;
+          print(dati_heart);
         },
         child: ListView(children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Consumer<Dati>(builder: (context, accountData, _) {
-                return Text(
-                  //Text(
-                  "Welcome back ${accountData.printName()}!",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                );
-              }),
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, WeatherPage.route);
-                },
-                //icon: Icon(Icons.sunny),
-                icon: Icon(MdiIcons.weatherPartlyCloudy),
-                color: Colors.blue,
-                iconSize: 40,
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              20,
+              10,
+              20,
+              10,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                Consumer<Dati>(builder: (context, accountData, _) {
+                  return Text(
+                    //Text(
+                    "Welcome back ${accountData.printName()}!",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  );
+                }),
+                // IconButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, WeatherPage.route);
+                //   },
+
+                // icon: Icon(MdiIcons.weatherPartlyCloudy),
+                // color: Colors.blue,
+                // iconSize: 40,
+                //)
+                //],
+                //),
+                Text("Let's check your activity",
+                    style: TextStyle(fontSize: 18)),
+              ],
+            ),
           ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              20,
+              0,
+              20,
+              10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: <Color>[
+                          Colors.black12,
+                          Colors.black,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 1.0),
+                        stops: <double>[0.0, 1.0],
+                        tileMode: TileMode.clamp),
+                  ),
+                  width: 150.0,
+                  height: 2.0,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: Text(
+                    'o',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15.0,
+                      //fontFamily: 'WorkSansMedium'
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: <Color>[
+                          Colors.black,
+                          Colors.black12,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 1.0),
+                        stops: <double>[0.0, 1.0],
+                        tileMode: TileMode.clamp),
+                  ),
+                  width: 150.0,
+                  height: 2.0,
+                ),
+              ],
+            ),
+          ),
+
           //                 Container(
           //                   child:
           //                   Column(
@@ -448,103 +555,180 @@ class situation1 extends StatelessWidget {
           //           )
           //         ],
           //       ),
-          Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              SizedBox(
-                  height: 75,
-                  width: 145,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Consumer<Dati>(builder: (context, passi, _) {
-                          return Text(
-                            passi.printCalorie(),
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 0, 0, 0)),
-                          );
-                        }),
-                        Icon(
-                          Icons.local_fire_department_rounded,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                    ),
-                  )),
-              SizedBox(
-                height: 75,
-                width: 10,
-              ),
-              SizedBox(
-                  height: 75,
-                  width: 145,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              20,
+              0,
+              20,
+              10,
+            ),
+            child: Consumer<Dati>(builder: (context, heartData, _) {
+              return ElevatedButton(
+                onPressed: () {
+                  _toHeartPage(context, heartData);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Sleep",
+                          'Heart',
+                          style: TextStyle(color: Colors.red, fontSize: 18),
+                        ),
+                        Lottie.asset(
+                            //'assets/9427-heartbeat.json',
+                            'assets/97571-beating-heart.json',
+                            width: 130,
+                            height: 110),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 100,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'ciao',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          'bello',
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(320, 150),
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              );
+            }),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              20,
+              0,
+              20,
+              10,
+            ),
+            child: Column(children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                //SizedBox(
+                //  height: 75,
+                //width: 155,
+                //child:
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 75),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  //style: ElevatedButton.styleFrom(
+                  //primary: Colors.white,
+                  //),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Consumer<Dati>(builder: (context, passi, _) {
+                        return Text(
+                          passi.printCalorie(),
                           style: TextStyle(
                               fontSize: 15,
                               color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                        Icon(
-                          Icons.nightlight_round_rounded,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        )
-                      ],
-                    ),
-                  )),
+                        );
+                      }),
+                      Icon(
+                        Icons.local_fire_department_rounded,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 75,
+                  width: 10,
+                ),
+                //SizedBox(
+                //height: 75,
+                //width: 155,
+                //child:
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 75),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Sleep",
+                        style: TextStyle(
+                            fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
+                      Icon(
+                        Icons.nightlight_round_rounded,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      )
+                    ],
+                  ),
+                ),
+              ]),
             ]),
-          ]),
+          ),
           Column(
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(
+                  20,
                   0,
-                  15,
-                  0,
-                  0,
+                  20,
+                  10,
                 ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
-                          height: 150,
-                          width: 300,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                      //SizedBox(
+                      //height: 150,
+                      //width: 320,
+                      //child:
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(320, 150),
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        //style: ElevatedButton.styleFrom(
+                        //primary: Colors.white,
+                        //),
+                        onPressed: () {},
+                        child: Consumer<Dati>(builder: (context, passi, _) {
+                          return PieChart(
+                            initialAngleInDegree: 0,
+                            totalValue: 100,
+                            dataMap: dataMap,
+                            colorList: colorList,
+                            centerText: passi.printPassi(),
+                            chartType: ChartType.ring,
+                            animationDuration: Duration(milliseconds: 1000),
+                            chartLegendSpacing: 32,
+                            chartRadius:
+                                MediaQuery.of(context).size.width / 3.2,
+                            legendOptions: LegendOptions(
+                              legendTextStyle: TextStyle(color: Colors.black),
                             ),
-                            onPressed: () {},
-                            child: Consumer<Dati>(builder: (context, passi, _) {
-                              return PieChart(
-                                initialAngleInDegree: 0,
-                                totalValue: 100,
-                                dataMap: dataMap,
-                                colorList: colorList,
-                                centerText: passi.printPassi(),
-                                chartType: ChartType.ring,
-                                animationDuration: Duration(milliseconds: 1000),
-                                chartLegendSpacing: 32,
-                                chartRadius:
-                                    MediaQuery.of(context).size.width / 3.2,
-                                legendOptions: LegendOptions(
-                                  legendTextStyle:
-                                      TextStyle(color: Colors.black),
-                                ),
-                              );
-                            }),
-                          ))
+                          );
+                        }),
+                      )
                     ]),
               ),
             ],
@@ -575,10 +759,10 @@ class situation2 extends StatelessWidget {
     print('SITUATION 2 built');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Situation2'),
-        automaticallyImplyLeading: false,
-      ),
+      //appBar: AppBar(
+      //title: Text('Situation2'),
+      //automaticallyImplyLeading: false,
+      //),
       body: Center(
         child: Column(children: [
           Text('not auth'),
@@ -628,6 +812,11 @@ void _toDevicePage(BuildContext context, dati_device) {
 void _toProfilePage(BuildContext context, dati_account) {
   Navigator.pushNamed(context, '/profile/',
       arguments: {'account_data': dati_account});
+}
+
+void _toHeartPage(BuildContext context, dati_heart) {
+  Navigator.pushNamed(context, '/heart/',
+      arguments: {'heart_data': dati_heart});
 }
 
 // Future<void> _refresh(context, data1) async{
