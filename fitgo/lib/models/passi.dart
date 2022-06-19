@@ -131,7 +131,8 @@ class Dati extends ChangeNotifier {
 
   String printstrideLengthRunning() {
     int endIndex = _accountdata[73].toString().length - 1;
-    return _accountdata[73].substring(0, endIndex).toString();
+    return double.parse(_accountdata[73].substring(0, endIndex).toString())
+        .toStringAsFixed(2);
   }
 
   String printstrideLengthRunningType() {
@@ -182,6 +183,10 @@ class Dati extends ChangeNotifier {
   set heartData(List<dynamic> newheartdata) {
     _heartdata = newheartdata;
     notifyListeners();
+  }
+
+  List subList(start, end) {
+    return _heartdata.sublist(start, end);
   }
   //fine metodi heart data
 }

@@ -252,7 +252,6 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             provider.deviceData = dati_device;
             provider.accountData = dati_account;
             provider.heartData = dati_heart;
-            print(dati_heart);
 
             _addDataDB(context, dati[0], usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
@@ -379,7 +378,6 @@ class situation1 extends StatelessWidget {
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
           provider.heartData = dati_heart;
-          print(dati_heart);
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -563,6 +561,7 @@ class situation1 extends StatelessWidget {
               10,
             ),
             child: Consumer<Dati>(builder: (context, heartData, _) {
+              dynamic todayheartdata = heartData.subList(192, null);
               return ElevatedButton(
                 onPressed: () {
                   _toHeartPage(context, heartData);
@@ -585,17 +584,25 @@ class situation1 extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: 100,
+                      width: 0,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'ciao',
+                          'Today minutes spent in:',
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          'bello',
+                          'Fat Burn range: ${todayheartdata[16].substring(0, todayheartdata[16].toString().length - 1).toString()}',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          'Cardio range: ${todayheartdata[22].substring(0, todayheartdata[22].toString().length - 1).toString()}',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          'Peak range: ${todayheartdata[28].substring(0, todayheartdata[28].toString().length - 1).toString()}',
                           style: TextStyle(color: Colors.black),
                         )
                       ],
@@ -799,14 +806,8 @@ void _toLoginPage(BuildContext context) async {
 }
 
 void _toDevicePage(BuildContext context, dati_device) {
-  //Pop the drawer first
-  //Navigator.pop(context);
-  //Navigator.of(context).pushReplacementNamed(SettingsPage.route);
   Navigator.pushNamed(context, '/devicepage/',
       arguments: {'device_data': dati_device}); //, 'account_data': dati_account
-
-  //Navigator.pushNamed(context, );
-  //Navigator.of(context).pushReplacementNamed(LoginPage.route);
 }
 
 void _toProfilePage(BuildContext context, dati_account) {

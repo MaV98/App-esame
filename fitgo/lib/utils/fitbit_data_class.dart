@@ -114,9 +114,10 @@ class fitbit_data_class {
       userID: Strings.userID,
     );
 
-    FitbitHeartData fitbitHeartData = await fitbitHeartDataManager
-        .fetch(fitbitHeartApiUrl) as FitbitHeartData;
-
+    //FitbitHeartData fitbitHeartData = await fitbitHeartDataManager
+    //  .fetch(fitbitHeartApiUrl) as FitbitHeartData;
+    List<FitbitData> fitbitHeartData =
+        await fitbitHeartDataManager.fetch(fitbitHeartApiUrl);
     lista_data.add(fitbitHeartData);
 //fetch heartdata
 

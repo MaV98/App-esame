@@ -6,6 +6,12 @@ import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/heartDataPage.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage2.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage3.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage4.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage5.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage6.dart';
+import 'package:fitgo/screens/heartdatapages/heartPage7.dart';
 import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
@@ -107,6 +113,12 @@ class MyApp extends StatelessWidget {
           WeatherPage.route: (context) => WeatherPage(),
           DevicePage.route: (context) => DevicePage(),
           HeartDataPage.route: (context) => HeartDataPage(),
+          HeartDataPage2.route: (context) => HeartDataPage2(),
+          HeartDataPage3.route: (context) => HeartDataPage3(),
+          HeartDataPage4.route: (context) => HeartDataPage4(),
+          HeartDataPage5.route: (context) => HeartDataPage5(),
+          HeartDataPage6.route: (context) => HeartDataPage6(),
+          HeartDataPage7.route: (context) => HeartDataPage7(),
         },
       ),
     );
