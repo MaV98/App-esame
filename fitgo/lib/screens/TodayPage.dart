@@ -55,18 +55,18 @@ class TodayPage extends StatelessWidget {
   dynamic data1 = fitbit_data_class();
 
   //dati di prova
-  final dataMap = <String, double>{
-    "Steps objective": 80,
-    //"Walking": 15,
-    //"Running": 35,
-  };
+  //final dataMap = <String, double>{
+  //"Steps objective": 80,
+  //"Walking": 15,
+  //"Running": 35,
+  //};
 
   // final List<PhysicalActivity> data = [
-  final colorList = <Color>[
-    Colors.green,
-    //Colors.blue,
-    //Colors.red,
-  ];
+  //final colorList = <Color>[
+  //  Colors.green,
+  //Colors.blue,
+  //Colors.red,
+  //];
 
   // _HomePageState(this.topass);
   @override
@@ -274,18 +274,19 @@ class situation1 extends StatelessWidget {
   final dati;
   situation1({this.dati});
   // situation1({this.dati_device,this.dati_account});
-  final dataMap = <String, double>{
-    "Steps objective": 80,
-    //"Walking": 15,
-    //"Running": 35,
-  };
+
+  //final dataMap = <String, double>{
+  //"Steps objective": 80
+  //"Walking": 15,
+  //"Running": 35,
+  //};
 
   // final List<PhysicalActivity> data = [
-  final colorList = <Color>[
-    Colors.green,
-    //Colors.blue,
-    //Colors.red,
-  ];
+  //final colorList = <Color>[
+  //Colors.green,
+  //Colors.blue,
+  //Colors.red,
+  //];
 
   @override
   Widget build(BuildContext context) {
@@ -554,6 +555,165 @@ class situation1 extends StatelessWidget {
           //         ],
           //       ),
           Padding(
+              padding: EdgeInsets.fromLTRB(
+                20,
+                0,
+                20,
+                10,
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(320, 150),
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                onPressed: () {},
+                child: Consumer<Dati>(builder: (context, passi, _) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      (15000 -
+                                  double.parse(
+                                    passi.printPassi(),
+                                  ) <
+                              0)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                  Text(
+                                    'Activity timeseries',
+                                    style: TextStyle(
+                                        color: Color.fromARGB(131, 3, 78, 4),
+                                        fontSize: 18),
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text('Goal reached!',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(131, 3, 78, 4),
+                                          fontSize: 18))
+                                ])
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                  Text(
+                                    'Activity timeseries',
+                                    style: TextStyle(
+                                        color: Color.fromARGB(131, 3, 78, 4),
+                                        fontSize: 18),
+                                  ),
+                                ]),
+                      PieChart(
+                        initialAngleInDegree: 270,
+                        totalValue: 15000,
+                        dataMap: <String, double>{
+                          "Today steps": double.parse(
+                            passi.printPassi(),
+                          ),
+                          "15000 steps goal": 15000 -
+                              double.parse(
+                                passi.printPassi(),
+                              ),
+                        }, //dataMap,
+                        colorList: (15000 -
+                                    double.parse(
+                                      passi.printPassi(),
+                                    ) <
+                                0)
+                            ? <Color>[
+                                Color.fromARGB(131, 3, 78, 4),
+                                Colors.transparent
+                              ]
+                            : <Color>[
+                                Color.fromARGB(131, 3, 78, 4),
+                                Color.fromARGB(255, 177, 251, 182),
+                              ], //colorList,
+                        centerText: passi.printPassi(),
+                        centerTextStyle: TextStyle(
+                            backgroundColor: Colors.white,
+                            color: Colors.black,
+                            decorationColor: Colors.white),
+                        chartType: ChartType.ring,
+                        animationDuration: Duration(milliseconds: 1000),
+                        chartLegendSpacing: 32,
+                        chartRadius: MediaQuery.of(context).size.width / 3.2,
+                        legendOptions: LegendOptions(
+                            legendTextStyle: TextStyle(color: Colors.black)),
+                        chartValuesOptions: ChartValuesOptions(
+                            showChartValues: false,
+                            showChartValuesOutside: false),
+                      ),
+                    ],
+                  );
+                }),
+              )),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              20,
+              0,
+              20,
+              10,
+            ),
+            child: Column(children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 310),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Consumer<Dati>(builder: (context, passi, _) {
+                        return Text(
+                          passi.printCalorie(),
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                        );
+                      }),
+                      Icon(
+                        Icons.local_fire_department_rounded,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 75,
+                  width: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(155, 310),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Sleep",
+                        style: TextStyle(
+                            fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
+                      Icon(
+                        Icons.nightlight_round_rounded,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      )
+                    ],
+                  ),
+                ),
+              ]),
+            ]),
+          ),
+
+          Padding(
             padding: EdgeInsets.fromLTRB(
               20,
               0,
@@ -616,129 +776,6 @@ class situation1 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20))),
               );
             }),
-          ),
-
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              0,
-              20,
-              10,
-            ),
-            child: Column(children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                //SizedBox(
-                //  height: 75,
-                //width: 155,
-                //child:
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 75),
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  //style: ElevatedButton.styleFrom(
-                  //primary: Colors.white,
-                  //),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Consumer<Dati>(builder: (context, passi, _) {
-                        return Text(
-                          passi.printCalorie(),
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                        );
-                      }),
-                      Icon(
-                        Icons.local_fire_department_rounded,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 75,
-                  width: 10,
-                ),
-                //SizedBox(
-                //height: 75,
-                //width: 155,
-                //child:
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 75),
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Sleep",
-                        style: TextStyle(
-                            fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                      Icon(
-                        Icons.nightlight_round_rounded,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      )
-                    ],
-                  ),
-                ),
-              ]),
-            ]),
-          ),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                  20,
-                  0,
-                  20,
-                  10,
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //SizedBox(
-                      //height: 150,
-                      //width: 320,
-                      //child:
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(320, 150),
-                            primary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        //style: ElevatedButton.styleFrom(
-                        //primary: Colors.white,
-                        //),
-                        onPressed: () {},
-                        child: Consumer<Dati>(builder: (context, passi, _) {
-                          return PieChart(
-                            initialAngleInDegree: 0,
-                            totalValue: 100,
-                            dataMap: dataMap,
-                            colorList: colorList,
-                            centerText: passi.printPassi(),
-                            chartType: ChartType.ring,
-                            animationDuration: Duration(milliseconds: 1000),
-                            chartLegendSpacing: 32,
-                            chartRadius:
-                                MediaQuery.of(context).size.width / 3.2,
-                            legendOptions: LegendOptions(
-                              legendTextStyle: TextStyle(color: Colors.black),
-                            ),
-                          );
-                        }),
-                      )
-                    ]),
-              ),
-            ],
           )
         ]),
       ),
