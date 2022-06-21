@@ -1,7 +1,5 @@
 //import 'package:fitgo/Charts/ActivityDB.dart';
 //import 'package:fitgo/Charts/physical_activity.dart';
-//import 'package:App-esame/screens/profilePage.dart';
-//import 'package:App-esame/screens/settingsPage.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:fitgo/database/entities/dati.dart';
 import 'package:fitgo/models/index.dart';
@@ -12,7 +10,7 @@ import 'package:fitgo/screens/weatherPage.dart';
 import 'package:fitgo/utils/fitbit_data.dart';
 import 'package:fitgo/utils/fitbit_data_class.dart';
 import 'package:flutter/material.dart';
-//import 'package:app_demo/screens/LoginPage.dart';
+
 //import 'package:fitgo/screens/loginPage.dart';
 import 'package:fitgo/screens/loginPage_2.dart';
 import 'package:lottie/lottie.dart';
@@ -20,7 +18,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//import 'package:app_demo/Charts/physical_activity.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 import '../utils/strings.dart';
@@ -50,23 +47,10 @@ class TodayPage extends StatelessWidget {
   Dati deviceData = Dati();
   Dati accountData = Dati();
   Dati heartData = Dati();
+  Dati sleepData_today = Dati();
   double passi_fatti = 0;
 
   dynamic data1 = fitbit_data_class();
-
-  //dati di prova
-  //final dataMap = <String, double>{
-  //"Steps objective": 80,
-  //"Walking": 15,
-  //"Running": 35,
-  //};
-
-  // final List<PhysicalActivity> data = [
-  //final colorList = <Color>[
-  //  Colors.green,
-  //Colors.blue,
-  //Colors.red,
-  //];
 
   // _HomePageState(this.topass);
   @override
@@ -94,7 +78,6 @@ class TodayPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, WeatherPage.route);
                     },
-                    //icon: Icon(Icons.sunny),
                     icon: Icon(MdiIcons.weatherPartlyCloudy),
                     color: Colors.white,
                     iconSize: 35,
@@ -110,8 +93,6 @@ class TodayPage extends StatelessWidget {
                         onPressed: () {
                           _toProfilePage(context, accountData);
                         },
-                        //Navigator.of(context)
-                        //.pushReplacementNamed(ProfilePage.route),
                         child: DrawerHeader(
                             decoration: BoxDecoration(
                               color: Colors.blue,
@@ -130,10 +111,7 @@ class TodayPage extends StatelessWidget {
                                           ? NetworkImage(
                                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFoqpTEH65bi07UUM1Osre6jjvLzRi7Tb-6DP_ee5k3DXs6wur3_qHZHG0o4KC2ZQIxw&usqp=CAU')
                                           : NetworkImage(
-                                              accountData.printImage())
-                                      //NetworkImage(
-                                      //  'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
-                                      ),
+                                              accountData.printImage())),
                                 ),
                                 accountData.isEmptyAccount()
                                     ? Text(
@@ -156,9 +134,7 @@ class TodayPage extends StatelessWidget {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text(
-                                              'Average daily steps:', // ${accountData.printAverageDailySteps()}',
-                                              //textAlign: TextAlign.right,
+                                          Text('Average daily steps:',
                                               style: TextStyle(
                                                 fontSize: 13.5,
                                                 fontWeight: FontWeight.bold,
@@ -179,7 +155,6 @@ class TodayPage extends StatelessWidget {
                       );
                     }),
                     Consumer<Dati>(builder: (context, deviceData, _) {
-                      //print('PROVA Account Name: '+ accountData.printName());
                       return ListTile(
                         leading: Icon(Icons.watch),
                         title: Text('Device'),
@@ -249,9 +224,26 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             final dati_device = dati[2].toString().split(' ');
             final dati_account = dati[3].toString().split(' ');
             final dati_heart = dati[4].toString().split(' ');
+            final dati_sleep_today = dati[5];
+
+            final dati_sleep_2 = dati[6];
+            final dati_sleep_3 = dati[7];
+            final dati_sleep_4 = dati[8];
+            final dati_sleep_5 = dati[9];
+            final dati_sleep_6 = dati[10];
+            final dati_sleep_7 = dati[11];
+            final dati_sleep = [];
+            dati_sleep.add(dati_sleep_today);
+            dati_sleep.add(dati_sleep_2);
+            dati_sleep.add(dati_sleep_3);
+            dati_sleep.add(dati_sleep_4);
+            dati_sleep.add(dati_sleep_5);
+            dati_sleep.add(dati_sleep_6);
+            dati_sleep.add(dati_sleep_7);
             provider.deviceData = dati_device;
             provider.accountData = dati_account;
             provider.heartData = dati_heart;
+            provider.sleepData = dati_sleep;
 
             _addDataDB(context, dati[0], usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
@@ -274,19 +266,6 @@ class situation1 extends StatelessWidget {
   final dati;
   situation1({this.dati});
   // situation1({this.dati_device,this.dati_account});
-
-  //final dataMap = <String, double>{
-  //"Steps objective": 80
-  //"Walking": 15,
-  //"Running": 35,
-  //};
-
-  // final List<PhysicalActivity> data = [
-  //final colorList = <Color>[
-  //Colors.green,
-  //Colors.blue,
-  //Colors.red,
-  //];
 
   @override
   Widget build(BuildContext context) {
@@ -376,9 +355,25 @@ class situation1 extends StatelessWidget {
           final dati_device = dati[2].toString().split(' ');
           final dati_account = dati[3].toString().split(' ');
           final dati_heart = dati[4].toString().split(' ');
+          final dati_sleep_today = dati[5];
+          final dati_sleep_2 = dati[6];
+          final dati_sleep_3 = dati[7];
+          final dati_sleep_4 = dati[8];
+          final dati_sleep_5 = dati[9];
+          final dati_sleep_6 = dati[10];
+          final dati_sleep_7 = dati[11];
+          final dati_sleep = [];
+          dati_sleep.add(dati_sleep_today);
+          dati_sleep.add(dati_sleep_2);
+          dati_sleep.add(dati_sleep_3);
+          dati_sleep.add(dati_sleep_4);
+          dati_sleep.add(dati_sleep_5);
+          dati_sleep.add(dati_sleep_6);
+          dati_sleep.add(dati_sleep_7);
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
           provider.heartData = dati_heart;
+          provider.sleepData = dati_sleep;
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -392,27 +387,12 @@ class situation1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
                 Consumer<Dati>(builder: (context, accountData, _) {
                   return Text(
-                    //Text(
                     "Welcome back ${accountData.printName()}!",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   );
                 }),
-                // IconButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, WeatherPage.route);
-                //   },
-
-                // icon: Icon(MdiIcons.weatherPartlyCloudy),
-                // color: Colors.blue,
-                // iconSize: 40,
-                //)
-                //],
-                //),
                 Text("Let's check your activity",
                     style: TextStyle(fontSize: 18)),
               ],
@@ -563,6 +543,7 @@ class situation1 extends StatelessWidget {
               ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                    elevation: 12,
                     fixedSize: const Size(320, 150),
                     primary: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -660,14 +641,27 @@ class situation1 extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 310),
+                      elevation: 12,
+                      fixedSize: const Size(155, 230),
                       primary: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
                   onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Activity",
+                        style: TextStyle(color: Colors.orange, fontSize: 18),
+                      ),
+                      Lottie.asset('assets/787-progression.json',
+                          width: 130, height: 110),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Consumer<Dati>(builder: (context, passi, _) {
                         return Text(
                           passi.printCalorie(),
@@ -687,28 +681,86 @@ class situation1 extends StatelessWidget {
                   height: 75,
                   width: 10,
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 310),
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Sleep",
-                        style: TextStyle(
-                            fontSize: 15, color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                      Icon(
-                        Icons.nightlight_round_rounded,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      )
-                    ],
-                  ),
-                ),
+                Consumer<Dati>(builder: (context, sleepData, _) {
+                  dynamic today_sleep_data = sleepData.selectElement(0);
+                  int count = 0;
+                  if (today_sleep_data.isEmpty) {
+                    count = 0;
+                  } else {
+                    for (var i = 0; i < today_sleep_data.length; i++) {
+                      var currentElement = today_sleep_data[i];
+                      var currentElement_str =
+                          currentElement.toString().split(' ');
+                      if (currentElement_str[9]
+                              .substring(0,
+                                  currentElement_str[9].toString().length - 1)
+                              .toString() !=
+                          'wake') {
+                        ++count;
+                      }
+                    }
+                  }
+
+                  double seconds = count * 30;
+                  double total_minutes = seconds / 60;
+                  double hour = total_minutes / 60;
+                  double resto = hour - hour.toInt();
+                  double minutes = resto * 60;
+
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 12,
+                        fixedSize: const Size(155, 230),
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {
+                      _toSleepPage(context, sleepData);
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Sleep",
+                          style:
+                              TextStyle(color: Colors.deepPurple, fontSize: 18),
+                        ),
+                        Lottie.asset('assets/10686-the-moon.json',
+                            width: 130, height: 110),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        today_sleep_data.isEmpty
+                            ? Column(
+                                children: [
+                                  Text(
+                                    'No last sleep activity registered',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text('Device on charge',
+                                      style: TextStyle(color: Colors.black))
+                                ],
+                              )
+                            : Column(children: [
+                                Text('Last sleep duration',
+                                    style: TextStyle(color: Colors.black)),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Text('${hour.toInt()}h ${minutes.toInt()}min',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 20))
+                              ])
+                      ],
+                    ),
+                  );
+                }),
               ]),
             ]),
           ),
@@ -770,6 +822,7 @@ class situation1 extends StatelessWidget {
                   ],
                 ),
                 style: ElevatedButton.styleFrom(
+                    elevation: 12,
                     fixedSize: const Size(320, 150),
                     primary: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -807,21 +860,31 @@ class situation2 extends StatelessWidget {
       //title: Text('Situation2'),
       //automaticallyImplyLeading: false,
       //),
-      body: Center(
-        child: Column(children: [
-          Text('not auth'),
-          ElevatedButton(
-              onPressed: () async {
-                final sp = await SharedPreferences.getInstance();
-                sp.remove('UserName');
-                //final index = await SharedPreferences.getInstance();
-                sp.remove('indice');
-                Navigator.pushNamed(context, LoginPage.route);
-              },
-              child: Text('LogOut'))
-        ]),
-      ),
+      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text(
+            'Data download permission not granted. You can still visit the store, but you will not get any discount. If you want to see your activity please log out and then log back in by authorizing the application',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(120, 40),
+            ),
+            onPressed: () async {
+              final sp = await SharedPreferences.getInstance();
+              sp.remove('UserName');
+              //final index = await SharedPreferences.getInstance();
+              sp.remove('indice');
+              Navigator.pushNamed(context, LoginPage.route);
+            },
+            child: Text('LogOut')),
+        Lottie.asset('assets/49993-search.json', width: 280, height: 280)
+      ]),
     );
+
     //build
   }
 }
@@ -855,6 +918,11 @@ void _toProfilePage(BuildContext context, dati_account) {
 void _toHeartPage(BuildContext context, dati_heart) {
   Navigator.pushNamed(context, '/heart/',
       arguments: {'heart_data': dati_heart});
+}
+
+void _toSleepPage(BuildContext context, dati_sleep) {
+  Navigator.pushNamed(context, '/sleep/',
+      arguments: {'sleep_data': dati_sleep});
 }
 
 // Future<void> _refresh(context, data1) async{

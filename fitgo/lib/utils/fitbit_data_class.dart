@@ -114,12 +114,88 @@ class fitbit_data_class {
       userID: Strings.userID,
     );
 
-    //FitbitHeartData fitbitHeartData = await fitbitHeartDataManager
-    //  .fetch(fitbitHeartApiUrl) as FitbitHeartData;
     List<FitbitData> fitbitHeartData =
         await fitbitHeartDataManager.fetch(fitbitHeartApiUrl);
     lista_data.add(fitbitHeartData);
 //fetch heartdata
+
+//fetch sleepdata
+    FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    //today
+    FitbitSleepAPIURL fitbitSleepAPIURL_today =
+        FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now(),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_today =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_today);
+    lista_data.add(fitbitSleep_today);
+
+    //yesterday
+    FitbitSleepAPIURL fitbitSleepAPIURL_2 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 1)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_2 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_2);
+    lista_data.add(fitbitSleep_2);
+
+    //3
+    FitbitSleepAPIURL fitbitSleepAPIURL_3 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 2)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_3 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_3);
+    lista_data.add(fitbitSleep_3);
+
+    //4
+    FitbitSleepAPIURL fitbitSleepAPIURL_4 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 3)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_4 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_4);
+    lista_data.add(fitbitSleep_4);
+
+    //5
+    FitbitSleepAPIURL fitbitSleepAPIURL_5 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 4)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_5 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_5);
+    lista_data.add(fitbitSleep_5);
+
+    //6
+    FitbitSleepAPIURL fitbitSleepAPIURL_6 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 5)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_6 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_6);
+    lista_data.add(fitbitSleep_6);
+
+    //7
+    FitbitSleepAPIURL fitbitSleepAPIURL_7 = FitbitSleepAPIURL.withUserIDAndDay(
+      date: DateTime.now().subtract(Duration(days: 6)),
+      userID: Strings.userID,
+    );
+
+    List<FitbitData> fitbitSleep_7 =
+        await fitbitSleepDataManager.fetch(fitbitSleepAPIURL_7);
+    lista_data.add(fitbitSleep_7);
+//fetch sleepdata
 
     return lista_data;
   }
@@ -127,21 +203,4 @@ class fitbit_data_class {
   dynamic retVal() {
     return this.lista_data;
   }
-
-  // Future<List> fetchDevicedata(context) async {
-  //   //Instantiate a proper data manager
-  //   FitbitDeviceDataManager fitbitDeviceDataManager = FitbitDeviceDataManager(
-  //     clientID: Strings.fitbitClientID,
-  //     clientSecret: Strings.fitbitClientSecret,
-  //   );
-
-  //   //fetch data
-  //   FitbitDeviceAPIURL fitbitDeviceApiUrl = FitbitDeviceAPIURL.withUserID(
-  //     userID: Strings.userID,
-  //   );
-
-  //   //get data
-  //   return fitbitDeviceData =
-  //       await fitbitDeviceDataManager.fetch(fitbitDeviceApiUrl);
-  // }
 }

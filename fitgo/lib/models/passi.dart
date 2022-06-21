@@ -6,6 +6,17 @@ class Dati extends ChangeNotifier {
   List<dynamic> _devicedata = [];
   List<dynamic> _accountdata = [];
   List<dynamic> _heartdata = [];
+  List<dynamic> _sleepdata = [];
+  List<dynamic> _startend = [];
+  List<dynamic> _sleeptodaydate = [];
+  List<dynamic> _sleepdate2 = [];
+  List<dynamic> _sleepdate3 = [];
+  List<dynamic> _sleepdate4 = [];
+  List<dynamic> _sleepdate5 = [];
+  List<dynamic> _sleepdate6 = [];
+  List<dynamic> _sleepdate7 = [];
+
+  //List<dynamic> get startEnd; // => null;
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -189,4 +200,88 @@ class Dati extends ChangeNotifier {
     return _heartdata.sublist(start, end);
   }
   //fine metodi heart data
+
+  // metodi sleep data
+  set sleepData(List<dynamic> newsleepdata) {
+    _sleepdata = newsleepdata;
+    notifyListeners();
+  }
+
+  dynamic selectElement(index) {
+    return _sleepdata[index];
+  }
+
+  set startEnd(List<dynamic> newsleepdate) {
+    _startend = newsleepdate;
+    notifyListeners();
+  }
+
+  dynamic selectElementStartEnd(index) {
+    return _startend[index];
+  }
+
+  set todaysleepdate(List<dynamic> newsleeptodaydate) {
+    _sleeptodaydate = newsleeptodaydate;
+    notifyListeners();
+  }
+
+  dynamic selectElementToday(index) {
+    return _sleeptodaydate[index];
+  }
+
+  set sleepdate2(List<dynamic> newsleepdate2) {
+    _sleepdate2 = newsleepdate2;
+    notifyListeners();
+  }
+
+  dynamic selectElement2(index) {
+    return _sleepdate2[index];
+  }
+
+  set sleepdate3(List<dynamic> newsleepdate3) {
+    _sleepdate3 = newsleepdate3;
+    notifyListeners();
+  }
+
+  dynamic selectElement3(index) {
+    return _sleepdate3[index];
+  }
+
+  set sleepdate4(List<dynamic> newsleepdate4) {
+    _sleepdate4 = newsleepdate4;
+    notifyListeners();
+  }
+
+  dynamic selectElement4(index) {
+    return _sleepdate4[index];
+  }
+
+  set sleepdate5(List<dynamic> newsleepdate5) {
+    _sleepdate5 = newsleepdate5;
+    notifyListeners();
+  }
+
+  dynamic selectElement5(index) {
+    return _sleepdate5[index];
+  }
+
+  set sleepdate6(List<dynamic> newsleepdate6) {
+    _sleepdate6 = newsleepdate6;
+    notifyListeners();
+  }
+
+  dynamic selectElement6(index) {
+    return _sleepdate6[index];
+  }
+
+  set sleepdate7(List<dynamic> newsleepdate7) {
+    _sleepdate7 = newsleepdate7;
+    notifyListeners();
+  }
+
+  dynamic selectElement7(index) {
+    return _sleepdate7[index];
+  }
+  //fine metodi sleep data
+
 }

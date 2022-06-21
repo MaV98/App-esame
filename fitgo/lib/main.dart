@@ -1,6 +1,7 @@
 import 'package:fitgo/database/database.dart';
 import 'package:fitgo/database/entities/profile.dart';
 import 'package:fitgo/models/index.dart';
+import 'package:fitgo/models/passi.dart';
 import 'package:fitgo/models/profileCheck.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/cartPage.dart';
@@ -15,6 +16,13 @@ import 'package:fitgo/screens/heartdatapages/heartPage7.dart';
 import 'package:fitgo/screens/homepage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
+import 'package:fitgo/screens/sleepDataPage.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage2.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage3.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage4.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage5.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage6.dart';
+import 'package:fitgo/screens/sleepdatapages/sleepPage7.dart';
 import 'package:fitgo/screens/successPage.dart';
 //import 'package:fitgo/screens/loginPage.dart';
 import 'package:fitgo/screens/loginPage_2.dart';
@@ -77,6 +85,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<Dati>(
+          create: (context) => Dati(),
+        ),
         ChangeNotifierProvider<Favorites>(
           create: (context) => Favorites(),
         ),
@@ -119,6 +130,13 @@ class MyApp extends StatelessWidget {
           HeartDataPage5.route: (context) => HeartDataPage5(),
           HeartDataPage6.route: (context) => HeartDataPage6(),
           HeartDataPage7.route: (context) => HeartDataPage7(),
+          SleepDataPage.route: (context) => SleepDataPage(),
+          SleepDataPage2.route: (context) => SleepDataPage2(),
+          SleepDataPage3.route: (context) => SleepDataPage3(),
+          SleepDataPage4.route: (context) => SleepDataPage4(),
+          SleepDataPage5.route: (context) => SleepDataPage5(),
+          SleepDataPage6.route: (context) => SleepDataPage6(),
+          SleepDataPage7.route: (context) => SleepDataPage7(),
         },
       ),
     );
