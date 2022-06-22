@@ -1018,17 +1018,13 @@ void displayCard(BuildContext context, passi) {
                     : (double.parse(passi.printPassi()) >= 6000) &
                             (double.parse(passi.printPassi()) < 9000)
                         ? Text('Testo 3')
-                        : (double.parse(passi.printPassi()) >= 6000) &
-                                (double.parse(passi.printPassi()) < 9000)
+                        : (double.parse(passi.printPassi()) >= 9000) &
+                                (double.parse(passi.printPassi()) < 12000)
                             ? Text('Testo 4')
-                            : (double.parse(passi.printPassi()) >= 9000) &
-                                    (double.parse(passi.printPassi()) < 12000)
+                            : (double.parse(passi.printPassi()) >= 12000) &
+                                    (double.parse(passi.printPassi()) < 15000)
                                 ? Text('Testo 5')
-                                : (double.parse(passi.printPassi()) >= 12000) &
-                                        (double.parse(passi.printPassi()) <
-                                            15000)
-                                    ? Text('Testo 6')
-                                    : Text('Testo 7'),
+                                : Text('Testo 6'),
             actions: <Widget>[
               ElevatedButton(
                   child: Text("Got it"),
