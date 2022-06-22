@@ -36,7 +36,7 @@ import 'package:fitgo/repository/favorites.dart';
 //import 'package:app_demo/screens/settingsPage.dart';
 import 'package:fitgo/screens/storePage.dart';
 import 'package:fitgo/screens/weatherPage.dart';
-import 'package:fitgo/screens/walking1.dart';
+
 //import 'package:app_demo/screens/trainingPage.dart';
 //import 'package:app_demo/screens/walkingPage.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +114,7 @@ class MyApp extends StatelessWidget {
           FriendsPage.route: (context) => FriendsPage(),
           ShopPage.route: (context) => ShopPage(),
           //WalkingPage.route: (context) => WalkingPage(),
-          WalkingPage1.route: (context) => WalkingPage1(),
+         
           CryptoPage.route: (context) => CryptoPage(),
           StorePage.route: (context) => StorePage(),
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),

@@ -53,11 +53,7 @@ class ScoresPage extends StatelessWidget {
                     Row(
                       children: [
                         Text(calorie!),
-                        ElevatedButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/walking1/'),
-                          child: Text('pagina col grafico'),
-                        )
+                        
                       ],
                     ),
                     Row(

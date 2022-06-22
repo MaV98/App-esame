@@ -25,7 +25,7 @@ class SleepDataPage4 extends StatelessWidget {
           .split(' ')[7]
           .toString()
           .substring(
-              0, sleepdata4[0].toString().split(' ')[7].toString().length - 1)
+              0, sleepdata4[0].toString().split(' ')[7].toString().length - 5)
           .toString();
       dynamic end = sleepdata4[sleepdata4.length - 1]
           .toString()
@@ -38,7 +38,7 @@ class SleepDataPage4 extends StatelessWidget {
                       .split(' ')[7]
                       .toString()
                       .length -
-                  1)
+                  5)
           .toString();
       final start_end = [];
       start_end.add(start);

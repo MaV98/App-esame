@@ -22,7 +22,8 @@ class FavoriteStorePage extends StatelessWidget {
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(
-              onPressed: () => _toCartPage(context), icon: Icon(Icons.favorite))
+              onPressed: () => _toCartPage(context),
+              icon: Icon(Icons.shopping_cart))
         ],
       ),
       body: Center(

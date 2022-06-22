@@ -28,7 +28,7 @@ class SleepDataPage extends StatelessWidget {
           .split(' ')[7]
           .toString()
           .substring(0,
-              todaysleepdata[0].toString().split(' ')[7].toString().length - 1)
+              todaysleepdata[0].toString().split(' ')[7].toString().length - 5)
           .toString();
       dynamic end = todaysleepdata[todaysleepdata.length - 1]
           .toString()
@@ -41,7 +41,7 @@ class SleepDataPage extends StatelessWidget {
                       .split(' ')[7]
                       .toString()
                       .length -
-                  1)
+                  5)
           .toString();
       final start_end = [];
       start_end.add(start);
@@ -80,10 +80,12 @@ class SleepDataPage extends StatelessWidget {
     double hour_totalsleep = total_minutes_totalsleep / 60;
     double resto_totalsleep = hour_totalsleep - hour_totalsleep.toInt();
     double minutes_totalsleep = resto_totalsleep * 60;
-    dynamic todaytotalsleeps_united = double.parse(
-        hour_totalsleep.toInt().toString() +
-            '.' +
-            minutes_totalsleep.toInt().toString());
+    print(minutes_totalsleep);
+
+    minutes_totalsleep = minutes_totalsleep.toInt() / 100;
+
+    dynamic todaytotalsleeps_united =
+        hour_totalsleep.toInt() + minutes_totalsleep;
 
     //wake
     int count_wake = 0;
@@ -281,16 +283,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep2);
+
     double seconds_totalsleep2 = count_totalSleep2 * 30;
     double total_minutes_totalsleep2 = seconds_totalsleep2 / 60;
     double hour_totalsleep2 = total_minutes_totalsleep2 / 60;
     double resto_totalsleep2 = hour_totalsleep2 - hour_totalsleep2.toInt();
     double minutes_totalsleep2 = resto_totalsleep2 * 60;
-    dynamic totalsleeps2_united = double.parse(
-        hour_totalsleep2.toInt().toString() +
-            '.' +
-            minutes_totalsleep2.toInt().toString());
+    minutes_totalsleep2 = minutes_totalsleep2.toInt() / 100;
+    dynamic totalsleeps2_united =
+        hour_totalsleep2.toInt() + minutes_totalsleep2;
 
     //total 3 sleep duration
     int count_totalSleep3 = 0;
@@ -310,16 +311,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep3);
+
     double seconds_totalsleep3 = count_totalSleep3 * 30;
     double total_minutes_totalsleep3 = seconds_totalsleep3 / 60;
     double hour_totalsleep3 = total_minutes_totalsleep3 / 60;
     double resto_totalsleep3 = hour_totalsleep3 - hour_totalsleep3.toInt();
     double minutes_totalsleep3 = resto_totalsleep3 * 60;
-    dynamic totalsleeps3_united = double.parse(
-        hour_totalsleep3.toInt().toString() +
-            '.' +
-            minutes_totalsleep3.toInt().toString());
+    minutes_totalsleep3 = minutes_totalsleep3.toInt() / 100;
+    dynamic totalsleeps3_united =
+        hour_totalsleep3.toInt() + minutes_totalsleep3;
 
     //total 4 sleep duration
     int count_totalSleep4 = 0;
@@ -339,16 +339,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep4);
+
     double seconds_totalsleep4 = count_totalSleep4 * 30;
     double total_minutes_totalsleep4 = seconds_totalsleep4 / 60;
     double hour_totalsleep4 = total_minutes_totalsleep4 / 60;
     double resto_totalsleep4 = hour_totalsleep4 - hour_totalsleep4.toInt();
     double minutes_totalsleep4 = resto_totalsleep4 * 60;
-    dynamic totalsleeps4_united = double.parse(
-        hour_totalsleep4.toInt().toString() +
-            '.' +
-            minutes_totalsleep4.toInt().toString());
+    minutes_totalsleep4 = minutes_totalsleep4.toInt() / 100;
+    dynamic totalsleeps4_united =
+        hour_totalsleep4.toInt() + minutes_totalsleep4;
 
     //total 5 sleep duration
     int count_totalSleep5 = 0;
@@ -368,16 +367,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep5);
+
     double seconds_totalsleep5 = count_totalSleep5 * 30;
     double total_minutes_totalsleep5 = seconds_totalsleep5 / 60;
     double hour_totalsleep5 = total_minutes_totalsleep5 / 60;
     double resto_totalsleep5 = hour_totalsleep5 - hour_totalsleep5.toInt();
     double minutes_totalsleep5 = resto_totalsleep5 * 60;
-    dynamic totalsleeps5_united = double.parse(
-        hour_totalsleep5.toInt().toString() +
-            '.' +
-            minutes_totalsleep5.toInt().toString());
+    minutes_totalsleep5 = minutes_totalsleep5.toInt() / 100;
+    dynamic totalsleeps5_united =
+        hour_totalsleep5.toInt() + minutes_totalsleep5;
 
     //total 6 sleep duration
     int count_totalSleep6 = 0;
@@ -397,16 +395,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep6);
+
     double seconds_totalsleep6 = count_totalSleep6 * 30;
     double total_minutes_totalsleep6 = seconds_totalsleep6 / 60;
     double hour_totalsleep6 = total_minutes_totalsleep6 / 60;
     double resto_totalsleep6 = hour_totalsleep6 - hour_totalsleep6.toInt();
     double minutes_totalsleep6 = resto_totalsleep6 * 60;
-    dynamic totalsleeps6_united = double.parse(
-        hour_totalsleep6.toInt().toString() +
-            '.' +
-            minutes_totalsleep6.toInt().toString());
+    minutes_totalsleep6 = minutes_totalsleep6.toInt() / 100;
+    dynamic totalsleeps6_united =
+        hour_totalsleep6.toInt() + minutes_totalsleep6;
 
     //total 7 sleep duration
     int count_totalSleep7 = 0;
@@ -426,16 +423,15 @@ class SleepDataPage extends StatelessWidget {
         }
       }
     }
-    print(count_totalSleep7);
+
     double seconds_totalsleep7 = count_totalSleep7 * 30;
     double total_minutes_totalsleep7 = seconds_totalsleep7 / 60;
     double hour_totalsleep7 = total_minutes_totalsleep7 / 60;
     double resto_totalsleep7 = hour_totalsleep7 - hour_totalsleep7.toInt();
     double minutes_totalsleep7 = resto_totalsleep7 * 60;
-    dynamic totalsleeps7_united = double.parse(
-        hour_totalsleep7.toInt().toString() +
-            '.' +
-            minutes_totalsleep7.toInt().toString());
+    minutes_totalsleep7 = minutes_totalsleep7.toInt() / 100;
+    dynamic totalsleeps7_united =
+        hour_totalsleep7.toInt() + minutes_totalsleep7;
 
     return Scaffold(
         appBar: AppBar(
@@ -479,7 +475,7 @@ class SleepDataPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${hour_totalsleep.toInt()}h ${minutes_totalsleep.toInt()}min',
+                          '${hour_totalsleep.toInt()}h ${minutes_totalsleep * 100}min',
                           style:
                               TextStyle(fontSize: 48, color: Colors.deepPurple),
                         ),

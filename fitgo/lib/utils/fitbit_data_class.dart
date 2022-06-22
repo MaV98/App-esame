@@ -197,6 +197,77 @@ class fitbit_data_class {
     lista_data.add(fitbitSleep_7);
 //fetch sleepdata
 
+//fetch activitydata
+    FitbitActivityDataManager fitbitActivityDataManager =
+        FitbitActivityDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+//today
+    FitbitActivityAPIURL fitbitActivityApiUrl_today = FitbitActivityAPIURL.day(
+      date: DateTime.now(),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_today =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_today);
+    lista_data.add(fitbitActivityData_today);
+
+    //yesterday
+    FitbitActivityAPIURL fitbitActivityApiUrl_2 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 1)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_2 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_2);
+    lista_data.add(fitbitActivityData_2);
+
+    //3
+    FitbitActivityAPIURL fitbitActivityApiUrl_3 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 2)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_3 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_3);
+    lista_data.add(fitbitActivityData_3);
+
+    //4
+    FitbitActivityAPIURL fitbitActivityApiUrl_4 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 3)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_4 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_4);
+    lista_data.add(fitbitActivityData_4);
+
+    //5
+    FitbitActivityAPIURL fitbitActivityApiUrl_5 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 4)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_5 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_5);
+    lista_data.add(fitbitActivityData_5);
+
+    //6
+    FitbitActivityAPIURL fitbitActivityApiUrl_6 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 5)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_6 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_6);
+    lista_data.add(fitbitActivityData_6);
+
+    //7
+    FitbitActivityAPIURL fitbitActivityApiUrl_7 = FitbitActivityAPIURL.day(
+      date: DateTime.now().subtract(Duration(days: 6)),
+      userID: Strings.userID,
+    );
+    List<FitbitData> fitbitActivityData_7 =
+        await fitbitActivityDataManager.fetch(fitbitActivityApiUrl_7);
+    lista_data.add(fitbitActivityData_7);
+//fetch activitydata
+
     return lista_data;
   }
 
