@@ -475,7 +475,7 @@ class SleepDataPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${hour_totalsleep.toInt()}h ${minutes_totalsleep * 100}min',
+                          '${hour_totalsleep.toInt()}h ${(minutes_totalsleep * 100).toInt()}min',
                           style:
                               TextStyle(fontSize: 48, color: Colors.deepPurple),
                         ),

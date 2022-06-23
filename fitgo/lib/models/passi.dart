@@ -302,4 +302,5 @@ class Dati extends ChangeNotifier {
   dynamic selectElementActivityName(index) {
     return _activityname[index];
   }
+  //fine metodi activity data
 }

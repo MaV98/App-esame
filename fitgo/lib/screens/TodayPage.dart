@@ -699,7 +699,9 @@ class situation1 extends StatelessWidget {
                         primary: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
-                    onPressed: () {},
+                    onPressed: () {
+                      _toActivityPage(context, activityData);
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -733,10 +735,6 @@ class situation1 extends StatelessWidget {
                                           color: Colors.black, fontSize: 20),
                                       textAlign: TextAlign.center)
                                 ]);
-                                //Text(
-                                //'Last activity performed: ${activityName}',
-                                //style: TextStyle(color: Colors.black),textAlign: TextAlign.center,)
-                                //;
                               })
                             : Text(
                                 'No activity performed today',
@@ -993,6 +991,11 @@ void _toHeartPage(BuildContext context, dati_heart) {
 void _toSleepPage(BuildContext context, dati_sleep) {
   Navigator.pushNamed(context, '/sleep/',
       arguments: {'sleep_data': dati_sleep});
+}
+
+void _toActivityPage(BuildContext context, dati_activity) {
+  Navigator.pushNamed(context, '/activity/',
+      arguments: {'activity_data': dati_activity});
 }
 
 // Future<void> _refresh(context, data1) async{

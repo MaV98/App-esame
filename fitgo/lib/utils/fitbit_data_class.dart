@@ -268,6 +268,213 @@ class fitbit_data_class {
     lista_data.add(fitbitActivityData_7);
 //fetch activitydata
 
+// fetch timeseries data
+
+    //calories
+    FitbitActivityTimeseriesDataManager fitbitCaloriesTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'calories');
+
+    FitbitActivityTimeseriesAPIURL fitbitCaloriesTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'calories',
+    );
+
+    List<FitbitData> fitbitCaloriesTimeseriesData_week =
+        await fitbitCaloriesTimeseriesManager
+            .fetch(fitbitCaloriesTimeseriesApiUrl);
+
+    lista_data.add(fitbitCaloriesTimeseriesData_week);
+
+    //steps
+    FitbitActivityTimeseriesDataManager fitbitStepsTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'steps');
+
+    FitbitActivityTimeseriesAPIURL fitbitStepsTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'steps',
+    );
+
+    List<FitbitData> fitbitStepsTimeseriesData_week =
+        await fitbitStepsTimeseriesManager.fetch(fitbitStepsTimeseriesApiUrl);
+
+    lista_data.add(fitbitStepsTimeseriesData_week);
+
+    //distance
+    FitbitActivityTimeseriesDataManager fitbitDistanceTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'distance');
+
+    FitbitActivityTimeseriesAPIURL fitbitDistanceTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'distance',
+    );
+
+    List<FitbitData> fitbitDistanceTimeseriesData_week =
+        await fitbitDistanceTimeseriesManager
+            .fetch(fitbitDistanceTimeseriesApiUrl);
+
+    lista_data.add(fitbitDistanceTimeseriesData_week);
+
+    //floors
+    FitbitActivityTimeseriesDataManager fitbitFloorsTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'floors');
+
+    FitbitActivityTimeseriesAPIURL fitbitFloorsTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'floors',
+    );
+
+    List<FitbitData> fitbitFloorsTimeseriesData_week =
+        await fitbitFloorsTimeseriesManager.fetch(fitbitFloorsTimeseriesApiUrl);
+
+    lista_data.add(fitbitFloorsTimeseriesData_week);
+
+    //elevation
+    FitbitActivityTimeseriesDataManager fitbitElevationTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'elevation');
+
+    FitbitActivityTimeseriesAPIURL fitbitElevationTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'elevation',
+    );
+
+    List<FitbitData> fitbitElevationTimeseriesData_week =
+        await fitbitElevationTimeseriesManager
+            .fetch(fitbitElevationTimeseriesApiUrl);
+
+    lista_data.add(fitbitElevationTimeseriesData_week);
+
+    //minutesSedentary
+    FitbitActivityTimeseriesDataManager
+        fitbitminutesSedentaryTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'minutesSedentary');
+
+    FitbitActivityTimeseriesAPIURL fitbitminutesSedentaryTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'minutesSedentary',
+    );
+
+    List<FitbitData> fitbitminutesSedentaryTimeseriesData_week =
+        await fitbitminutesSedentaryTimeseriesManager
+            .fetch(fitbitminutesSedentaryTimeseriesApiUrl);
+
+    lista_data.add(fitbitminutesSedentaryTimeseriesData_week);
+
+    //minutesLightliActive
+    FitbitActivityTimeseriesDataManager
+        fitbitminutesLightlyActiveTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'minutesLightlyActive');
+
+    FitbitActivityTimeseriesAPIURL fitbitminutesLightlyActiveTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'minutesLightlyActive',
+    );
+
+    List<FitbitData> fitbitminutesLightlyActiveTimeseriesData_week =
+        await fitbitminutesLightlyActiveTimeseriesManager
+            .fetch(fitbitminutesLightlyActiveTimeseriesApiUrl);
+
+    lista_data.add(fitbitminutesLightlyActiveTimeseriesData_week);
+
+    //minutesFairlyActive
+    FitbitActivityTimeseriesDataManager
+        fitbitminutesFairlyActiveTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'minutesFairlyActive');
+
+    FitbitActivityTimeseriesAPIURL fitbitminutesFairlyActiveTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'minutesFairlyActive',
+    );
+
+    List<FitbitData> fitbitminutesFairlyActiveTimeseriesData_week =
+        await fitbitminutesFairlyActiveTimeseriesManager
+            .fetch(fitbitminutesFairlyActiveTimeseriesApiUrl);
+
+    lista_data.add(fitbitminutesFairlyActiveTimeseriesData_week);
+
+    //minutesVeryActive
+    FitbitActivityTimeseriesDataManager
+        fitbitminutesVeryActiveTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'minutesVeryActive');
+
+    FitbitActivityTimeseriesAPIURL fitbitminutesVeryActiveTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'minutesVeryActive',
+    );
+
+    List<FitbitData> fitbitminutesVeryActiveTimeseriesData_week =
+        await fitbitminutesVeryActiveTimeseriesManager
+            .fetch(fitbitminutesVeryActiveTimeseriesApiUrl);
+
+    lista_data.add(fitbitminutesVeryActiveTimeseriesData_week);
+
+    //activityCalories
+    FitbitActivityTimeseriesDataManager
+        fitbitactivityCaloriesTimeseriesManager =
+        FitbitActivityTimeseriesDataManager(
+            clientID: Strings.fitbitClientID,
+            clientSecret: Strings.fitbitClientSecret,
+            type: 'activityCalories');
+
+    FitbitActivityTimeseriesAPIURL fitbitactivityCaloriesTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: Strings.userID,
+      resource: 'activityCalories',
+    );
+
+    List<FitbitData> fitbitactivityCaloriesTimeseriesData_week =
+        await fitbitactivityCaloriesTimeseriesManager
+            .fetch(fitbitactivityCaloriesTimeseriesApiUrl);
+
+    lista_data.add(fitbitactivityCaloriesTimeseriesData_week);
+
+//fetch timeseries data
+
     return lista_data;
   }
 
