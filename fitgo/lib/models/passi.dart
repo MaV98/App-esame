@@ -16,6 +16,8 @@ class Dati extends ChangeNotifier {
   List<dynamic> _sleepdate6 = [];
   List<dynamic> _sleepdate7 = [];
 
+  List<dynamic> _weekSteps = [];
+
   //List<dynamic> get startEnd; // => null;
 
   // void update(double newpassi){
@@ -284,4 +286,15 @@ class Dati extends ChangeNotifier {
   }
   //fine metodi sleep data
 
+// week steps
+  set weekSteps(List<dynamic> newWeekSteps){
+    _weekSteps = newWeekSteps;
+    notifyListeners();
+  }
+
+  dynamic printDailySteps(){
+    return _weekSteps.length;
+  }
 }
+
+

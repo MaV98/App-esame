@@ -86,7 +86,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `profile` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `DatiDB` (`profileName` TEXT, `passi_today` REAL NOT NULL, `profile_id` INTEGER NOT NULL, PRIMARY KEY (`profileName`))');
+            'CREATE TABLE IF NOT EXISTS `DatiDB` (`profileName` TEXT, `passi_today` REAL NOT NULL, `profile_id` INTEGER NOT NULL, `passi_week` BLOB NOT NULL, PRIMARY KEY (`profileName`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -179,7 +179,8 @@ class _$DataDao extends DataDao {
             (DatiDB item) => <String, Object?>{
                   'profileName': item.profileName,
                   'passi_today': item.passi_today,
-                  'profile_id': item.profile_id
+                  'profile_id': item.profile_id,
+                  'passi_week': item.passi_week
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -193,8 +194,11 @@ class _$DataDao extends DataDao {
   @override
   Future<DatiDB?> findAllUserId(String username) async {
     return _queryAdapter.query('SELECT * FROM DatiDB WHERE profileName = ?1',
-        mapper: (Map<String, Object?> row) => DatiDB(row['profile_id'] as int,
-            row['passi_today'] as double, row['profileName'] as String?),
+        mapper: (Map<String, Object?> row) => DatiDB(
+            row['profile_id'] as int,
+            row['passi_today'] as double,
+            row['passi_week'] as Uint8List,
+            row['profileName'] as String?),
         arguments: [username]);
   }
 

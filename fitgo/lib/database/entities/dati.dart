@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:fitgo/models/passi.dart';
 import 'package:floor/floor.dart';
 import 'package:fitgo/database/entities/profile.dart';
 
@@ -18,10 +21,11 @@ class DatiDB {
   //For the sake of simplicity, a Todo has only a name.
   final double passi_today;
   final int profile_id;
+  final Uint8List passi_week;
   // @ColumnInfo(name: 'profile_name')
   // final String profileName;
   //Default constructor
-  DatiDB(this.profile_id, this.passi_today, this.profileName);
+  DatiDB(this.profile_id, this.passi_today, this.passi_week, this.profileName);
 
   dynamic retPassiToday(){
     return passi_today;

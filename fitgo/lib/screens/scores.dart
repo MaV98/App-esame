@@ -1,5 +1,6 @@
 import 'package:fitbitter/fitbitter.dart';
 import 'package:fitgo/database/entities/dati.dart';
+import 'package:fitgo/models/passi.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:fitgo/screens/homepage.dart';
@@ -14,6 +15,8 @@ class ScoresPage extends StatelessWidget {
   String? calorie;
   String? usern;
   ScoresPage({this.calorie, this.usern});
+
+  
 
   static const route = '/scores';
   static const routename = 'ScoresPage';
@@ -31,6 +34,8 @@ class ScoresPage extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Usern SCORES: ' + usern!);
     print('${ScoresPage.routename} built');
+
+    final passi_week = Provider.of<Dati>(context);
     // setState(() {
     //   this.passi_totali;
     // });
@@ -63,7 +68,13 @@ class ScoresPage extends StatelessWidget {
                     Row(
                       children: [Text('Passi DB: ' + passi_db.toString())],
                     ),
-                  ]));
+                    
+                    Row(children: [
+                      Text(passi_week.printDailySteps().toString())
+                    ],)
+                      ]
+                    ));
+  
             } else {
               return Center(child: CircularProgressIndicator());
             }

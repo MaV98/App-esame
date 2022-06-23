@@ -245,7 +245,24 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             provider.heartData = dati_heart;
             provider.sleepData = dati_sleep;
 
-            _addDataDB(context, dati[0], usern);
+            // provider.weekSteps = dati[12]; //7
+            // provider.weekSteps = dati[13]; //6
+            // provider.weekSteps = dati[14]; //5
+            // provider.weekSteps = dati[15]; //4
+            // provider.weekSteps = dati[16]; //3
+            // provider.weekSteps = dati[17]; //2
+
+            List<dynamic> passi_settimana = [];
+            passi_settimana.add(dati[12]);
+            passi_settimana.add(dati[13]);
+            passi_settimana.add(dati[14]);
+            passi_settimana.add(dati[15]);
+            passi_settimana.add(dati[16]);
+            passi_settimana.add(dati[17]);
+
+            provider.weekSteps = passi_settimana;
+
+            _addDataDB(context, dati[0], passi_settimana, usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
             // .insertData(DatiDB(1,dati[0],usern));
             return situation1(dati: dati);
@@ -928,7 +945,7 @@ void _toSleepPage(BuildContext context, dati_sleep) {
 // Future<void> _refresh(context, data1) async{
 //   data1.refresh(context);
 // }
-Future<void> _addDataDB(context, dati, usern) async {
+Future<void> _addDataDB(context, dati, passi_sett, usern) async {
   await Provider.of<DatabaseRepository>(context, listen: false)
-      .insertData(DatiDB(1, dati, usern));
+      .insertData(DatiDB(1, dati, passi_sett, usern));
 }
