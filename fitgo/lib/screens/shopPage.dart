@@ -11,7 +11,7 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          //automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF2196F3),
           title: Text(ShopPage.routename),
           actions: [
@@ -31,7 +31,7 @@ class ShopPage extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                     color: Color.fromARGB(255, 199, 205, 210), width: 1),
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   new BoxShadow(
                     color: Colors.white,
@@ -39,7 +39,7 @@ class ShopPage extends StatelessWidget {
                 ],
               ),
               child: Text(
-                  "In total you have covered 100 km this week. So you have 10 tokens that you can use to buy what you want! Explore our store!",
+                  "In total you have reached the 15000 steps goal x times this week. So you have 5x euro discount that you can use to buy what you want! Explore our store!",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),
             Padding(

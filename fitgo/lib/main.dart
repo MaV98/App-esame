@@ -4,6 +4,7 @@ import 'package:fitgo/models/index.dart';
 import 'package:fitgo/models/passi.dart';
 import 'package:fitgo/models/profileCheck.dart';
 import 'package:fitgo/repository%20copy/databaseRepository.dart';
+import 'package:fitgo/screens/activityDataPage.dart';
 import 'package:fitgo/screens/cartPage.dart';
 import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/heartDataPage.dart';
@@ -14,6 +15,7 @@ import 'package:fitgo/screens/heartdatapages/heartPage5.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage6.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage7.dart';
 import 'package:fitgo/screens/homepage.dart';
+import 'package:fitgo/screens/profilePage.dart';
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
 import 'package:fitgo/screens/sleepDataPage.dart';
@@ -33,12 +35,9 @@ import 'package:fitgo/screens/shopPage.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
-//import 'package:app_demo/screens/settingsPage.dart';
 import 'package:fitgo/screens/storePage.dart';
 import 'package:fitgo/screens/weatherPage.dart';
-import 'package:fitgo/screens/walking1.dart';
-//import 'package:app_demo/screens/trainingPage.dart';
-//import 'package:app_demo/screens/walkingPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //import 'dart:html';
@@ -49,11 +48,7 @@ import 'package:fitgo/cryptoAPI/screens/favoriteCryptopage.dart';
 //storeAPI
 import 'package:fitgo/storeAPI/screens/favoriteStorepage.dart';
 
-//weatherAPI
 //import 'dart:html';
-import 'package:fitgo/weatherAPI/data_service.dart';
-import 'package:fitgo/weatherAPI/models.dart';
-import 'package:provider/single_child_widget.dart';
 
 import 'models/navBar.dart';
 
@@ -105,16 +100,11 @@ class MyApp extends StatelessWidget {
         routes: {
           LoginPage.route: (context) => LoginPage(),
           SigninPage.route: (context) => SigninPage(),
-          ProfilePage.route: (context) => ProfilePage(),
           HomePage.route: (context) => HomePage(),
           TodayPage.route: (context) => TodayPage(),
           ScoresPage.route: (context) => ScoresPage(),
-          //SettingsPage.route: (context) => SettingsPage(),
-          //TrainingPage.route: (context) => TrainingPage(),
           FriendsPage.route: (context) => FriendsPage(),
           ShopPage.route: (context) => ShopPage(),
-          //WalkingPage.route: (context) => WalkingPage(),
-          WalkingPage1.route: (context) => WalkingPage1(),
           CryptoPage.route: (context) => CryptoPage(),
           StorePage.route: (context) => StorePage(),
           FavoriteCryptoPage.route: (context) => FavoriteCryptoPage(),
@@ -137,6 +127,7 @@ class MyApp extends StatelessWidget {
           SleepDataPage5.route: (context) => SleepDataPage5(),
           SleepDataPage6.route: (context) => SleepDataPage6(),
           SleepDataPage7.route: (context) => SleepDataPage7(),
+          ActivityDataPage.route: (context) => ActivityDataPage(),
         },
       ),
     );

@@ -19,6 +19,12 @@ class FavoriteStorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(FavoriteStorePage.routename),
+        actions: [
+          //This action is used to navigate to the Favorite Page.
+          IconButton(
+              onPressed: () => _toCartPage(context),
+              icon: Icon(Icons.shopping_cart))
+        ],
       ),
       body: Center(
         child: Consumer<Favorites>(builder: (context, favorites, child) {
@@ -195,4 +201,8 @@ class FavoriteStorePage extends StatelessWidget {
       ),
     );
   } //build
+}
+
+void _toCartPage(BuildContext context) {
+  Navigator.pushNamed(context, '/cart/');
 }

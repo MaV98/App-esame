@@ -310,43 +310,11 @@ class HeartDataPage extends StatelessWidget {
             child: Chart(
               data: [
                 {
-                  'month-day': heartdata7[3]
-                      .substring(5, heartdata7[3].toString().length)
+                  'month-day': todayheartdata[3]
+                      .substring(5, todayheartdata[3].toString().length)
                       .toString(),
-                  'bpm': double.parse(heartdata7[30]
-                      .substring(0, heartdata7[30].toString().length - 1)
-                      .toString())
-                },
-                {
-                  'month-day': heartdata6[3]
-                      .substring(5, heartdata6[3].toString().length)
-                      .toString(),
-                  'bpm': double.parse(heartdata6[30]
-                      .substring(0, heartdata6[30].toString().length - 1)
-                      .toString())
-                },
-                {
-                  'month-day': heartdata5[3]
-                      .substring(5, heartdata5[3].toString().length)
-                      .toString(),
-                  'bpm': double.parse(heartdata5[30]
-                      .substring(0, heartdata5[30].toString().length - 1)
-                      .toString())
-                },
-                {
-                  'month-day': heartdata4[3]
-                      .substring(5, heartdata4[3].toString().length)
-                      .toString(),
-                  'bpm': double.parse(heartdata4[30]
-                      .substring(0, heartdata4[30].toString().length - 1)
-                      .toString())
-                },
-                {
-                  'month-day': heartdata3[3]
-                      .substring(5, heartdata3[3].toString().length)
-                      .toString(),
-                  'bpm': double.parse(heartdata3[30]
-                      .substring(0, heartdata3[30].toString().length - 1)
+                  'bpm': double.parse(todayheartdata[30]
+                      .substring(0, todayheartdata[30].toString().length - 1)
                       .toString())
                 },
                 {
@@ -358,11 +326,43 @@ class HeartDataPage extends StatelessWidget {
                       .toString())
                 },
                 {
-                  'month-day': todayheartdata[3]
-                      .substring(5, todayheartdata[3].toString().length)
+                  'month-day': heartdata3[3]
+                      .substring(5, heartdata3[3].toString().length)
                       .toString(),
-                  'bpm': double.parse(todayheartdata[30]
-                      .substring(0, todayheartdata[30].toString().length - 1)
+                  'bpm': double.parse(heartdata3[30]
+                      .substring(0, heartdata3[30].toString().length - 1)
+                      .toString())
+                },
+                {
+                  'month-day': heartdata4[3]
+                      .substring(5, heartdata4[3].toString().length)
+                      .toString(),
+                  'bpm': double.parse(heartdata4[30]
+                      .substring(0, heartdata4[30].toString().length - 1)
+                      .toString())
+                },
+                {
+                  'month-day': heartdata5[3]
+                      .substring(5, heartdata5[3].toString().length)
+                      .toString(),
+                  'bpm': double.parse(heartdata5[30]
+                      .substring(0, heartdata5[30].toString().length - 1)
+                      .toString())
+                },
+                {
+                  'month-day': heartdata6[3]
+                      .substring(5, heartdata6[3].toString().length)
+                      .toString(),
+                  'bpm': double.parse(heartdata6[30]
+                      .substring(0, heartdata6[30].toString().length - 1)
+                      .toString())
+                },
+                {
+                  'month-day': heartdata7[3]
+                      .substring(5, heartdata7[3].toString().length)
+                      .toString(),
+                  'bpm': double.parse(heartdata7[30]
+                      .substring(0, heartdata7[30].toString().length - 1)
                       .toString())
                 },
               ],

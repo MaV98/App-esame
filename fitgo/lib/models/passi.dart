@@ -19,6 +19,8 @@ class Dati extends ChangeNotifier {
   List<dynamic> _weekSteps = [];
 
   //List<dynamic> get startEnd; // => null;
+  List<dynamic> _activitydata = [];
+  dynamic _activityname = [];
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -295,6 +297,25 @@ class Dati extends ChangeNotifier {
   dynamic printDailySteps(){
     return _weekSteps.length;
   }
+  // metodi activity data
+  set activityData(List<dynamic> newactivitydata) {
+    _activitydata = newactivitydata;
+    notifyListeners();
+  }
+
+  dynamic selectElementActivity(index) {
+    return _activitydata[index];
+  }
+
+  set activityName(dynamic name) {
+    _activityname = name;
+    notifyListeners();
+  }
+
+  dynamic selectElementActivityName(index) {
+    return _activityname[index];
+  }
+  //fine metodi activity data
 }
 
 

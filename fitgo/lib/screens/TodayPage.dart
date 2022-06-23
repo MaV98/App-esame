@@ -71,6 +71,16 @@ class TodayPage extends StatelessWidget {
       final creat = indpag.setCreation();
       return //selectSituation(context, index, creat, data1, usern);
           Scaffold(
+              floatingActionButton:
+                  Consumer<Dati>(builder: (context, passi, _) {
+                return FloatingActionButton(
+                  onPressed: () => displayCard(context, passi),
+                  child: Image.network(
+                      //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+                      //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+                      'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+                );
+              }),
               appBar: AppBar(
                 title: Text('Home Page'),
                 actions: [
@@ -225,7 +235,6 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             final dati_account = dati[3].toString().split(' ');
             final dati_heart = dati[4].toString().split(' ');
             final dati_sleep_today = dati[5];
-
             final dati_sleep_2 = dati[6];
             final dati_sleep_3 = dati[7];
             final dati_sleep_4 = dati[8];
@@ -240,10 +249,26 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             dati_sleep.add(dati_sleep_5);
             dati_sleep.add(dati_sleep_6);
             dati_sleep.add(dati_sleep_7);
+            final dati_activity_today = dati[12];
+            final dati_activity_2 = dati[13];
+            final dati_activity_3 = dati[14];
+            final dati_activity_4 = dati[15];
+            final dati_activity_5 = dati[16];
+            final dati_activity_6 = dati[17];
+            final dati_activity_7 = dati[18];
+            final dati_activity = [];
+            dati_activity.add(dati_activity_today);
+            dati_activity.add(dati_activity_2);
+            dati_activity.add(dati_activity_3);
+            dati_activity.add(dati_activity_4);
+            dati_activity.add(dati_activity_5);
+            dati_activity.add(dati_activity_6);
+            dati_activity.add(dati_activity_7);
             provider.deviceData = dati_device;
             provider.accountData = dati_account;
             provider.heartData = dati_heart;
             provider.sleepData = dati_sleep;
+            provider.activityData = dati_activity;
 
             // provider.weekSteps = dati[12]; //7
             // provider.weekSteps = dati[13]; //6
@@ -387,10 +412,26 @@ class situation1 extends StatelessWidget {
           dati_sleep.add(dati_sleep_5);
           dati_sleep.add(dati_sleep_6);
           dati_sleep.add(dati_sleep_7);
+          final dati_activity_today = dati[12];
+          final dati_activity_2 = dati[13];
+          final dati_activity_3 = dati[14];
+          final dati_activity_4 = dati[15];
+          final dati_activity_5 = dati[16];
+          final dati_activity_6 = dati[17];
+          final dati_activity_7 = dati[18];
+          final dati_activity = [];
+          dati_activity.add(dati_activity_today);
+          dati_activity.add(dati_activity_2);
+          dati_activity.add(dati_activity_3);
+          dati_activity.add(dati_activity_4);
+          dati_activity.add(dati_activity_5);
+          dati_activity.add(dati_activity_6);
+          dati_activity.add(dati_activity_7);
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
           provider.heartData = dati_heart;
           provider.sleepData = dati_sleep;
+          provider.activityData = dati_activity;
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -656,44 +697,71 @@ class situation1 extends StatelessWidget {
             ),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 12,
-                      fixedSize: const Size(155, 230),
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "Activity",
-                        style: TextStyle(color: Colors.orange, fontSize: 18),
-                      ),
-                      Lottie.asset('assets/787-progression.json',
-                          width: 130, height: 110),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Consumer<Dati>(builder: (context, passi, _) {
-                        return Text(
-                          passi.printCalorie(),
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                        );
-                      }),
-                      Icon(
-                        Icons.local_fire_department_rounded,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ],
-                  ),
-                ),
+                Consumer<Dati>(builder: (context, activityData, _) {
+                  dynamic today_activity_data =
+                      activityData.selectElementActivity(0);
+                  if (today_activity_data.isEmpty) {
+                  } else {
+                    dynamic activity_name = today_activity_data[0]
+                        .toString()
+                        .split(',')[10]
+                        .substring(6);
+                    provider.activityName = [activity_name];
+                  }
+                  //dynamic name = activity_name;
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 12,
+                        fixedSize: const Size(155, 230),
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {
+                      _toActivityPage(context, activityData);
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Activity",
+                          style: TextStyle(color: Colors.orange, fontSize: 18),
+                        ),
+                        Lottie.asset('assets/787-progression.json',
+                            width: 130, height: 110),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        today_activity_data.isNotEmpty
+                            ? Consumer<Dati>(
+                                builder: (context, activityName, _) {
+                                return Column(children: [
+                                  Text('Last activity performed',
+                                      style: TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.center),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                      activityName
+                                          .selectElementActivityName(0)
+                                          .toString(),
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20),
+                                      textAlign: TextAlign.center)
+                                ]);
+                              })
+                            : Text(
+                                'No activity performed today',
+                                style: TextStyle(color: Colors.black),
+                                textAlign: TextAlign.center,
+                              )
+                      ],
+                    ),
+                  );
+                }),
                 SizedBox(
                   height: 75,
                   width: 10,
@@ -942,10 +1010,48 @@ void _toSleepPage(BuildContext context, dati_sleep) {
       arguments: {'sleep_data': dati_sleep});
 }
 
+void _toActivityPage(BuildContext context, dati_activity) {
+  Navigator.pushNamed(context, '/activity/',
+      arguments: {'activity_data': dati_activity});
+}
+
 // Future<void> _refresh(context, data1) async{
 //   data1.refresh(context);
 // }
 Future<void> _addDataDB(context, dati, passi_sett, usern) async {
   await Provider.of<DatabaseRepository>(context, listen: false)
       .insertData(DatiDB(1, dati, passi_sett, usern));
+}
+
+void displayCard(BuildContext context, passi) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text("What does Yoda have to say?"),
+            content: (double.parse(passi.printPassi()) >= 1) &
+                    (double.parse(passi.printPassi()) < 3000)
+                ? Text("testo 1")
+                : (double.parse(passi.printPassi()) >= 3000) &
+                        (double.parse(passi.printPassi()) < 6000)
+                    ? Text('testo 2')
+                    : (double.parse(passi.printPassi()) >= 6000) &
+                            (double.parse(passi.printPassi()) < 9000)
+                        ? Text('Testo 3')
+                        : (double.parse(passi.printPassi()) >= 9000) &
+                                (double.parse(passi.printPassi()) < 12000)
+                            ? Text('Testo 4')
+                            : (double.parse(passi.printPassi()) >= 12000) &
+                                    (double.parse(passi.printPassi()) < 15000)
+                                ? Text('Testo 5')
+                                : Text('Testo 6'),
+            actions: <Widget>[
+              ElevatedButton(
+                  child: Text("Got it"),
+                  onPressed: () {
+                    //remove the dialog popup
+                    Navigator.of(context).pop();
+                  })
+            ]);
+      });
 }
