@@ -15,7 +15,7 @@ import 'package:fitgo/screens/heartdatapages/heartPage5.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage6.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage7.dart';
 import 'package:fitgo/screens/homepage.dart';
-import 'package:fitgo/screens/profilePage.dart';
+import 'package:fitgo/screens/profilePage.dart'; // as prefix;
 import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/signin.dart';
 import 'package:fitgo/screens/sleepDataPage.dart';
@@ -28,7 +28,7 @@ import 'package:fitgo/screens/sleepdatapages/sleepPage7.dart';
 import 'package:fitgo/screens/successPage.dart';
 //import 'package:fitgo/screens/loginPage.dart';
 import 'package:fitgo/screens/loginPage_2.dart';
-import 'package:fitgo/screens/ProfilePage.dart';
+//import 'package:fitgo/screens/ProfilePage.dart';
 import 'package:fitgo/screens/cryptoPage.dart';
 import 'package:fitgo/screens/friendsPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
@@ -36,6 +36,7 @@ import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
 import 'package:fitgo/screens/storePage.dart';
+import 'package:fitgo/screens/timeseriesPage.dart';
 import 'package:fitgo/screens/weatherPage.dart';
 
 import 'package:flutter/material.dart';
@@ -113,6 +114,7 @@ class MyApp extends StatelessWidget {
           SuccessPage.route: (context) => SuccessPage(),
           WeatherPage.route: (context) => WeatherPage(),
           DevicePage.route: (context) => DevicePage(),
+          ProfilePage.route: (context) => ProfilePage(),
           HeartDataPage.route: (context) => HeartDataPage(),
           HeartDataPage2.route: (context) => HeartDataPage2(),
           HeartDataPage3.route: (context) => HeartDataPage3(),
@@ -128,6 +130,7 @@ class MyApp extends StatelessWidget {
           SleepDataPage6.route: (context) => SleepDataPage6(),
           SleepDataPage7.route: (context) => SleepDataPage7(),
           ActivityDataPage.route: (context) => ActivityDataPage(),
+          TimeseriesPage.route: (context) => TimeseriesPage(),
         },
       ),
     );

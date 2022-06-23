@@ -264,11 +264,34 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             dati_activity.add(dati_activity_5);
             dati_activity.add(dati_activity_6);
             dati_activity.add(dati_activity_7);
+            final dati_timeseries_calories = dati[19];
+            final dati_timeseries_steps = dati[20];
+            final dati_timeseries_distance = dati[21];
+            final dati_timeseries_floors = dati[22];
+            final dati_timeseries_elevation = dati[23];
+            final dati_timeseries_minutesSedentary = dati[24];
+            final dati_timeseries_minutesLightliActive = dati[25];
+            final dati_timeseries_minutesFairlyActive = dati[26];
+            final dati_timeseries_minutesVeryActive = dati[27];
+            final dati_timeseries_activityCalories = dati[28];
+            final dati_timeseries = [];
+            dati_timeseries.add(dati_timeseries_calories);
+            dati_timeseries.add(dati_timeseries_steps);
+            dati_timeseries.add(dati_timeseries_distance);
+            dati_timeseries.add(dati_timeseries_floors);
+            dati_timeseries.add(dati_timeseries_elevation);
+            dati_timeseries.add(dati_timeseries_minutesSedentary);
+            dati_timeseries.add(dati_timeseries_minutesLightliActive);
+            dati_timeseries.add(dati_timeseries_minutesFairlyActive);
+            dati_timeseries.add(dati_timeseries_minutesVeryActive);
+            dati_timeseries.add(dati_timeseries_activityCalories);
+
             provider.deviceData = dati_device;
             provider.accountData = dati_account;
             provider.heartData = dati_heart;
             provider.sleepData = dati_sleep;
             provider.activityData = dati_activity;
+            provider.timeseriesData = dati_timeseries;
 
             _addDataDB(context, dati[0], usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
@@ -410,11 +433,35 @@ class situation1 extends StatelessWidget {
           dati_activity.add(dati_activity_5);
           dati_activity.add(dati_activity_6);
           dati_activity.add(dati_activity_7);
+          final dati_timeseries_calories = dati[19];
+          final dati_timeseries_steps = dati[20];
+          final dati_timeseries_distance = dati[21];
+          final dati_timeseries_floors = dati[22];
+          final dati_timeseries_elevation = dati[23];
+          final dati_timeseries_minutesSedentary = dati[24];
+          final dati_timeseries_minutesLightliActive = dati[25];
+          final dati_timeseries_minutesFairlyActive = dati[26];
+          final dati_timeseries_minutesVeryActive = dati[27];
+          final dati_timeseries_activityCalories = dati[28];
+          final dati_timeseries = [];
+          dati_timeseries.add(dati_timeseries_calories);
+          dati_timeseries.add(dati_timeseries_steps);
+          dati_timeseries.add(dati_timeseries_distance);
+          dati_timeseries.add(dati_timeseries_floors);
+          dati_timeseries.add(dati_timeseries_elevation);
+          dati_timeseries.add(dati_timeseries_minutesSedentary);
+          dati_timeseries.add(dati_timeseries_minutesLightliActive);
+          dati_timeseries.add(dati_timeseries_minutesFairlyActive);
+          dati_timeseries.add(dati_timeseries_minutesVeryActive);
+          dati_timeseries.add(dati_timeseries_activityCalories);
+          print(dati_timeseries_steps);
+
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
           provider.heartData = dati_heart;
           provider.sleepData = dati_sleep;
           provider.activityData = dati_activity;
+          provider.timeseriesData = dati_timeseries;
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -582,94 +629,99 @@ class situation1 extends StatelessWidget {
                 20,
                 10,
               ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    elevation: 12,
-                    fixedSize: const Size(320, 150),
-                    primary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
-                child: Consumer<Dati>(builder: (context, passi, _) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      (15000 -
-                                  double.parse(
-                                    passi.printPassi(),
-                                  ) <
-                              0)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                  Text(
-                                    'Activity timeseries',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(131, 3, 78, 4),
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text('Goal reached!',
-                                      style: TextStyle(
-                                          color: Color.fromARGB(131, 3, 78, 4),
-                                          fontSize: 18))
-                                ])
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                  Text(
-                                    'Activity timeseries',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(131, 3, 78, 4),
-                                        fontSize: 18),
-                                  ),
-                                ]),
-                      PieChart(
-                        initialAngleInDegree: 270,
-                        totalValue: 15000,
-                        dataMap: <String, double>{
-                          "Today steps": double.parse(
-                            passi.printPassi(),
-                          ),
-                          "15000 steps goal": 15000 -
-                              double.parse(
-                                passi.printPassi(),
-                              ),
-                        }, //dataMap,
-                        colorList: (15000 -
+              child: Consumer<Dati>(builder: (context, timeseriesData, _) {
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 12,
+                      fixedSize: const Size(320, 150),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {
+                    _toTimeSeriesPage(context, timeseriesData);
+                  },
+                  child: Consumer<Dati>(builder: (context, passi, _) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        (15000 -
                                     double.parse(
                                       passi.printPassi(),
                                     ) <
                                 0)
-                            ? <Color>[
-                                Color.fromARGB(131, 3, 78, 4),
-                                Colors.transparent
-                              ]
-                            : <Color>[
-                                Color.fromARGB(131, 3, 78, 4),
-                                Color.fromARGB(255, 177, 251, 182),
-                              ], //colorList,
-                        centerText: passi.printPassi(),
-                        centerTextStyle: TextStyle(
-                            backgroundColor: Colors.white,
-                            color: Colors.black,
-                            decorationColor: Colors.white),
-                        chartType: ChartType.ring,
-                        animationDuration: Duration(milliseconds: 1000),
-                        chartLegendSpacing: 32,
-                        chartRadius: MediaQuery.of(context).size.width / 3.2,
-                        legendOptions: LegendOptions(
-                            legendTextStyle: TextStyle(color: Colors.black)),
-                        chartValuesOptions: ChartValuesOptions(
-                            showChartValues: false,
-                            showChartValuesOutside: false),
-                      ),
-                    ],
-                  );
-                }),
-              )),
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                    Text(
+                                      'Activity timeseries',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(131, 3, 78, 4),
+                                          fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text('Goal reached!',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(131, 3, 78, 4),
+                                            fontSize: 18))
+                                  ])
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                    Text(
+                                      'Activity timeseries',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(131, 3, 78, 4),
+                                          fontSize: 18),
+                                    ),
+                                  ]),
+                        PieChart(
+                          initialAngleInDegree: 270,
+                          totalValue: 15000,
+                          dataMap: <String, double>{
+                            "Today steps": double.parse(
+                              passi.printPassi(),
+                            ),
+                            "15000 steps goal": 15000 -
+                                double.parse(
+                                  passi.printPassi(),
+                                ),
+                          }, //dataMap,
+                          colorList: (15000 -
+                                      double.parse(
+                                        passi.printPassi(),
+                                      ) <
+                                  0)
+                              ? <Color>[
+                                  Color.fromARGB(131, 3, 78, 4),
+                                  Colors.transparent
+                                ]
+                              : <Color>[
+                                  Color.fromARGB(131, 3, 78, 4),
+                                  Color.fromARGB(255, 177, 251, 182),
+                                ], //colorList,
+                          centerText: passi.printPassi(),
+                          centerTextStyle: TextStyle(
+                              backgroundColor: Colors.white,
+                              color: Colors.black,
+                              decorationColor: Colors.white),
+                          chartType: ChartType.ring,
+                          animationDuration: Duration(milliseconds: 1000),
+                          chartLegendSpacing: 32,
+                          chartRadius: MediaQuery.of(context).size.width / 3.2,
+                          legendOptions: LegendOptions(
+                              legendTextStyle: TextStyle(color: Colors.black)),
+                          chartValuesOptions: ChartValuesOptions(
+                              showChartValues: false,
+                              showChartValuesOutside: false),
+                        ),
+                      ],
+                    );
+                  }),
+                );
+              })),
 
           Padding(
             padding: EdgeInsets.fromLTRB(
@@ -998,6 +1050,11 @@ void _toActivityPage(BuildContext context, dati_activity) {
       arguments: {'activity_data': dati_activity});
 }
 
+void _toTimeSeriesPage(BuildContext context, dati_timeseries) {
+  Navigator.pushNamed(context, '/timeseries/',
+      arguments: {'timeseries_data': dati_timeseries});
+}
+
 // Future<void> _refresh(context, data1) async{
 //   data1.refresh(context);
 // }
@@ -1012,7 +1069,7 @@ void displayCard(BuildContext context, passi) {
       builder: (context) {
         return AlertDialog(
             title: Text("What does Yoda have to say?"),
-            content: (double.parse(passi.printPassi()) >= 1) &
+            content: (double.parse(passi.printPassi()) >= 0) &
                     (double.parse(passi.printPassi()) < 3000)
                 ? Text("testo 1")
                 : (double.parse(passi.printPassi()) >= 3000) &

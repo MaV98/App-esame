@@ -16,7 +16,8 @@ class Dati extends ChangeNotifier {
   List<dynamic> _sleepdate6 = [];
   List<dynamic> _sleepdate7 = [];
   List<dynamic> _activitydata = [];
-  dynamic _activityname = [];
+  List<dynamic> _activityname = [];
+  List<dynamic> _timeseriesdata = [];
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -303,4 +304,15 @@ class Dati extends ChangeNotifier {
     return _activityname[index];
   }
   //fine metodi activity data
+
+  // metodi timeseries data
+  set timeseriesData(List<dynamic> newtimeseriesdata) {
+    _timeseriesdata = newtimeseriesdata;
+    notifyListeners();
+  }
+
+  dynamic selectElementTimeseries(index) {
+    return _timeseriesdata[index];
+  }
+  //fine metodi timeseries data
 }

@@ -269,7 +269,6 @@ class fitbit_data_class {
 //fetch activitydata
 
 // fetch timeseries data
-
     //calories
     FitbitActivityTimeseriesDataManager fitbitCaloriesTimeseriesManager =
         FitbitActivityTimeseriesDataManager(
@@ -472,7 +471,6 @@ class fitbit_data_class {
             .fetch(fitbitactivityCaloriesTimeseriesApiUrl);
 
     lista_data.add(fitbitactivityCaloriesTimeseriesData_week);
-
 //fetch timeseries data
 
     return lista_data;
