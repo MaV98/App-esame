@@ -37,6 +37,12 @@ import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/repository/favorites.dart';
 import 'package:fitgo/screens/storePage.dart';
 import 'package:fitgo/screens/timeseriesPage.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage2.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage3.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage4.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage5.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage6.dart';
+import 'package:fitgo/screens/timeseriespage/timeseriesPage7.dart';
 import 'package:fitgo/screens/weatherPage.dart';
 
 import 'package:flutter/material.dart';
@@ -131,6 +137,12 @@ class MyApp extends StatelessWidget {
           SleepDataPage7.route: (context) => SleepDataPage7(),
           ActivityDataPage.route: (context) => ActivityDataPage(),
           TimeseriesPage.route: (context) => TimeseriesPage(),
+          TimeseriesPage2.route: (context) => TimeseriesPage2(),
+          TimeseriesPage3.route: (context) => TimeseriesPage3(),
+          TimeseriesPage4.route: (context) => TimeseriesPage4(),
+          TimeseriesPage5.route: (context) => TimeseriesPage5(),
+          TimeseriesPage6.route: (context) => TimeseriesPage6(),
+          TimeseriesPage7.route: (context) => TimeseriesPage7(),
         },
       ),
     );
