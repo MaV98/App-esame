@@ -58,7 +58,7 @@ class _StorePageState extends State<StorePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(StorePage.routename),
+        title: Text('Clothing'),
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(

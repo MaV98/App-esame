@@ -30,7 +30,7 @@ class _CartPageState extends State<CartPage> {
     print('${CartPage.routename} built');
     return Scaffold(
         appBar: AppBar(
-          title: Text(CartPage.routename),
+          title: Text('Your cart'),
         ),
         body: Center(
             child: Consumer<Favorites>(builder: (context, favorites, child) {

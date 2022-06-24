@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(LoginPage.routename),
+        title: Text('Login'),
       ),
       body: Center(
         child: ListView(children: [
@@ -151,7 +151,7 @@ class LoginPage extends StatelessWidget {
                             builder: (BuildContext context) {
                               return Container(
                                 height: 200,
-                                color: Colors.orange,
+                                color: Color.fromARGB(255, 111, 210, 255),
                                 child: Center(
                                     child: Column(
                                         mainAxisAlignment:
@@ -224,7 +224,7 @@ class LoginPage extends StatelessWidget {
               }),
               Row(
                 children: <Widget>[
-                  const Text('Does not have account?'),
+                  const Text('Don’t you have an account?'),
                   TextButton(
                     child: const Text(
                       'Sign in',

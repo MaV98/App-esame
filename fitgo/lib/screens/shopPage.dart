@@ -11,9 +11,9 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF2196F3),
-          title: Text(ShopPage.routename),
+          title: Text('Shop'),
           actions: [
             //This action is used to navigate to the Cart Page
             IconButton(

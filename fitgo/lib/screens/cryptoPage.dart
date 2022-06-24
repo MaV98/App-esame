@@ -53,7 +53,7 @@ class _CryptoPageState extends State<CryptoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(CryptoPage.routename),
+        title: Text('Crypto'),
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(

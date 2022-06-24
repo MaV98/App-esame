@@ -50,15 +50,8 @@ class ScoresPage extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                    Row(
-                      children: [
-                        Text(calorie!),
-                        
-                      ],
-                    ),
-                    Row(
-                      children: [Text('Passi DB: ' + passi_db.toString())],
-                    ),
+                    Text(calorie!),
+                    Text('Passi DB: ' + passi_db.toString()),
                   ]));
             } else {
               return Center(child: CircularProgressIndicator());

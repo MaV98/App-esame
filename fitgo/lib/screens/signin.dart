@@ -51,7 +51,7 @@ class _SigninPageState extends State<SigninPage> {
     return Scaffold(
       appBar: AppBar(
         //automaticallyImplyLeading: false,
-        title: Text(SigninPage.routename),
+        title: Text('Signin'),
       ),
       body: Center(
         child: ListView(
@@ -111,11 +111,13 @@ class _SigninPageState extends State<SigninPage> {
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ElevatedButton(
-                    child: Text('Create account'),
+                    child: Text('Create your account'),
                     onPressed: () async {
                       //final profilo = Profile(_name, _username, _password);
-                      await Provider.of<DatabaseRepository>(context, listen: false)
-                      .insertProfile(Profile(null,_name,_username,_password));
+                      await Provider.of<DatabaseRepository>(context,
+                              listen: false)
+                          .insertProfile(
+                              Profile(null, _name, _username, _password));
                       Navigator.pushReplacementNamed(context, LoginPage.route);
                     },
                   ),
