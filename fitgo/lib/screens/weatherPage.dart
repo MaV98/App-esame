@@ -27,8 +27,9 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     print('${WeatherPage.routename} built');
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 146, 202, 247),
+      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Weather'),
       ),
       body: SingleChildScrollView(
@@ -97,7 +98,14 @@ class _WeatherPageState extends State<WeatherPage> {
                     controller: _cityTextController,
                     decoration: InputDecoration(labelText: 'City'),
                     textAlign: TextAlign.center),
-                ElevatedButton(onPressed: _search, child: Text('Search'))
+                ElevatedButton(
+                    onPressed: _search,
+                    child: Text('Search'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 0, 105, 140),
+                      ),
+                    ))
               ],
             ),
           ),

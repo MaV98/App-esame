@@ -50,6 +50,7 @@ class _SigninPageState extends State<SigninPage> {
     //var provider = Provider.of<AppDatabase>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
         //automaticallyImplyLeading: false,
         title: Text('Signin'),
       ),
@@ -71,6 +72,11 @@ class _SigninPageState extends State<SigninPage> {
                     onSubmitted: (String name) {},
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 0, 105, 140)),
+                      ),
                       labelText: 'Name',
                     ),
                   ),
@@ -87,7 +93,12 @@ class _SigninPageState extends State<SigninPage> {
                     obscureText: false,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Username',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 0, 105, 140)),
+                      ),
+                      labelText: 'UserName',
                     ),
                   ),
                 ),
@@ -103,6 +114,11 @@ class _SigninPageState extends State<SigninPage> {
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 0, 105, 140)),
+                      ),
                       labelText: 'Password',
                     ),
                   ),
@@ -112,6 +128,11 @@ class _SigninPageState extends State<SigninPage> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ElevatedButton(
                     child: Text('Create your account'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 0, 105, 140),
+                      ),
+                    ),
                     onPressed: () async {
                       //final profilo = Profile(_name, _username, _password);
                       await Provider.of<DatabaseRepository>(context,

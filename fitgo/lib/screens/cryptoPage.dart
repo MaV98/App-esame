@@ -51,13 +51,18 @@ class _CryptoPageState extends State<CryptoPage> {
     //This is for debug.
     print('${CryptoPage.routename} built');
 
+    Map<dynamic, dynamic> stepscount =
+        ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
+    dynamic steps_count = stepscount['count_step'];
+    dynamic a = stepscount['a'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Crypto'),
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(
-              onPressed: () => _toFavoritePage(context),
+              onPressed: () => _toFavoritePage(context, steps_count, a),
               icon: Icon(Icons.favorite))
         ],
       ),
@@ -419,8 +424,9 @@ class _CryptoPageState extends State<CryptoPage> {
   } // _validateAndSearch
 
   //Utility method to navigate to the Favorite crypto page
-  void _toFavoritePage(BuildContext context) {
-    Navigator.pushNamed(context, FavoriteCryptoPage.route);
+  void _toFavoritePage(BuildContext context, count_step, a) {
+    Navigator.pushNamed(context, FavoriteCryptoPage.route,
+        arguments: {'count_step': count_step, 'a': a});
   } //_toFavoritePage
 } //HomePage
 

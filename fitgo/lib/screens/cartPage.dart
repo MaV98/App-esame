@@ -28,6 +28,12 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     print('${CartPage.routename} built');
+
+    Map<dynamic, dynamic> stepscount =
+        ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
+    dynamic steps_count = stepscount['count_step'];
+    dynamic a = stepscount['a'];
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Your cart'),
@@ -210,51 +216,64 @@ class _CartPageState extends State<CartPage> {
                               ),
                               Text('Total Price: ${sum.toStringAsFixed(3)}€',
                                   style: TextStyle(fontSize: 15)),
-                              Text('Accumulated discount: 10€',
-                                  style: TextStyle(fontSize: 15)),
-                              Text(
-                                  'Final price: ${(sum - 10).toStringAsFixed(3)}€',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
+                              steps_count == -1
+                                  ? Text(
+                                      'Authorization not granted, no discount applicable',
+                                      style: TextStyle(fontSize: 15))
+                                  : Text(
+                                      'Accumulated discount: ${5 * steps_count.toInt()}€',
+                                      style: TextStyle(fontSize: 15)),
+                              steps_count == -1
+                                  ? Text(
+                                      'Final price: ${(sum).toStringAsFixed(3)}€',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22))
+                                  : Text(
+                                      'Final price: ${(sum - 5 * steps_count.toInt()).toStringAsFixed(3)}€',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22)),
                               SizedBox(
                                 height: 30,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: SwipeableButtonView(
-                                  buttonText: 'SLIDE TO PAYMENT',
-                                  buttonWidget: Container(
-                                    child: Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      //MdiIcons.arrowRightThick,
-                                      color: Colors.grey,
-                                      size: 50,
+                                    buttonText: 'SLIDE TO PAYMENT',
+                                    buttonWidget: Container(
+                                      child: Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        //MdiIcons.arrowRightThick,
+                                        color: Colors.grey,
+                                        size: 50,
+                                      ),
                                     ),
-                                  ),
-                                  activeColor: Colors.green,
-                                  isFinished: isFinished,
-                                  onWaitingProcess: () {
-                                    Future.delayed(Duration(seconds: 3), () {
-                                      setState(() {
-                                        isFinished = true;
+                                    activeColor: Colors.green,
+                                    isFinished: isFinished,
+                                    onWaitingProcess: () {
+                                      Future.delayed(Duration(seconds: 3), () {
+                                        setState(() {
+                                          isFinished = true;
+                                        });
                                       });
-                                    });
-                                  },
-                                  onFinish: //() {
-                                      //Navigator.pushReplacementNamed(
-                                      //  context, SuccessPage.route);
-                                      () async {
-                                    await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            type: PageTransitionType.fade,
-                                            child: SuccessPage()));
-                                    setState(() {
-                                      isFinished = false;
-                                    });
-                                  },
-                                ),
+                                    },
+                                    onFinish: () {
+                                      Navigator.pushReplacementNamed(
+                                          context, SuccessPage.route,
+                                          arguments: {'a': a});
+                                    }
+                                    //     () async {
+                                    //   await Navigator.push(
+                                    //       context,
+                                    //       PageTransition(
+                                    //           type: PageTransitionType.fade,
+                                    //           child: SuccessPage()));
+                                    //   setState(() {
+                                    //     isFinished = false;
+                                    //   });
+                                    // },
+                                    ),
                               )
                             ],
                           )

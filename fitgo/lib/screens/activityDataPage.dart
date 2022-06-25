@@ -135,7 +135,7 @@ class ActivityDataPage extends StatelessWidget {
             ),
             child: Text(
               'Activity data in details',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
@@ -285,7 +285,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -512,7 +513,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -739,7 +741,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -966,7 +969,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -1193,7 +1197,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -1420,7 +1425,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(
@@ -1647,7 +1653,8 @@ class ActivityDataPage extends StatelessWidget {
                                                                               1000) /
                                                                           60)
                                                                       .toInt())) *
-                                                              60).toInt()
+                                                              60)
+                                                          .toInt()
                                                           .toString() +
                                                       'sec',
                                                   style: TextStyle(

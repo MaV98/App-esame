@@ -34,58 +34,40 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<NavBar>(context);
-    return (
-      SalomonBottomBar(
-        currentIndex: provider.setIndex(),
-        onTap: (index){
-          provider.currentIndex = index;
-        },
-        items: [
-          SalomonBottomBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-            selectedColor: Color.fromARGB(255, 33, 150, 243),
-          ),
+    return (SalomonBottomBar(
+      currentIndex: provider.setIndex(),
+      onTap: (index) {
+        provider.currentIndex = index;
+      },
+      items: [
+        SalomonBottomBarItem(
+          icon: Icon(Icons.home),
+          title: Text("Home"),
+          selectedColor: Color.fromARGB(255, 0, 105, 140),
+        ),
 
-          // Training
-          SalomonBottomBarItem(
-            icon: Icon(Icons.sports_gymnastics),
-            title: Text("Training"),
-            selectedColor: Color.fromARGB(255, 33, 150, 243),
-          ),
+        // Training
+        SalomonBottomBarItem(
+          icon: Icon(Icons.sports_gymnastics),
+          title: Text("Training"),
+          selectedColor: Color.fromARGB(255, 33, 150, 243),
+        ),
 
-          // Friends
-          SalomonBottomBarItem(
-            icon: Icon(Icons.people),
-            title: Text("Friends"),
-            selectedColor: Color.fromARGB(255, 33, 150, 243),
-          ),
+        // Friends
+        SalomonBottomBarItem(
+          icon: Icon(Icons.people),
+          title: Text("Friends"),
+          selectedColor: Color.fromARGB(255, 33, 150, 243),
+        ),
 
-          // Shop
-          SalomonBottomBarItem(
-            icon: Icon(Icons.shop),
-            title: Text("Shop"),
-            selectedColor: Color.fromARGB(255, 33, 150, 243),
-          ),
-        ],
-        
-          ));
-        }
-      
-  } //build
-
-  void _toLoginPage(BuildContext context) {
-    //Pop the drawer first
-    //Navigator.pop(context);
-    //Then pop the HomePage
-    //Navigator.of(context).pushReplacementNamed(LoginPage.route);
-    Navigator.pop(context);
-    //Navigator.pushNamed(context, '/');
-    //Navigator.pushNamed(context, '/');
+        // Shop
+        SalomonBottomBarItem(
+          icon: Icon(Icons.shop),
+          title: Text("Shop"),
+          selectedColor: Color.fromARGB(255, 33, 150, 243),
+        ),
+      ],
+    ));
   }
+} //build
 
-  // void _toProfilePage(BuildContext context) {
-  //   //Then pop the HomePage
-  //   Navigator.of(context).pushReplacementNamed(ProfilePage.route);
-  // }
- //HomePage

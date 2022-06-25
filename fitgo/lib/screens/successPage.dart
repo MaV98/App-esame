@@ -17,6 +17,12 @@ class _SuccessPageState extends State<SuccessPage> {
   @override
   Widget build(BuildContext context) {
     print('${SuccessPage.routename} built');
+
+    Map<dynamic, dynamic> aa =
+        ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
+
+    dynamic a = aa['a'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(SuccessPage.routename),
@@ -50,8 +56,10 @@ class _SuccessPageState extends State<SuccessPage> {
               const SizedBox(height: 30.0),
               ElevatedButton(
                   onPressed: (() {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
+                    a == 0 ? _backDaCrypto(context) : Navigator.pop(context);
+                    //Navigator.pop(context);
+                    //Navigator.pop(context);
+                    //Navigator.pop(context);
                   }),
                   child: Text('Back to home')),
             ],
@@ -60,4 +68,11 @@ class _SuccessPageState extends State<SuccessPage> {
       ),
     );
   }
+}
+
+void _backDaCrypto(context) {
+  Navigator.pop(context);
+  Navigator.pop(context);
+  Navigator.pop(context);
+  //Navigator.pop(context);
 }

@@ -56,13 +56,18 @@ class _StorePageState extends State<StorePage> {
     //This is for debug.
     print('${StorePage.routename} built');
 
+    Map<dynamic, dynamic> stepscount =
+        ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
+    dynamic steps_count = stepscount['count_step'];
+    dynamic a = stepscount['a'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Clothing'),
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(
-              onPressed: () => _toFavoritePage(context),
+              onPressed: () => _toFavoritePage(context, steps_count, a),
               icon: Icon(Icons.favorite))
         ],
       ),
@@ -527,8 +532,9 @@ class _StorePageState extends State<StorePage> {
   } // _validateAndSearch
 
   //Utility method to navigate to the Favorite item page
-  void _toFavoritePage(BuildContext context) {
-    Navigator.pushNamed(context, FavoriteStorePage.route);
+  void _toFavoritePage(BuildContext context, count_step, a) {
+    Navigator.pushNamed(context, FavoriteStorePage.route,
+        arguments: {'count_step': count_step, 'a': a});
   } //_toFavoritePage
 } //HomePage
 

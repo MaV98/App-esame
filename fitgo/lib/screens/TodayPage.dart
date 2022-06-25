@@ -71,17 +71,18 @@ class TodayPage extends StatelessWidget {
       final creat = indpag.setCreation();
       return //selectSituation(context, index, creat, data1, usern);
           Scaffold(
-              floatingActionButton:
-                  Consumer<Dati>(builder: (context, passi, _) {
-                return FloatingActionButton(
-                  onPressed: () => displayCard(context, passi),
-                  child: Image.network(
-                      //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
-                      //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
-                      'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
-                );
-              }),
+              // floatingActionButton:
+              //     Consumer<Dati>(builder: (context, passi, _) {
+              //   return FloatingActionButton(
+              //     onPressed: () => displayCard(context, passi),
+              //     child: Image.network(
+              //         //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+              //         //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+              //         'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+              //   );
+              // }),
               appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 0, 105, 140),
                 title: Text('Home Page'),
                 actions: [
                   IconButton(
@@ -105,8 +106,9 @@ class TodayPage extends StatelessWidget {
                         },
                         child: DrawerHeader(
                             decoration: BoxDecoration(
-                              color: Colors.blue,
-                            ),
+
+                                //color: Color.fromARGB(255, 0, 105, 140),
+                                ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -166,13 +168,15 @@ class TodayPage extends StatelessWidget {
                     }),
                     Consumer<Dati>(builder: (context, deviceData, _) {
                       return ListTile(
-                        leading: Icon(Icons.watch),
+                        leading: Icon(Icons.watch,
+                            color: Color.fromARGB(255, 0, 105, 140)),
                         title: Text('Device'),
                         onTap: () => _toDevicePage(context, deviceData),
                       );
                     }),
                     ListTile(
-                      leading: Icon(Icons.smoke_free),
+                      leading: Icon(MdiIcons.cancel,
+                          color: Color.fromARGB(255, 0, 105, 140)),
                       title: Text('Unauthorize'),
                       onTap: () async {
                         await FitbitConnector.unauthorize(
@@ -186,7 +190,10 @@ class TodayPage extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                        leading: Icon(Icons.logout),
+                        leading: Icon(
+                          Icons.logout,
+                          color: Color.fromARGB(255, 0, 105, 140),
+                        ),
                         title: Text('Logout'),
                         onTap: () {
                           _toLoginPage(context);
@@ -293,6 +300,20 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             provider.activityData = dati_activity;
             provider.timeseriesData = dati_timeseries;
 
+            int steps_count = 0;
+            for (var i = 0; i < dati_timeseries_steps.length; i++) {
+              var currentElement = dati_timeseries_steps[i];
+              var currentElement_value = double.parse(
+                currentElement.toString().split(' ')[8].substring(
+                    0, currentElement.toString().split(' ')[8].length - 1),
+              );
+              if (currentElement_value >= 15000) {
+                ++steps_count;
+              }
+            }
+            provider.stepsCount = steps_count;
+            //steps_count;
+
             _addDataDB(context, dati[0], usern);
             // Provider.of<DatabaseRepository>(context,listen:false)
             // .insertData(DatiDB(1,dati[0],usern));
@@ -325,6 +346,16 @@ class situation1 extends StatelessWidget {
     // _refresh(context, data1);
     //print(data1.refresh(context));
     return Scaffold(
+      floatingActionButton: Consumer<Dati>(builder: (context, passi, _) {
+        return FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 0, 105, 140),
+          onPressed: () => displayCard(context, passi),
+          child: Image.network(
+              //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+              //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+              'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+        );
+      }),
       // appBar: AppBar(
       //   title: Text('Home Page'),
       // ),
@@ -454,7 +485,6 @@ class situation1 extends StatelessWidget {
           dati_timeseries.add(dati_timeseries_minutesFairlyActive);
           dati_timeseries.add(dati_timeseries_minutesVeryActive);
           dati_timeseries.add(dati_timeseries_activityCalories);
-          print(dati_timeseries_steps);
 
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
@@ -462,6 +492,20 @@ class situation1 extends StatelessWidget {
           provider.sleepData = dati_sleep;
           provider.activityData = dati_activity;
           provider.timeseriesData = dati_timeseries;
+
+          int steps_count = 0;
+          for (var i = 0; i < dati_timeseries_steps.length; i++) {
+            var currentElement = dati_timeseries_steps[i];
+            var currentElement_value = double.parse(
+              currentElement.toString().split(' ')[8].substring(
+                  0, currentElement.toString().split(' ')[8].length - 1),
+            );
+            if (currentElement_value >= 15000) {
+              ++steps_count;
+            }
+          }
+          provider.stepsCount = steps_count;
+          //steps_count;
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -501,7 +545,7 @@ class situation1 extends StatelessWidget {
                     gradient: LinearGradient(
                         colors: <Color>[
                           Colors.black12,
-                          Colors.black,
+                          Color.fromARGB(255, 0, 105, 140),
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 1.0),
@@ -516,7 +560,7 @@ class situation1 extends StatelessWidget {
                   child: Text(
                     'o',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 0, 105, 140),
                       fontSize: 15.0,
                       //fontFamily: 'WorkSansMedium'
                     ),
@@ -526,8 +570,8 @@ class situation1 extends StatelessWidget {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         colors: <Color>[
-                          Colors.black,
-                          Colors.black12,
+                          Color.fromARGB(255, 0, 105, 140),
+                          Colors.black12
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 1.0),
@@ -975,7 +1019,19 @@ class situation2 extends StatelessWidget {
     // provider.calorie = lista[1];
     print('SITUATION 2 built');
 
+    var provider = Provider.of<Dati>(context);
+    provider.stepsCount = -1;
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
+        onPressed: () => displayCardUnhautorize(context),
+        child: Image.network(
+            //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+            //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+            'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+      ),
+
       //appBar: AppBar(
       //title: Text('Situation2'),
       //automaticallyImplyLeading: false,
@@ -990,8 +1046,10 @@ class situation2 extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(120, 40),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(Size(120, 40)),
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 0, 105, 140)),
             ),
             onPressed: () async {
               final sp = await SharedPreferences.getInstance();
@@ -1088,6 +1146,32 @@ void displayCard(BuildContext context, passi) {
             actions: <Widget>[
               ElevatedButton(
                   child: Text("Got it"),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 0, 105, 140),
+                  )),
+                  onPressed: () {
+                    //remove the dialog popup
+                    Navigator.of(context).pop();
+                  })
+            ]);
+      });
+}
+
+void displayCardUnhautorize(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text("What does Yoda have to say?"),
+            content: Text('No authorizaton to download data granted'),
+            actions: <Widget>[
+              ElevatedButton(
+                  child: Text("Got it"),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 0, 105, 140),
+                  )),
                   onPressed: () {
                     //remove the dialog popup
                     Navigator.of(context).pop();

@@ -110,6 +110,7 @@ class TimeseriesPage6 extends StatelessWidget {
             child: Text(
               'Activity data in details',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
           ),
           ListTile(
