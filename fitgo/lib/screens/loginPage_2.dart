@@ -60,8 +60,9 @@ class LoginPage extends StatelessWidget {
     var providerPC = Provider.of<ProfileCheck>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
         automaticallyImplyLeading: false,
-        title: Text(LoginPage.routename),
+        title: Text('Login'),
       ),
       body: Center(
         child: ListView(children: [
@@ -74,7 +75,7 @@ class LoginPage extends StatelessWidget {
                   child: const Text(
                     'Welcome!',
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 0, 105, 140),
                         fontWeight: FontWeight.w500,
                         fontSize: 30),
                   )),
@@ -94,8 +95,14 @@ class LoginPage extends StatelessWidget {
                     //_username = value;
                   },
                   onSubmitted: (String username) {},
+                  //enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderSide: BorderSide(
+                          width: 1, color: Color.fromARGB(255, 0, 105, 140)),
+                    ),
                     labelText: 'UserName',
                   ),
                 ),
@@ -111,6 +118,11 @@ class LoginPage extends StatelessWidget {
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderSide: BorderSide(
+                          width: 1, color: Color.fromARGB(255, 0, 105, 140)),
+                    ),
                     labelText: 'Password',
                   ),
                 ),
@@ -121,6 +133,11 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ElevatedButton(
                       child: Text('Login'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 0, 105, 140),
+                        ),
+                      ),
                       onPressed: () async {
                         print(providerPC.retUsername());
                         print(providerPC.retPassword());
@@ -151,7 +168,7 @@ class LoginPage extends StatelessWidget {
                             builder: (BuildContext context) {
                               return Container(
                                 height: 200,
-                                color: Colors.orange,
+                                color: Color.fromARGB(255, 111, 210, 255),
                                 child: Center(
                                     child: Column(
                                         mainAxisAlignment:
@@ -178,7 +195,13 @@ class LoginPage extends StatelessWidget {
 
                                             //var prov = Provider.of<IndicePag>(context);
                                           },
-                                          child: Text('Tap to authorize')),
+                                          child: Text('Tap to authorize'),
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                              Color.fromARGB(255, 0, 105, 140),
+                                            ),
+                                          )),
                                       ElevatedButton(
                                           onPressed: () async {
                                             int pag1 = 0;
@@ -190,7 +213,13 @@ class LoginPage extends StatelessWidget {
                                                         HomePage(index: pag1)));
                                           },
                                           child: Text(
-                                              'Continue without authorize'))
+                                              'Continue without authorize'),
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                              Color.fromARGB(255, 0, 105, 140),
+                                            ),
+                                          ))
                                     ])),
                               );
                             },
@@ -224,11 +253,13 @@ class LoginPage extends StatelessWidget {
               }),
               Row(
                 children: <Widget>[
-                  const Text('Does not have account?'),
+                  const Text('Don’t you have an account?'),
                   TextButton(
                     child: const Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 0, 105, 140)),
                     ),
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, SigninPage.route);

@@ -86,7 +86,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `profile` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `DatiDB` (`profileName` TEXT, `passi_today` REAL NOT NULL, `profile_id` INTEGER NOT NULL, `passi_week` BLOB NOT NULL, PRIMARY KEY (`profileName`))');
+            'CREATE TABLE IF NOT EXISTS `DatiDB` (`ind` INTEGER NOT NULL, `profileName` TEXT, `passi_today` REAL NOT NULL, `profile_id` INTEGER NOT NULL, `passi_week` INTEGER NOT NULL, `date_steps` INTEGER NOT NULL, PRIMARY KEY (`ind`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -177,10 +177,12 @@ class _$DataDao extends DataDao {
             database,
             'DatiDB',
             (DatiDB item) => <String, Object?>{
+                  'ind': item.ind,
                   'profileName': item.profileName,
                   'passi_today': item.passi_today,
                   'profile_id': item.profile_id,
-                  'passi_week': item.passi_week
+                  'passi_week': item.passi_week,
+                  'date_steps': item.date_steps
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -195,9 +197,25 @@ class _$DataDao extends DataDao {
   Future<DatiDB?> findAllUserId(String username) async {
     return _queryAdapter.query('SELECT * FROM DatiDB WHERE profileName = ?1',
         mapper: (Map<String, Object?> row) => DatiDB(
+            row['ind'] as int,
             row['profile_id'] as int,
             row['passi_today'] as double,
-            row['passi_week'] as Uint8List,
+            row['passi_week'] as int,
+            row['date_steps'] as int,
+            row['profileName'] as String?),
+        arguments: [username]);
+  }
+
+  @override
+  Future<List<DatiDB>> findAllData(String username) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM DatiDB WHERE profileName = ?1',
+        mapper: (Map<String, Object?> row) => DatiDB(
+            row['ind'] as int,
+            row['profile_id'] as int,
+            row['passi_today'] as double,
+            row['passi_week'] as int,
+            row['date_steps'] as int,
             row['profileName'] as String?),
         arguments: [username]);
   }

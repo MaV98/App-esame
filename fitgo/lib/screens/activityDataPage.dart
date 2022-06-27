@@ -135,7 +135,7 @@ class ActivityDataPage extends StatelessWidget {
             ),
             child: Text(
               'Activity data in details',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
@@ -193,14 +193,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -255,7 +269,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -275,14 +308,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -370,14 +421,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -432,7 +497,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -452,14 +536,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -547,14 +649,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -609,7 +725,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -629,14 +764,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -724,14 +877,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -786,7 +953,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -806,14 +992,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -901,14 +1105,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -963,7 +1181,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -983,14 +1220,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -1078,14 +1333,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -1140,7 +1409,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -1160,14 +1448,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,
@@ -1255,14 +1561,28 @@ class ActivityDataPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text(
-                                                  activity[5].substring(14),
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                activity[5].substring(14) == ''
+                                                    ? Text(
+                                                        'Not available',
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )
+                                                    : Text(
+                                                        activity[5]
+                                                            .substring(14),
+                                                        style: TextStyle(
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                 Text('Description'),
                                                 SizedBox(
                                                   height: 10,
@@ -1317,7 +1637,26 @@ class ActivityDataPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  activity[7].substring(11),
+                                                  ((double.parse(activity[7]
+                                                                      .substring(
+                                                                          11)) /
+                                                                  1000) /
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'min ' +
+                                                      ((((double.parse(activity[7].substring(
+                                                                              11)) /
+                                                                          1000) /
+                                                                      60 -
+                                                                  ((double.parse(activity[7].substring(11)) /
+                                                                              1000) /
+                                                                          60)
+                                                                      .toInt())) *
+                                                              60)
+                                                          .toInt()
+                                                          .toString() +
+                                                      'sec',
                                                   style: TextStyle(
                                                     fontSize: 15.0,
                                                     fontWeight: FontWeight.bold,
@@ -1337,14 +1676,32 @@ class ActivityDataPage extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                activity[6].substring(11),
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              activity[6].substring(11) == '0.0'
+                                                  ? Text(
+                                                      'Not available',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )
+                                                  : Text(
+                                                      double.parse(activity[6]
+                                                                  .substring(
+                                                                      11))
+                                                              .toStringAsFixed(
+                                                                  3) +
+                                                          ' km',
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                               Text('Distance'),
                                               SizedBox(
                                                 height: 10,

@@ -48,7 +48,7 @@ class _MyLoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(LoginPage.routename),
+        title: Text('Login'),
       ),
       body: Center(
         child: ListView(children: [
@@ -136,7 +136,7 @@ class _MyLoginPageState extends State<LoginPage> {
                       })),
               Row(
                 children: <Widget>[
-                  const Text('Does not have account?'),
+                  const Text('Don’t you have an account?'),
                   TextButton(
                     child: const Text(
                       'Sign in',

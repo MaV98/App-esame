@@ -1,4 +1,5 @@
 import 'package:fitgo/database/entities/dati.dart';
+import 'package:fitgo/database/entities/dati.dart';
 import 'package:floor/floor.dart';
 
 //Here, we are saying that the following class defines a dao.
@@ -15,6 +16,9 @@ abstract class DataDao {
 
   // @Query('SELECT password FROM Profile WHERE username = :username')
   // Future<String?> returnPassword(String username);
+
+  @Query('SELECT * FROM DatiDB WHERE profileName = :username')
+  Future<List<DatiDB>> findAllData(String username);
 
   @insert
   Future<void> insertData(DatiDB dati);//Query #2: INSERT -> this allows to add a Todo in the table

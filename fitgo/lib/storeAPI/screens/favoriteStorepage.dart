@@ -16,13 +16,19 @@ class FavoriteStorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('${FavoriteStorePage.routename} built');
+
+    Map<dynamic, dynamic> stepscount =
+        ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
+    dynamic steps_count = stepscount['count_step'];
+    dynamic a = stepscount['a'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(FavoriteStorePage.routename),
         actions: [
           //This action is used to navigate to the Favorite Page.
           IconButton(
-              onPressed: () => _toCartPage(context),
+              onPressed: () => _toCartPage(context, steps_count, a),
               icon: Icon(Icons.shopping_cart))
         ],
       ),
@@ -203,6 +209,7 @@ class FavoriteStorePage extends StatelessWidget {
   } //build
 }
 
-void _toCartPage(BuildContext context) {
-  Navigator.pushNamed(context, '/cart/');
+void _toCartPage(BuildContext context, count_step, a) {
+  Navigator.pushNamed(context, '/cart/',
+      arguments: {'count_step': count_step, 'a': a});
 }

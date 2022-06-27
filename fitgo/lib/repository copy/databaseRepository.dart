@@ -35,14 +35,14 @@ class DatabaseRepository extends ChangeNotifier{
     await database.profileDao.deleteProfile(profile);
     notifyListeners();
   }
-  
-  // Future<String?> returnPassword(String username) async{
-  //   await database.profileDao.returnPassword(username);
-  //   //notifyListeners();
-  //   }//removeTodo
 
   Future<DatiDB?> findAllUserId(String profileName) async{
     final result = await database.dataDao.findAllUserId(profileName);
+    return result;
+  }
+
+  Future<List<DatiDB>> findAllData(String profileName) async{
+    final result = await database.dataDao.findAllData(profileName);
     return result;
   }
 
@@ -50,10 +50,10 @@ class DatabaseRepository extends ChangeNotifier{
     await database.dataDao.insertData(dati);
     notifyListeners();
   }
-
-  // Future<void> updatePassi(double newdati) async{
-  //   await database.dataDao.updatePassi(newdati);
-  //   notifyListeners();
-  // }
+  
+  // Future<String?> returnPassword(String username) async{
+  //   await database.profileDao.returnPassword(username);
+  //   //notifyListeners();
+  //   }//removeTodo
   
 }//DatabaseRepository

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class ShopPage extends StatelessWidget {
-  const ShopPage({Key? key}) : super(key: key);
+  dynamic stepsCount;
+  ShopPage({this.stepsCount});
 
   static const route = '/Shop/';
   static const routename = 'ShopPage';
@@ -11,14 +12,14 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF2196F3),
-          title: Text(ShopPage.routename),
+          title: Text('Shop'),
           actions: [
             //This action is used to navigate to the Cart Page
             IconButton(
                 onPressed: () {
-                  _toCartPage(context);
+                  _toCartPage(context, stepsCount, 1);
                 },
                 icon: Icon(Icons.shopping_cart))
           ],
@@ -38,9 +39,15 @@ class ShopPage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Text(
-                  "In total you have reached the 15000 steps goal x times this week. So you have 5x euro discount that you can use to buy what you want! Explore our store!",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              child: stepsCount == -1
+                  ? Text(
+                      'Data download permission not granted. You can still visit the store, but you will not get any discount based on your activity',
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                  : Text(
+                      "In total you have reached the 15000 steps goal ${stepsCount.toInt()} times this week. So you have ${5 * stepsCount.toInt()} € discount that you can use to buy what you want! Explore our store!",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),
             Padding(
                 padding: EdgeInsets.fromLTRB(
@@ -64,7 +71,7 @@ class ShopPage extends StatelessWidget {
                   //primary: Colors.white,
                   //),
                   onPressed: () {
-                    _tocryptogPage(context);
+                    _tocryptogPage(context, stepsCount, 0);
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,7 +110,7 @@ class ShopPage extends StatelessWidget {
                   //   primary: Colors.white,
                   // ),
                   onPressed: () {
-                    _tostorePage(context);
+                    _tostorePage(context, stepsCount, 0);
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -124,14 +131,17 @@ class ShopPage extends StatelessWidget {
   }
 }
 
-void _tocryptogPage(BuildContext context) {
-  Navigator.pushNamed(context, '/crypto/');
+void _tocryptogPage(BuildContext context, count_step, a) {
+  Navigator.pushNamed(context, '/crypto/',
+      arguments: {'count_step': count_step, 'a': a});
 }
 
-void _toCartPage(BuildContext context) {
-  Navigator.pushNamed(context, '/cart/');
+void _toCartPage(BuildContext context, count_step, a) {
+  Navigator.pushNamed(context, '/cart/',
+      arguments: {'count_step': count_step, 'a': a});
 }
 
-void _tostorePage(BuildContext context) {
-  Navigator.pushNamed(context, '/store/');
+void _tostorePage(BuildContext context, count_step, a) {
+  Navigator.pushNamed(context, '/store/',
+      arguments: {'count_step': count_step, 'a': a});
 }

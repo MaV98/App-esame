@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Profile'),
       ),
       body: ListView(children: [
@@ -86,42 +86,60 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
         ListTile(
-          leading: Icon(MdiIcons.cakeVariantOutline),
+          leading: Icon(
+            MdiIcons.cakeVariantOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Birthday'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printBirthday()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.cardAccountDetailsOutline),
+          leading: Icon(
+            MdiIcons.cardAccountDetailsOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Age'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printAge()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.accountCircleOutline),
+          leading: Icon(
+            MdiIcons.accountCircleOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Gender'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printGender()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.humanMaleHeightVariant),
+          leading: Icon(
+            MdiIcons.humanMaleHeightVariant,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Height'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printHeight() + ' cm'),
         ),
         ListTile(
-          leading: Icon(MdiIcons.weightKilogram),
+          leading: Icon(
+            MdiIcons.weightKilogram,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Weight'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printWeight() + ' kg'),
         ),
         ListTile(
-          leading: Icon(MdiIcons.walk),
+          leading: Icon(
+            MdiIcons.walk,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Stride length walking'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
@@ -129,7 +147,10 @@ class ProfilePage extends StatelessWidget {
                   ' cm'),
         ),
         ListTile(
-          leading: Icon(MdiIcons.run),
+          leading: Icon(
+            MdiIcons.run,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Stride length running'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
@@ -137,28 +158,40 @@ class ProfilePage extends StatelessWidget {
                   ' cm'),
         ),
         ListTile(
-          leading: Icon(MdiIcons.axisArrow),
+          leading: Icon(
+            MdiIcons.axisArrow,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Measurement Unit'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printMeasurementUnit()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.mapClockOutline),
+          leading: Icon(
+            MdiIcons.mapClockOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Time zone'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printtimezone()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.calendarWeekendOutline),
+          leading: Icon(
+            MdiIcons.calendarWeekendOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Start day of week'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')
               : Text(account_data['account_data'].printstartDayOfWeek()),
         ),
         ListTile(
-          leading: Icon(MdiIcons.shieldStarOutline),
+          leading: Icon(
+            MdiIcons.shieldStarOutline,
+            color: Color.fromARGB(255, 0, 105, 140),
+          ),
           title: Text('Ambassador'),
           trailing: account_data['account_data'].isEmptyAccount()
               ? Text('Data not available')

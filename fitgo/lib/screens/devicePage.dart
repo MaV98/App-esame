@@ -20,7 +20,7 @@ class DevicePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           //automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF2196F3),
+          backgroundColor: Color.fromARGB(255, 0, 105, 140),
           title: Text('Device'),
         ),
         body: ListView(children: [
@@ -38,7 +38,7 @@ class DevicePage extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.fromARGB(255, 54, 184, 244),
+                    Color.fromARGB(255, 0, 105, 140),
                     Color.fromARGB(255, 65, 212, 238)
                   ],
                   begin: Alignment.centerLeft,
@@ -85,28 +85,40 @@ class DevicePage extends StatelessWidget {
           //   trailing: Icon(Icons.arrow_right),
           // ),
           ListTile(
-            leading: Icon(Icons.watch),
+            leading: Icon(
+              Icons.watch,
+              color: Color.fromARGB(255, 0, 105, 140),
+            ),
             title: Text('Device type'),
             trailing: fetch_data['device_data'].isEmpty()
                 ? Text('Data not available')
                 : Text(fetch_data['device_data'].printType()),
           ),
           ListTile(
-            leading: Icon(MdiIcons.watchExport),
+            leading: Icon(
+              MdiIcons.watchExport,
+              color: Color.fromARGB(255, 0, 105, 140),
+            ),
             title: Text('Device version'),
             trailing: fetch_data['device_data'].isEmpty()
                 ? Text('Data not available')
                 : Text(fetch_data['device_data'].printDeviceVersion()),
           ),
           ListTile(
-            leading: Icon(MdiIcons.chartBubble),
+            leading: Icon(
+              MdiIcons.chartBubble,
+              color: Color.fromARGB(255, 0, 105, 140),
+            ),
             title: Text('Device Id'),
             trailing: fetch_data['device_data'].isEmpty()
                 ? Text('Data not available')
                 : Text(fetch_data['device_data'].printDeviceId()),
           ),
           ListTile(
-            leading: Icon(MdiIcons.watchVibrate),
+            leading: Icon(
+              MdiIcons.watchVibrate,
+              color: Color.fromARGB(255, 0, 105, 140),
+            ),
             title: Text('Last synch.'),
             trailing: fetch_data['device_data'].isEmpty()
                 ? Text('Data not available')

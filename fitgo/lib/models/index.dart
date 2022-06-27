@@ -4,6 +4,7 @@ class IndicePag extends ChangeNotifier{
   int _index = 0;
   int _creation = 0;
   String _username = '';
+  dynamic _friends = 0;
 
   int setIndex(){
     return _index;
@@ -15,6 +16,10 @@ class IndicePag extends ChangeNotifier{
 
   String setUserName(){
     return _username;
+  }
+
+  dynamic setFriends(){
+    return _friends;
   }
 
   set currentIndex(int index) {
@@ -29,6 +34,11 @@ class IndicePag extends ChangeNotifier{
 
   set currentUserName(String username){
     _username = username;
+    notifyListeners();
+  }
+
+  set currentFriends(dynamic friends){
+    _friends = friends;
     notifyListeners();
   }
 

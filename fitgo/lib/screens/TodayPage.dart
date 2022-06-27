@@ -71,17 +71,18 @@ class TodayPage extends StatelessWidget {
       final creat = indpag.setCreation();
       return //selectSituation(context, index, creat, data1, usern);
           Scaffold(
-              floatingActionButton:
-                  Consumer<Dati>(builder: (context, passi, _) {
-                return FloatingActionButton(
-                  onPressed: () => displayCard(context, passi),
-                  child: Image.network(
-                      //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
-                      //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
-                      'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
-                );
-              }),
+              // floatingActionButton:
+              //     Consumer<Dati>(builder: (context, passi, _) {
+              //   return FloatingActionButton(
+              //     onPressed: () => displayCard(context, passi),
+              //     child: Image.network(
+              //         //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+              //         //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+              //         'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+              //   );
+              // }),
               appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 0, 105, 140),
                 title: Text('Home Page'),
                 actions: [
                   IconButton(
@@ -105,8 +106,9 @@ class TodayPage extends StatelessWidget {
                         },
                         child: DrawerHeader(
                             decoration: BoxDecoration(
-                              color: Colors.blue,
-                            ),
+
+                                //color: Color.fromARGB(255, 0, 105, 140),
+                                ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -166,13 +168,15 @@ class TodayPage extends StatelessWidget {
                     }),
                     Consumer<Dati>(builder: (context, deviceData, _) {
                       return ListTile(
-                        leading: Icon(Icons.watch),
+                        leading: Icon(Icons.watch,
+                            color: Color.fromARGB(255, 0, 105, 140)),
                         title: Text('Device'),
                         onTap: () => _toDevicePage(context, deviceData),
                       );
                     }),
                     ListTile(
-                      leading: Icon(Icons.smoke_free),
+                      leading: Icon(MdiIcons.cancel,
+                          color: Color.fromARGB(255, 0, 105, 140)),
                       title: Text('Unauthorize'),
                       onTap: () async {
                         await FitbitConnector.unauthorize(
@@ -186,7 +190,10 @@ class TodayPage extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                        leading: Icon(Icons.logout),
+                        leading: Icon(
+                          Icons.logout,
+                          color: Color.fromARGB(255, 0, 105, 140),
+                        ),
                         title: Text('Logout'),
                         onTap: () {
                           _toLoginPage(context);
@@ -264,11 +271,48 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             dati_activity.add(dati_activity_5);
             dati_activity.add(dati_activity_6);
             dati_activity.add(dati_activity_7);
+            final dati_timeseries_calories = dati[19];
+            final dati_timeseries_steps = dati[20];
+            final dati_timeseries_distance = dati[21];
+            final dati_timeseries_floors = dati[22];
+            final dati_timeseries_elevation = dati[23];
+            final dati_timeseries_minutesSedentary = dati[24];
+            final dati_timeseries_minutesLightliActive = dati[25];
+            final dati_timeseries_minutesFairlyActive = dati[26];
+            final dati_timeseries_minutesVeryActive = dati[27];
+            final dati_timeseries_activityCalories = dati[28];
+            final dati_timeseries = [];
+            dati_timeseries.add(dati_timeseries_calories);
+            dati_timeseries.add(dati_timeseries_steps);
+            dati_timeseries.add(dati_timeseries_distance);
+            dati_timeseries.add(dati_timeseries_floors);
+            dati_timeseries.add(dati_timeseries_elevation);
+            dati_timeseries.add(dati_timeseries_minutesSedentary);
+            dati_timeseries.add(dati_timeseries_minutesLightliActive);
+            dati_timeseries.add(dati_timeseries_minutesFairlyActive);
+            dati_timeseries.add(dati_timeseries_minutesVeryActive);
+            dati_timeseries.add(dati_timeseries_activityCalories);
+
             provider.deviceData = dati_device;
             provider.accountData = dati_account;
             provider.heartData = dati_heart;
             provider.sleepData = dati_sleep;
             provider.activityData = dati_activity;
+            provider.timeseriesData = dati_timeseries;
+
+            int steps_count = 0;
+            for (var i = 0; i < dati_timeseries_steps.length; i++) {
+              var currentElement = dati_timeseries_steps[i];
+              var currentElement_value = double.parse(
+                currentElement.toString().split(' ')[8].substring(
+                    0, currentElement.toString().split(' ')[8].length - 1),
+              );
+              if (currentElement_value >= 15000) {
+                ++steps_count;
+              }
+            }
+            provider.stepsCount = steps_count;
+            //steps_count;
 
             // provider.weekSteps = dati[12]; //7
             // provider.weekSteps = dati[13]; //6
@@ -278,13 +322,13 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             // provider.weekSteps = dati[17]; //2
 
             List<dynamic> passi_settimana = [];
-            passi_settimana.add(dati[12]);
-            passi_settimana.add(dati[13]);
-            passi_settimana.add(dati[14]);
-            passi_settimana.add(dati[15]);
-            passi_settimana.add(dati[16]);
-            passi_settimana.add(dati[17]);
-
+            passi_settimana.add(dati[29]);
+            passi_settimana.add(dati[30]);
+            passi_settimana.add(dati[31]);
+            passi_settimana.add(dati[32]);
+            passi_settimana.add(dati[33]);
+            passi_settimana.add(dati[34]);
+            passi_settimana.add(dati[35]);
             provider.weekSteps = passi_settimana;
 
             _addDataDB(context, dati[0], passi_settimana, usern);
@@ -319,6 +363,16 @@ class situation1 extends StatelessWidget {
     // _refresh(context, data1);
     //print(data1.refresh(context));
     return Scaffold(
+      floatingActionButton: Consumer<Dati>(builder: (context, passi, _) {
+        return FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 0, 105, 140),
+          onPressed: () => displayCard(context, passi),
+          child: Image.network(
+              //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+              //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+              'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+        );
+      }),
       // appBar: AppBar(
       //   title: Text('Home Page'),
       // ),
@@ -427,11 +481,48 @@ class situation1 extends StatelessWidget {
           dati_activity.add(dati_activity_5);
           dati_activity.add(dati_activity_6);
           dati_activity.add(dati_activity_7);
+          final dati_timeseries_calories = dati[19];
+          final dati_timeseries_steps = dati[20];
+          final dati_timeseries_distance = dati[21];
+          final dati_timeseries_floors = dati[22];
+          final dati_timeseries_elevation = dati[23];
+          final dati_timeseries_minutesSedentary = dati[24];
+          final dati_timeseries_minutesLightliActive = dati[25];
+          final dati_timeseries_minutesFairlyActive = dati[26];
+          final dati_timeseries_minutesVeryActive = dati[27];
+          final dati_timeseries_activityCalories = dati[28];
+          final dati_timeseries = [];
+          dati_timeseries.add(dati_timeseries_calories);
+          dati_timeseries.add(dati_timeseries_steps);
+          dati_timeseries.add(dati_timeseries_distance);
+          dati_timeseries.add(dati_timeseries_floors);
+          dati_timeseries.add(dati_timeseries_elevation);
+          dati_timeseries.add(dati_timeseries_minutesSedentary);
+          dati_timeseries.add(dati_timeseries_minutesLightliActive);
+          dati_timeseries.add(dati_timeseries_minutesFairlyActive);
+          dati_timeseries.add(dati_timeseries_minutesVeryActive);
+          dati_timeseries.add(dati_timeseries_activityCalories);
+
           provider.accountData = dati_account;
           provider.deviceData = dati_device;
           provider.heartData = dati_heart;
           provider.sleepData = dati_sleep;
           provider.activityData = dati_activity;
+          provider.timeseriesData = dati_timeseries;
+
+          int steps_count = 0;
+          for (var i = 0; i < dati_timeseries_steps.length; i++) {
+            var currentElement = dati_timeseries_steps[i];
+            var currentElement_value = double.parse(
+              currentElement.toString().split(' ')[8].substring(
+                  0, currentElement.toString().split(' ')[8].length - 1),
+            );
+            if (currentElement_value >= 15000) {
+              ++steps_count;
+            }
+          }
+          provider.stepsCount = steps_count;
+          //steps_count;
         },
         child: ListView(children: <Widget>[
           Padding(
@@ -471,7 +562,7 @@ class situation1 extends StatelessWidget {
                     gradient: LinearGradient(
                         colors: <Color>[
                           Colors.black12,
-                          Colors.black,
+                          Color.fromARGB(255, 0, 105, 140),
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 1.0),
@@ -486,7 +577,7 @@ class situation1 extends StatelessWidget {
                   child: Text(
                     'o',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 0, 105, 140),
                       fontSize: 15.0,
                       //fontFamily: 'WorkSansMedium'
                     ),
@@ -496,8 +587,8 @@ class situation1 extends StatelessWidget {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         colors: <Color>[
-                          Colors.black,
-                          Colors.black12,
+                          Color.fromARGB(255, 0, 105, 140),
+                          Colors.black12
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 1.0),
@@ -599,94 +690,99 @@ class situation1 extends StatelessWidget {
                 20,
                 10,
               ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    elevation: 12,
-                    fixedSize: const Size(320, 150),
-                    primary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
-                child: Consumer<Dati>(builder: (context, passi, _) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      (15000 -
-                                  double.parse(
-                                    passi.printPassi(),
-                                  ) <
-                              0)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                  Text(
-                                    'Activity timeseries',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(131, 3, 78, 4),
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text('Goal reached!',
-                                      style: TextStyle(
-                                          color: Color.fromARGB(131, 3, 78, 4),
-                                          fontSize: 18))
-                                ])
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                  Text(
-                                    'Activity timeseries',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(131, 3, 78, 4),
-                                        fontSize: 18),
-                                  ),
-                                ]),
-                      PieChart(
-                        initialAngleInDegree: 270,
-                        totalValue: 15000,
-                        dataMap: <String, double>{
-                          "Today steps": double.parse(
-                            passi.printPassi(),
-                          ),
-                          "15000 steps goal": 15000 -
-                              double.parse(
-                                passi.printPassi(),
-                              ),
-                        }, //dataMap,
-                        colorList: (15000 -
+              child: Consumer<Dati>(builder: (context, timeseriesData, _) {
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 12,
+                      fixedSize: const Size(320, 150),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {
+                    _toTimeSeriesPage(context, timeseriesData);
+                  },
+                  child: Consumer<Dati>(builder: (context, passi, _) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        (15000 -
                                     double.parse(
                                       passi.printPassi(),
                                     ) <
                                 0)
-                            ? <Color>[
-                                Color.fromARGB(131, 3, 78, 4),
-                                Colors.transparent
-                              ]
-                            : <Color>[
-                                Color.fromARGB(131, 3, 78, 4),
-                                Color.fromARGB(255, 177, 251, 182),
-                              ], //colorList,
-                        centerText: passi.printPassi(),
-                        centerTextStyle: TextStyle(
-                            backgroundColor: Colors.white,
-                            color: Colors.black,
-                            decorationColor: Colors.white),
-                        chartType: ChartType.ring,
-                        animationDuration: Duration(milliseconds: 1000),
-                        chartLegendSpacing: 32,
-                        chartRadius: MediaQuery.of(context).size.width / 3.2,
-                        legendOptions: LegendOptions(
-                            legendTextStyle: TextStyle(color: Colors.black)),
-                        chartValuesOptions: ChartValuesOptions(
-                            showChartValues: false,
-                            showChartValuesOutside: false),
-                      ),
-                    ],
-                  );
-                }),
-              )),
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                    Text(
+                                      'Activity timeseries',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(131, 3, 78, 4),
+                                          fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text('Goal reached!',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(131, 3, 78, 4),
+                                            fontSize: 18))
+                                  ])
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                    Text(
+                                      'Activity timeseries',
+                                      style: TextStyle(
+                                          color: Color.fromARGB(131, 3, 78, 4),
+                                          fontSize: 18),
+                                    ),
+                                  ]),
+                        PieChart(
+                          initialAngleInDegree: 270,
+                          totalValue: 15000,
+                          dataMap: <String, double>{
+                            "Today steps": double.parse(
+                              passi.printPassi(),
+                            ),
+                            "15000 steps goal": 15000 -
+                                double.parse(
+                                  passi.printPassi(),
+                                ),
+                          }, //dataMap,
+                          colorList: (15000 -
+                                      double.parse(
+                                        passi.printPassi(),
+                                      ) <
+                                  0)
+                              ? <Color>[
+                                  Color.fromARGB(131, 3, 78, 4),
+                                  Colors.transparent
+                                ]
+                              : <Color>[
+                                  Color.fromARGB(131, 3, 78, 4),
+                                  Color.fromARGB(255, 177, 251, 182),
+                                ], //colorList,
+                          centerText: passi.printPassi(),
+                          centerTextStyle: TextStyle(
+                              backgroundColor: Colors.white,
+                              color: Colors.black,
+                              decorationColor: Colors.white),
+                          chartType: ChartType.ring,
+                          animationDuration: Duration(milliseconds: 1000),
+                          chartLegendSpacing: 32,
+                          chartRadius: MediaQuery.of(context).size.width / 3.2,
+                          legendOptions: LegendOptions(
+                              legendTextStyle: TextStyle(color: Colors.black)),
+                          chartValuesOptions: ChartValuesOptions(
+                              showChartValues: false,
+                              showChartValuesOutside: false),
+                        ),
+                      ],
+                    );
+                  }),
+                );
+              })),
 
           Padding(
             padding: EdgeInsets.fromLTRB(
@@ -712,7 +808,7 @@ class situation1 extends StatelessWidget {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         elevation: 12,
-                        fixedSize: const Size(155, 230),
+                        fixedSize: const Size(155, 239),
                         primary: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
@@ -795,7 +891,7 @@ class situation1 extends StatelessWidget {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         elevation: 12,
-                        fixedSize: const Size(155, 230),
+                        fixedSize: const Size(155, 239),
                         primary: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
@@ -940,7 +1036,19 @@ class situation2 extends StatelessWidget {
     // provider.calorie = lista[1];
     print('SITUATION 2 built');
 
+    var provider = Provider.of<Dati>(context);
+    provider.stepsCount = -1;
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 0, 105, 140),
+        onPressed: () => displayCardUnhautorize(context),
+        child: Image.network(
+            //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+            //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+            'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+      ),
+
       //appBar: AppBar(
       //title: Text('Situation2'),
       //automaticallyImplyLeading: false,
@@ -955,8 +1063,10 @@ class situation2 extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(120, 40),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(Size(120, 40)),
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 0, 105, 140)),
             ),
             onPressed: () async {
               final sp = await SharedPreferences.getInstance();
@@ -1015,13 +1125,85 @@ void _toActivityPage(BuildContext context, dati_activity) {
       arguments: {'activity_data': dati_activity});
 }
 
+void _toTimeSeriesPage(BuildContext context, dati_timeseries) {
+  Navigator.pushNamed(context, '/timeseries/',
+      arguments: {'timeseries_data': dati_timeseries});
+}
+
 // Future<void> _refresh(context, data1) async{
 //   data1.refresh(context);
 // }
-Future<void> _addDataDB(context, dati, passi_sett, usern) async {
-  await Provider.of<DatabaseRepository>(context, listen: false)
-      .insertData(DatiDB(1, dati, passi_sett, usern));
-}
+Future<void> _addDataDB(context, dati, dati_week, usern) async {
+  // final prov = Provider.of<Dati>(context);
+  // dynamic passi_sett =
+  //       prov.selectElementTimeseries(1);
+  
+  print('DB addDataDB FUNCTION');
+  print('Lunghezza passi_settimana: '+dati_week.length.toString());
+  print('Dati immediati: ' + dati.toString());
+  final userData = await Provider.of<DatabaseRepository>(context, listen: false)
+        .findAllData(usern);
+  
+  print('LUNGHEZZA lista dati: ' + userData.length.toString());
+
+  //List lista_dateDB = [];
+  
+  //int ind = 0;
+
+  if (userData.isNotEmpty == true){
+    int ind = userData.length-1;
+    print('IND IF: '+ind.toString());
+    List lista_dateDB = [];
+    for (var j = 0; j < userData.length; j++){ 
+      lista_dateDB.add(userData[j].retDate());
+    }
+    for(var i = 0; i < dati_week.length; i++){
+    
+    var currentElement = dati_week[i];
+    var currentElement_str = currentElement.toString().split(' ');
+    var day_string = currentElement_str[3];
+    print('DAY STRING: ' + day_string);
+    var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
+    
+    //List date_to_append = [];
+    //List steps_to_append = [];
+    if (lista_dateDB.contains(currentDay)){
+    }else{
+      ind = ind + 2;
+      var date_to_insert = currentDay;
+      var steps_to_insert = int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
+      print('STEPS TO INSERT: '+steps_to_insert.toString());
+      print('IND: '+ind.toString());
+      await Provider.of<DatabaseRepository>(context, listen: false)
+      .insertData(DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+    }
+  }
+  }else{
+    int ind = 0;
+    List lista_dateDB = [];
+    
+    for(var i = 0; i < dati_week.length; i++){
+    
+    var currentElement = dati_week[i];
+    var currentElement_str = currentElement.toString().split(' ');
+    var day_string = currentElement_str[3];
+    print('DAY STRING: ' + day_string);
+    var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
+    
+    //List date_to_append = [];
+    //List steps_to_append = [];
+    if (lista_dateDB.contains(currentDay)){
+    }else{
+      ind = ind + 2;
+      var date_to_insert = currentDay;
+      var steps_to_insert = int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
+      print('STEPS TO INSERT: '+steps_to_insert.toString());
+      print('IND: '+ind.toString());
+      await Provider.of<DatabaseRepository>(context, listen: false)
+      .insertData(DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+    }
+  }
+  }}
 
 void displayCard(BuildContext context, passi) {
   showDialog(
@@ -1029,7 +1211,7 @@ void displayCard(BuildContext context, passi) {
       builder: (context) {
         return AlertDialog(
             title: Text("What does Yoda have to say?"),
-            content: (double.parse(passi.printPassi()) >= 1) &
+            content: (double.parse(passi.printPassi()) >= 0) &
                     (double.parse(passi.printPassi()) < 3000)
                 ? Text("testo 1")
                 : (double.parse(passi.printPassi()) >= 3000) &
@@ -1048,6 +1230,32 @@ void displayCard(BuildContext context, passi) {
             actions: <Widget>[
               ElevatedButton(
                   child: Text("Got it"),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 0, 105, 140),
+                  )),
+                  onPressed: () {
+                    //remove the dialog popup
+                    Navigator.of(context).pop();
+                  })
+            ]);
+      });
+}
+
+void displayCardUnhautorize(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text("What does Yoda have to say?"),
+            content: Text('No authorizaton to download data granted'),
+            actions: <Widget>[
+              ElevatedButton(
+                  child: Text("Got it"),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 0, 105, 140),
+                  )),
                   onPressed: () {
                     //remove the dialog popup
                     Navigator.of(context).pop();

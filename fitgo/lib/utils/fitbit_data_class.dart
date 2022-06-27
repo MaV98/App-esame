@@ -202,60 +202,7 @@ class fitbit_data_class {
 //fetch sleepdata
 
 
-//week steps
-    dynamic stepsData_7 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 7)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
 
-    lista_data.add(stepsData_7);
-
-    dynamic stepsData_6 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 6)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
-
-    lista_data.add(stepsData_6);
-
-    dynamic stepsData_5 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 5)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
-
-    lista_data.add(stepsData_5);
-
-    dynamic stepsData_4 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 4)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
-
-    lista_data.add(stepsData_4);
-
-    dynamic stepsData_3 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 3)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
-
-    lista_data.add(stepsData_3);
-
-    dynamic stepsData_2 =
-        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
-      date: DateTime.now().subtract(Duration(days: 2)),
-      userID: Strings.userID,
-      resource: fitbit_steps.type,
-    )) as List<FitbitActivityTimeseriesData>;
-
-    lista_data.add(stepsData_2);
 //fetch activitydata
     FitbitActivityDataManager fitbitActivityDataManager =
         FitbitActivityDataManager(
@@ -328,7 +275,6 @@ class fitbit_data_class {
 //fetch activitydata
 
 // fetch timeseries data
-
     //calories
     FitbitActivityTimeseriesDataManager fitbitCaloriesTimeseriesManager =
         FitbitActivityTimeseriesDataManager(
@@ -531,8 +477,71 @@ class fitbit_data_class {
             .fetch(fitbitactivityCaloriesTimeseriesApiUrl);
 
     lista_data.add(fitbitactivityCaloriesTimeseriesData_week);
-
 //fetch timeseries data
+
+  //week steps
+    dynamic stepsData_7 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 7)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_7);
+
+    dynamic stepsData_6 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 6)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_6);
+
+    dynamic stepsData_5 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 5)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_5);
+
+    dynamic stepsData_4 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 4)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_4);
+
+    dynamic stepsData_3 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 3)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_3);
+
+    dynamic stepsData_2 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 2)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_2);
+
+    dynamic stepsData_1 =
+        await fitbit_steps.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 1)),
+      userID: Strings.userID,
+      resource: fitbit_steps.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_data.add(stepsData_1);
 
     return lista_data;
   }

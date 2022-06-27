@@ -5,6 +5,8 @@ import 'package:fitgo/models/navBar.dart';
 import 'package:fitgo/models/passi.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
+import 'package:fitgo/screens/friendsPage.dart';
+import 'package:fitgo/screens/gestioneFriendsPage.dart';
 import 'package:fitgo/screens/scores.dart';
 //import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/shopPage.dart';
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
   int? index;
   String? usern;
   HomePage({Key? key, this.index, this.usern}) : super(key: key);
-  
+
   static const route = '/homepage';
   static const routename = 'Home';
   final dati = Dati();
@@ -31,7 +33,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('USERN: '+usern!);
+    print('USERN: ' + usern!);
     return ChangeNotifierProvider.value(
       value: dati,
       child: Scaffold(
@@ -50,12 +52,20 @@ class HomePage extends StatelessWidget {
       //print(passi.printPassi());
       //Future<List<dynamic>>lista = data.fetchData();
       //passi_tot.copy(lista.steps());
-      return TodayPage(passi_1: dati.printPassi(), cal: dati.printCalorie(), index:index, usern: usern);
-    } else if (page == 1)
-      return ScoresPage(
-        calorie: dati.printCalorie(), usern: usern
+      return TodayPage(
+          passi_1: dati.printPassi(),
+          cal: dati.printCalorie(),
+          index: index,
+          usern: usern);
+    } else if (page == 1){
+      return ScoresPage(calorie: dati.printCalorie(), usern: usern);
+    }else if (page == 2){
+      return GestioneFriendsPage();
+    }
+    else if (page == 3)
+      return ShopPage(
+        stepsCount: dati.returnStepsCount(),
       );
-    else if (page == 3) return ShopPage();
 
     return Container(
       color: Colors.green,
@@ -63,5 +73,4 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class Index{
-}
+class Index {}

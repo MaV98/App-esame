@@ -20,7 +20,9 @@ class Dati extends ChangeNotifier {
 
   //List<dynamic> get startEnd; // => null;
   List<dynamic> _activitydata = [];
-  dynamic _activityname = [];
+  List<dynamic> _activityname = [];
+  List<dynamic> _timeseriesdata = [];
+  dynamic _steps_count = 0;
 
   // void update(double newpassi){
   //   _passi = newpassi;
@@ -316,6 +318,28 @@ class Dati extends ChangeNotifier {
     return _activityname[index];
   }
   //fine metodi activity data
+
+  // metodi timeseries data
+  set timeseriesData(List<dynamic> newtimeseriesdata) {
+    _timeseriesdata = newtimeseriesdata;
+    notifyListeners();
+  }
+
+  dynamic selectElementTimeseries(index) {
+    return _timeseriesdata[index];
+  }
+  //fine metodi timeseries data
+
+  //metodo per salvare per poi passare il numero di volte che si fanno più di 15000 passi
+  set stepsCount(dynamic newvalue) {
+    _steps_count = newvalue;
+    notifyListeners();
+  }
+
+  dynamic returnStepsCount() {
+    return double.parse(_steps_count.toString());
+  }
+  //fine metodi per passare il dato
 }
 
 
