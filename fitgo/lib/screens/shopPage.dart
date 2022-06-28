@@ -51,10 +51,10 @@ class ShopPage extends StatelessWidget {
             ),
             Padding(
                 padding: EdgeInsets.fromLTRB(
-                  18,
+                  22,
                   0,
-                  18,
-                  18,
+                  22,
+                  22,
                 ),
                 child:
                     //SizedBox(
@@ -63,7 +63,7 @@ class ShopPage extends StatelessWidget {
                     //child:
                     ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 200),
+                      fixedSize: const Size(145, 200),
                       primary: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
@@ -90,10 +90,10 @@ class ShopPage extends StatelessWidget {
                 )),
             Padding(
                 padding: EdgeInsets.fromLTRB(
-                  18,
+                  22,
                   0,
-                  18,
-                  18,
+                  22,
+                  22,
                 ),
                 child:
                     //SizedBox(
@@ -102,7 +102,7 @@ class ShopPage extends StatelessWidget {
                     //child:
                     ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(155, 200),
+                      fixedSize: const Size(145, 200),
                       primary: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),

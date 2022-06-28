@@ -210,7 +210,8 @@ class LoginPage extends StatelessWidget {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomePage(index: pag1)));
+                                                        HomePage(index: pag1,
+                                                        usern: providerPC.retUsername())));
                                           },
                                           child: Text(
                                               'Continue without authorize'),
