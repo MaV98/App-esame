@@ -336,7 +336,10 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             // .insertData(DatiDB(1,dati[0],usern));
             return situation1(dati: dati);
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: Color.fromARGB(255, 0, 105, 140),
+            ));
           }
         });
   } else if ((index == 1) & (creat > 1)) {
@@ -444,6 +447,7 @@ class situation1 extends StatelessWidget {
           //builder: (context, dati,_){
           //return
           RefreshIndicator(
+        color: Color.fromARGB(255, 0, 105, 140),
         onRefresh: () async {
           List dati = await data1.fetchData();
           provider.passi = dati[0];
@@ -798,7 +802,7 @@ class situation1 extends StatelessWidget {
                       activityData.selectElementActivity(0);
                   if (today_activity_data.isEmpty) {
                   } else {
-                    dynamic activity_name = today_activity_data[0]
+                    dynamic activity_name = today_activity_data.last
                         .toString()
                         .split(',')[10]
                         .substring(6);
@@ -1076,7 +1080,7 @@ class situation2 extends StatelessWidget {
               Navigator.pushNamed(context, LoginPage.route);
             },
             child: Text('LogOut')),
-        Lottie.asset('assets/49993-search.json', width: 280, height: 280)
+        Lottie.asset('assets/49993-search.json', width: 260, height: 260)
       ]),
     );
 
@@ -1137,73 +1141,76 @@ Future<void> _addDataDB(context, dati, dati_week, usern) async {
   // final prov = Provider.of<Dati>(context);
   // dynamic passi_sett =
   //       prov.selectElementTimeseries(1);
-  
+
   print('DB addDataDB FUNCTION');
-  print('Lunghezza passi_settimana: '+dati_week.length.toString());
+  print('Lunghezza passi_settimana: ' + dati_week.length.toString());
   print('Dati immediati: ' + dati.toString());
   final userData = await Provider.of<DatabaseRepository>(context, listen: false)
-        .findAllData(usern);
-  
+      .findAllData(usern);
+
   print('LUNGHEZZA lista dati: ' + userData.length.toString());
 
   //List lista_dateDB = [];
-  
+
   //int ind = 0;
 
-  if (userData.isNotEmpty == true){
-    int ind = userData.length-1;
-    print('IND IF: '+ind.toString());
+  if (userData.isNotEmpty == true) {
+    int ind = userData.length - 1;
+    print('IND IF: ' + ind.toString());
     List lista_dateDB = [];
-    for (var j = 0; j < userData.length; j++){ 
+    for (var j = 0; j < userData.length; j++) {
       lista_dateDB.add(userData[j].retDate());
     }
-    for(var i = 0; i < dati_week.length; i++){
-    
-    var currentElement = dati_week[i];
-    var currentElement_str = currentElement.toString().split(' ');
-    var day_string = currentElement_str[3];
-    print('DAY STRING: ' + day_string);
-    var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
-    
-    //List date_to_append = [];
-    //List steps_to_append = [];
-    if (lista_dateDB.contains(currentDay)){
-    }else{
-      ind = ind + 2;
-      var date_to_insert = currentDay;
-      var steps_to_insert = int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
-      print('STEPS TO INSERT: '+steps_to_insert.toString());
-      print('IND: '+ind.toString());
-      await Provider.of<DatabaseRepository>(context, listen: false)
-      .insertData(DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+    for (var i = 0; i < dati_week.length; i++) {
+      var currentElement = dati_week[i];
+      var currentElement_str = currentElement.toString().split(' ');
+      var day_string = currentElement_str[3];
+      print('DAY STRING: ' + day_string);
+      var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
+
+      //List date_to_append = [];
+      //List steps_to_append = [];
+      if (lista_dateDB.contains(currentDay)) {
+      } else {
+        ind = ind + 2;
+        var date_to_insert = currentDay;
+        var steps_to_insert =
+            int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
+        print('STEPS TO INSERT: ' + steps_to_insert.toString());
+        print('IND: ' + ind.toString());
+        await Provider.of<DatabaseRepository>(context, listen: false)
+            .insertData(
+                DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+      }
     }
-  }
-  }else{
+  } else {
     int ind = 0;
     List lista_dateDB = [];
-    
-    for(var i = 0; i < dati_week.length; i++){
-    
-    var currentElement = dati_week[i];
-    var currentElement_str = currentElement.toString().split(' ');
-    var day_string = currentElement_str[3];
-    print('DAY STRING: ' + day_string);
-    var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
-    
-    //List date_to_append = [];
-    //List steps_to_append = [];
-    if (lista_dateDB.contains(currentDay)){
-    }else{
-      ind = ind + 2;
-      var date_to_insert = currentDay;
-      var steps_to_insert = int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
-      print('STEPS TO INSERT: '+steps_to_insert.toString());
-      print('IND: '+ind.toString());
-      await Provider.of<DatabaseRepository>(context, listen: false)
-      .insertData(DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+
+    for (var i = 0; i < dati_week.length; i++) {
+      var currentElement = dati_week[i];
+      var currentElement_str = currentElement.toString().split(' ');
+      var day_string = currentElement_str[3];
+      print('DAY STRING: ' + day_string);
+      var currentDay = int.parse(day_string.replaceAll(RegExp('[^0-9]+'), ''));
+
+      //List date_to_append = [];
+      //List steps_to_append = [];
+      if (lista_dateDB.contains(currentDay)) {
+      } else {
+        ind = ind + 2;
+        var date_to_insert = currentDay;
+        var steps_to_insert =
+            int.parse(currentElement_str[8].replaceAll(RegExp('[^0-9]+'), ''));
+        print('STEPS TO INSERT: ' + steps_to_insert.toString());
+        print('IND: ' + ind.toString());
+        await Provider.of<DatabaseRepository>(context, listen: false)
+            .insertData(
+                DatiDB(ind, 1, dati, steps_to_insert, date_to_insert, usern));
+      }
     }
   }
-  }}
+}
 
 void displayCard(BuildContext context, passi) {
   showDialog(

@@ -229,11 +229,16 @@ class _CartPageState extends State<CartPage> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 22))
-                                  : Text(
-                                      'Final price: ${(sum - 5 * steps_count.toInt()).toStringAsFixed(3)}€',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 22)),
+                                  : sum - 5 * steps_count.toInt() >= 0
+                                      ? Text(
+                                          'Final price: ${(sum - 5 * steps_count.toInt()).toStringAsFixed(3)}€',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 22))
+                                      : Text('Final price: 0.0€',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 22)),
                               SizedBox(
                                 height: 30,
                               ),

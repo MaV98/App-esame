@@ -27,7 +27,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     print('${WeatherPage.routename} built');
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Color.fromARGB(255, 120, 202, 210),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Weather'),
@@ -72,7 +72,7 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   Widget buildweatherCard() => Card(
-        shadowColor: Colors.lightBlue,
+        shadowColor: Color.fromARGB(255, 120, 202, 210),
         elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),

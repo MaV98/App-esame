@@ -13,6 +13,7 @@ import 'package:fitgo/screens/profilePage.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 //import 'package:fitgo/screens/trainingPage.dart';
 import 'package:fitgo/screens/shopPage.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -48,11 +49,11 @@ class BottomNavBar extends StatelessWidget {
           selectedColor: Color.fromARGB(255, 0, 105, 140),
         ),
 
-        // Training
+        // Database
         SalomonBottomBarItem(
-          icon: Icon(Icons.sports_gymnastics),
-          title: Text("Training"),
-          selectedColor: Color.fromARGB(255, 33, 150, 243),
+          icon: Icon(MdiIcons.database),
+          title: Text("Database"),
+          selectedColor: Color.fromARGB(255, 119, 76, 96),
         ),
 
         // Friends

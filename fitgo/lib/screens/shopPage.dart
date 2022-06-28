@@ -45,7 +45,7 @@ class ShopPage extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
                   : Text(
-                      "In total you have reached the 15000 steps goal ${stepsCount.toInt()} times this week. So you have ${5 * stepsCount.toInt()} € discount that you can use to buy what you want! Explore our store!",
+                      "In total you have reached the 15000 steps goal ${stepsCount.toInt()} times this week. So you have ${5 * stepsCount.toInt()}€ discount that you can use to buy what you want! Explore our store!",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),

@@ -39,7 +39,7 @@ class DevicePage extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     Color.fromARGB(255, 0, 105, 140),
-                    Color.fromARGB(255, 65, 212, 238)
+                    Color.fromARGB(255, 120, 202, 210)
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
