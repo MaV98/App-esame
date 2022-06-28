@@ -24,6 +24,7 @@ class FavoriteCryptoPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 30, 32, 25),
         title: Text(FavoriteCryptoPage.routename),
         actions: [
           //This action is used to navigate to the Favorite Page.
@@ -84,6 +85,13 @@ class FavoriteCryptoPage extends StatelessWidget {
                                                 'If you want to modify this item please go to the cart, hold down the item and edit the order. Otherwise remove the item from the cart and reprocess with the order'),
                                             actions: [
                                               ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(
+                                                  Color.fromARGB(
+                                                      255, 30, 32, 25),
+                                                )),
                                                 onPressed: () =>
                                                     Navigator.of(context)
                                                         .pop(false),
@@ -129,12 +137,26 @@ class FavoriteCryptoPage extends StatelessWidget {
                                             ),
                                             actions: [
                                               ElevatedButton(
+                                                  style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                    Color.fromARGB(
+                                                        255, 30, 32, 25),
+                                                  )),
                                                   onPressed: () {
                                                     Navigator.of(context)
                                                         .pop(true);
                                                   },
                                                   child: const Text("Confirm")),
                                               ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(
+                                                  Color.fromARGB(
+                                                      255, 30, 32, 25),
+                                                )),
                                                 onPressed: () =>
                                                     Navigator.of(context)
                                                         .pop(false),
@@ -153,10 +175,20 @@ class FavoriteCryptoPage extends StatelessWidget {
                                           'Are you sure you want to remove this item from favourites?'),
                                       actions: [
                                         ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                              Color.fromARGB(255, 30, 32, 25),
+                                            )),
                                             onPressed: () =>
                                                 Navigator.of(context).pop(true),
                                             child: const Text("Yes")),
                                         ElevatedButton(
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                            Color.fromARGB(255, 30, 32, 25),
+                                          )),
                                           onPressed: () =>
                                               Navigator.of(context).pop(false),
                                           child: const Text("No"),
@@ -170,7 +202,10 @@ class FavoriteCryptoPage extends StatelessWidget {
                             child: ListTile(
                               leading: Image.network(crypto.image),
                               subtitle: Text('Price: ${crypto.price}€'),
-                              trailing: Icon(MdiIcons.arrowLeftRightBold),
+                              trailing: Icon(
+                                MdiIcons.arrowLeftRightBold,
+                                color: Color.fromARGB(255, 30, 32, 25),
+                              ),
                               title: Text(crypto.name.toUpperCase()),
                             ),
                             onDismissed: (DismissDirection direction) async {

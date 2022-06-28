@@ -58,6 +58,7 @@ class _CryptoPageState extends State<CryptoPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 30, 32, 25),
         title: Text('Crypto'),
         actions: [
           //This action is used to navigate to the Favorite Page.
@@ -339,15 +340,20 @@ class _CryptoPageState extends State<CryptoPage> {
                   },
                   icon: Icon(Icons.question_mark_rounded),
                   //icon: Icon(MdiIcons.commentQuestion),
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 30, 32, 25),
                   iconSize: 40,
                 ) //MdiIcons.bitcoin,
                 ),
           ),
         ),
         ElevatedButton(
-            onPressed: () => _validateAndSearch(context),
-            child: Text('Search')),
+          child: Text("Search"),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+            Color.fromARGB(255, 30, 32, 25),
+          )),
+          onPressed: () => _validateAndSearch(context),
+        )
       ],
     );
   } // _buildForm
@@ -433,7 +439,7 @@ class _CryptoPageState extends State<CryptoPage> {
 Future<void> _showDescription(context) async {
   return showDialog<void>(
     //context: context,
-    barrierDismissible: true, // user can not tap the button!
+    barrierDismissible: true,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Crypto id'),
@@ -444,7 +450,7 @@ Future<void> _showDescription(context) async {
                 text: TextSpan(children: [
                   TextSpan(
                     text:
-                        'Search for a crypto and then add it to the favourite page. You can find the crypto id looking at the first column of the ',
+                        'Search for a crypto and then add it to your favourites. You can find the crypto id looking at the first column of the ',
                     style: TextStyle(color: Colors.black),
                   ),
                   TextSpan(
@@ -461,12 +467,16 @@ Future<void> _showDescription(context) async {
           ),
         ),
         actions: <Widget>[
-          TextButton(
-            child: const Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          ElevatedButton(
+              child: Text("Ok"),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                Color.fromARGB(255, 30, 32, 25),
+              )),
+              onPressed: () {
+                //remove the dialog popup
+                Navigator.of(context).pop();
+              })
         ],
       );
     },

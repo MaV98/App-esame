@@ -60,14 +60,14 @@ class BottomNavBar extends StatelessWidget {
         SalomonBottomBarItem(
           icon: Icon(Icons.people),
           title: Text("Friends"),
-          selectedColor: Color.fromARGB(255, 33, 150, 243),
+          selectedColor: Color.fromARGB(255, 255, 186, 8),
         ),
 
         // Shop
         SalomonBottomBarItem(
-          icon: Icon(Icons.shop),
+          icon: Icon(MdiIcons.shopping),
           title: Text("Shop"),
-          selectedColor: Color.fromARGB(255, 33, 150, 243),
+          selectedColor: Color.fromARGB(255, 30, 32, 25),
         ),
       ],
     ));

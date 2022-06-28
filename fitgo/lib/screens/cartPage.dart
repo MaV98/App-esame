@@ -9,6 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:fitgo/cryptoAPI/widgets/formTiles.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shimmer/shimmer.dart';
+
+import 'package:slide_to_act/slide_to_act.dart';
 
 class CartPage extends StatefulWidget {
   CartPage({Key? key}) : super(key: key);
@@ -36,6 +39,7 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 30, 32, 25),
           title: Text('Your cart'),
         ),
         body: Center(
@@ -102,6 +106,13 @@ class _CartPageState extends State<CartPage> {
                                                       'Are you sure you want to remove this item from the cart?'),
                                                   actions: [
                                                     ElevatedButton(
+                                                        style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all(
+                                                          Color.fromARGB(
+                                                              255, 30, 32, 25),
+                                                        )),
                                                         onPressed: () =>
                                                             Navigator.of(
                                                                     context)
@@ -109,6 +120,13 @@ class _CartPageState extends State<CartPage> {
                                                         child:
                                                             const Text('Yes')),
                                                     ElevatedButton(
+                                                      style: ButtonStyle(
+                                                          backgroundColor:
+                                                              MaterialStateProperty
+                                                                  .all(
+                                                        Color.fromARGB(
+                                                            255, 30, 32, 25),
+                                                      )),
                                                       onPressed: () =>
                                                           Navigator.of(context)
                                                               .pop(false),
@@ -179,6 +197,13 @@ class _CartPageState extends State<CartPage> {
                                                       'Are you sure you want to remove this item from the cart?'),
                                                   actions: [
                                                     ElevatedButton(
+                                                        style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all(
+                                                          Color.fromARGB(
+                                                              255, 30, 32, 25),
+                                                        )),
                                                         onPressed: () =>
                                                             Navigator.of(
                                                                     context)
@@ -186,6 +211,13 @@ class _CartPageState extends State<CartPage> {
                                                         child:
                                                             const Text('Yes')),
                                                     ElevatedButton(
+                                                      style: ButtonStyle(
+                                                          backgroundColor:
+                                                              MaterialStateProperty
+                                                                  .all(
+                                                        Color.fromARGB(
+                                                            255, 30, 32, 25),
+                                                      )),
                                                       onPressed: () =>
                                                           Navigator.of(context)
                                                               .pop(false),
@@ -244,41 +276,74 @@ class _CartPageState extends State<CartPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SwipeableButtonView(
-                                    buttonText: 'SLIDE TO PAYMENT',
-                                    buttonWidget: Container(
-                                      child: Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        //MdiIcons.arrowRightThick,
-                                        color: Colors.grey,
-                                        size: 50,
-                                      ),
+                                child: SlideAction(
+                                  //reversed: false,
+                                  sliderRotate: false,
+                                  outerColor: Colors.green,
+                                  innerColor: Colors.white,
+                                  onSubmit: () {
+                                    Future.delayed(
+                                        Duration(seconds: 1),
+                                        () => Navigator.pushReplacementNamed(
+                                            context, SuccessPage.route,
+                                            arguments: {'a': a})
+
+                                        //_key.currentState.reset(),
+                                        );
+                                  },
+                                  alignment: Alignment.center,
+                                  child: Shimmer.fromColors(
+                                    baseColor: Colors.black26,
+                                    highlightColor: Colors.black,
+                                    child: Text(
+                                      'SLIDE TO PAY',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    activeColor: Colors.green,
-                                    isFinished: isFinished,
-                                    onWaitingProcess: () {
-                                      Future.delayed(Duration(seconds: 3), () {
-                                        setState(() {
-                                          isFinished = true;
-                                        });
-                                      });
-                                    },
-                                    onFinish: () {
-                                      Navigator.pushReplacementNamed(
-                                          context, SuccessPage.route,
-                                          arguments: {'a': a});
-                                    }
-                                    //     () async {
-                                    //   await Navigator.push(
-                                    //       context,
-                                    //       PageTransition(
-                                    //           type: PageTransitionType.fade,
-                                    //           child: SuccessPage()));
-                                    //   setState(() {
-                                    //     isFinished = false;
-                                    //   });
-                                    // },
-                                    ),
+                                  ),
+
+                                  sliderButtonIcon: Icon(
+                                    MdiIcons.chevronRight,
+                                    //MdiIcons.arrowRightThick,
+                                    color: Color.fromARGB(255, 30, 32, 25),
+                                    //size: 35,
+                                  ),
+                                ),
+
+                                // SwipeableButtonView(
+                                //     buttonText: 'SLIDE TO PAYMENT',
+                                //     buttontextstyle: TextStyle(
+                                //         fontSize: 20,
+                                //         color: Colors.white,
+                                //         fontWeight: FontWeight.bold),
+                                //     buttonWidget: Container(
+                                //       child: Icon(
+                                //         MdiIcons.chevronRight,
+                                //         //MdiIcons.arrowRightThick,
+                                //         color: Color.fromARGB(255, 30, 32, 25),
+                                //         size: 50,
+                                //       ),
+                                //     ),
+                                //     activeColor: Colors.green,
+                                //     isFinished: isFinished,
+                                //     onWaitingProcess: () {
+                                //       Future.delayed(Duration(seconds: 3), () {
+                                //         setState(() {
+                                //           isFinished = true;
+                                //         });
+                                //       });
+                                //     },
+                                //     onFinish: () {
+                                //       Navigator.pushReplacementNamed(
+                                //           context, SuccessPage.route,
+                                //           arguments: {'a': a});
+                                //     }
+                                //),
+                              ),
+                              SizedBox(
+                                height: 45,
                               )
                             ],
                           )
@@ -331,11 +396,25 @@ class _CartPageState extends State<CartPage> {
                                                 'Are you sure you want to remove this item from the cart?'),
                                             actions: [
                                               ElevatedButton(
+                                                  style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                    Color.fromARGB(
+                                                        255, 30, 32, 25),
+                                                  )),
                                                   onPressed: () =>
                                                       Navigator.of(context)
                                                           .pop(true),
                                                   child: const Text('Yes')),
                                               ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(
+                                                  Color.fromARGB(
+                                                      255, 30, 32, 25),
+                                                )),
                                                 onPressed: () =>
                                                     Navigator.of(context)
                                                         .pop(false),
@@ -406,11 +485,25 @@ class _CartPageState extends State<CartPage> {
                                                 'Are you sure you want to remove this item from the cart?'),
                                             actions: [
                                               ElevatedButton(
+                                                  style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                    Color.fromARGB(
+                                                        255, 30, 32, 25),
+                                                  )),
                                                   onPressed: () =>
                                                       Navigator.of(context)
                                                           .pop(true),
                                                   child: const Text('Yes')),
                                               ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(
+                                                  Color.fromARGB(
+                                                      255, 30, 32, 25),
+                                                )),
                                                 onPressed: () =>
                                                     Navigator.of(context)
                                                         .pop(false),
@@ -492,6 +585,10 @@ class _CartPageState extends State<CartPage> {
               ]),
               actions: [
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                      Color.fromARGB(255, 30, 32, 25),
+                    )),
                     onPressed: (() {
                       i.price_chose = i.price * double.parse(Controller.text);
                       setState(() {});
@@ -499,6 +596,10 @@ class _CartPageState extends State<CartPage> {
                     }),
                     child: const Text("Confirm")),
                 ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 30, 32, 25),
+                  )),
                   onPressed: () => Navigator.of(context).pop(false),
                   child: const Text('Undo'),
                 ),

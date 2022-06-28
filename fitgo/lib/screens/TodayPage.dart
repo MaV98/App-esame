@@ -1063,7 +1063,7 @@ class situation2 extends StatelessWidget {
           child: Text(
             'Data download permission not granted. You can still visit the store, but you will not get any discount. If you want to see your activity please log out and then log back in by authorizing the application',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 17),
           ),
         ),
         ElevatedButton(

@@ -13,7 +13,7 @@ class ShopPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFF2196F3),
+          backgroundColor: Color.fromARGB(255, 30, 32, 25),
           title: Text('Shop'),
           actions: [
             //This action is used to navigate to the Cart Page
@@ -31,7 +31,7 @@ class ShopPage extends StatelessWidget {
               margin: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: Color.fromARGB(255, 199, 205, 210), width: 1),
+                    color: Color.fromARGB(255, 30, 32, 25), width: 1),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   new BoxShadow(

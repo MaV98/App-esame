@@ -63,6 +63,7 @@ class _StorePageState extends State<StorePage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 30, 32, 25),
         title: Text('Clothing'),
         actions: [
           //This action is used to navigate to the Favorite Page.
@@ -425,15 +426,20 @@ class _StorePageState extends State<StorePage> {
                   },
                   icon: Icon(Icons.question_mark_rounded),
                   //icon: Icon(MdiIcons.commentQuestion),
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 30, 32, 25),
                   iconSize: 40,
                 ) //MdiIcons.bitcoin,
                 ),
           ),
         ),
         ElevatedButton(
-            onPressed: () => _validateAndSearch(context),
-            child: Text('Search')),
+          child: Text("Search"),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+            Color.fromARGB(255, 30, 32, 25),
+          )),
+          onPressed: () => _validateAndSearch(context),
+        )
       ],
     );
   } // _buildForm
@@ -548,17 +554,21 @@ Future<void> _showDescription(context) async {
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('Search for an item and then add it to the favourite page.'),
+              Text('Search for an item and then add it to your favourites.'),
             ],
           ),
         ),
         actions: <Widget>[
-          TextButton(
-            child: const Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          ElevatedButton(
+              child: Text("Ok"),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                Color.fromARGB(255, 30, 32, 25),
+              )),
+              onPressed: () {
+                //remove the dialog popup
+                Navigator.of(context).pop();
+              })
         ],
       );
     },
@@ -571,8 +581,8 @@ Future<Store?> _fetchStore_s(int id) async {
   String _baseUrl = "https://asos2.p.rapidapi.com/products/v3/detail?id=$id";
   const Map<String, String> _headers = {
     //"x-rapidapi-key": "e31897ad6bmsh0107bb7ae9cd6f1p13f2acjsna4db557e4490",
-    //"x-rapidapi-key": "fc970a41cfmshadf736207c8cbcfp1e119fjsn94ccf9dac26b",
-    "x-rapidapi-key": "cb6722e331mshbd7ea41c2373684p10db9bjsn6383e859c5b8",
+    "x-rapidapi-key": "fc970a41cfmshadf736207c8cbcfp1e119fjsn94ccf9dac26b",
+    //"x-rapidapi-key": "cb6722e331mshbd7ea41c2373684p10db9bjsn6383e859c5b8",
     "x-rapidapi-host": "asos2.p.rapidapi.com",
   };
   Uri uri = Uri.parse(
