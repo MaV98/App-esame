@@ -364,10 +364,12 @@ class _situazione2State extends State<Fpage2> {
           final sp = await SharedPreferences.getInstance();
           final usern = sp.getString('UserName');
           int query = await dbQuery(context,usern);
-          getUserData(usern);
           int new_tot = _UserData + query;
           int new_istant = new_tot + passi_istant;
           refreshUser(usern, new_istant, new_tot);
+          getUsersList();
+          getUserData(usern);
+
           },
           child: 
       SafeArea(

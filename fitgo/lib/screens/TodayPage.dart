@@ -332,6 +332,7 @@ Widget selectSituation(BuildContext context, index, creat, data1, usern) {
             provider.weekSteps = passi_settimana;
 
             _addDataDB(context, dati[0], passi_settimana, usern);
+            setScoreIndex(context);
             // Provider.of<DatabaseRepository>(context,listen:false)
             // .insertData(DatiDB(1,dati[0],usern));
             return situation1(dati: dati);
@@ -515,6 +516,8 @@ class situation1 extends StatelessWidget {
           provider.timeseriesData = dati_timeseries;
 
           int steps_count = 0;
+          setScoreIndex(context);
+          
           for (var i = 0; i < dati_timeseries_steps.length; i++) {
             var currentElement = dati_timeseries_steps[i];
             var currentElement_value = double.parse(
@@ -1269,4 +1272,9 @@ void displayCardUnhautorize(BuildContext context) {
                   })
             ]);
       });
+}
+
+void setScoreIndex(context) async{
+  var sp = await SharedPreferences.getInstance();
+  sp.setInt('Scores', 1);
 }
