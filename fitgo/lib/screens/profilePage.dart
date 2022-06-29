@@ -1,13 +1,16 @@
+import 'package:fitgo/models/passi.dart';
+import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:app_demo/screens/loginPage.dart';
 
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
-
   static const route = '/profile/';
   static const routename = 'ProfilePage';
   // final utente= User();
@@ -18,13 +21,29 @@ class ProfilePage extends StatelessWidget {
     Map<dynamic, dynamic> account_data =
         ModalRoute.of(context)!.settings.arguments! as Map<String, dynamic>;
 
+
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: true,
         backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Profile'),
       ),
-      body: ListView(children: [
+      body: Consumer<Dati>(builder: (context, heartData, child) {
+                        dynamic todayheartdata = heartData.subList(192, null);
+                        double min_cardio = double.parse("${todayheartdata[22]
+                    .substring(0, todayheartdata[22].toString().length - 1).toString()}");
+                        return
+      
+      FutureBuilder<List<dynamic>>(
+        initialData: null,
+          future: dbQuery(context),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final dati_db = snapshot.data as List;
+              int passi_ieri = dati_db[0];
+              int passi_tot = dati_db[1];
+              return
+      ListView(children: [
         Column(
           children: [
             Stack(
@@ -82,7 +101,108 @@ class ProfilePage extends StatelessWidget {
                           'Memeber since ${account_data['account_data'].printMemberSince()}',
                           style: TextStyle(fontSize: 15))
                     ],
-                  )
+                  ),
+            Row(
+              children: <Widget>[
+                FutureBuilder<Color>(
+                  initialData: null,
+                  future: _defineColor(passi_ieri),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return
+                        IconButton(
+                          icon: const Icon(Icons.ten_k),
+                          color: snapshot.data,
+                          iconSize: 20.0,
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Like an AT-AT',textAlign: TextAlign.center),
+                                content: Text('You have walked for 15k steps in one day! Impressive! Be careful not to trip over any cables'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                            },
+                            child: Text("Ok"),
+                              )]
+                            ));
+                            //Card(child: Text('You walked 10k steps'),);
+                          });}
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          }),
+                FutureBuilder<Color>(
+                  initialData: null,
+                  future: _defineColor1(passi_tot),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return
+                        IconButton(
+                          icon: const Icon(Icons.king_bed),
+                          color: snapshot.data,
+                          iconSize: 20.0,
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Unstoppable',textAlign: TextAlign.center),
+                                content: Text("You have reached 100K steps!! Here's the king's bed, rest."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                            },
+                            child: Text("Ok"),
+                              )]
+                            ));
+                            //Card(child: Text('You walked 10k steps'),);
+                          });}
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          }),
+                
+                //  Consumer<Dati>(builder: (context, heartData, child) {
+                //         dynamic todayheartdata = heartData.subList(192, null);
+                //         double min_cardio = double.parse(todayheartdata[22]
+                //     .substring(0, todayheartdata[22].toString().length - 1));
+                //         return
+                
+                FutureBuilder<Color>(
+                  initialData: null,
+                  future: _defineColor2(min_cardio),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      
+                        return
+                        IconButton(
+                          icon: const Icon(Icons.shower),
+                          color: snapshot.data,
+                          iconSize: 20.0,
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Cardio Master',textAlign: TextAlign.center),
+                                content: Text("Enough cardio for today! Now take a shower."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                            },
+                            child: Text("Ok"),
+                              )]
+                            ));
+                            
+                          });}
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          }),
+              ],)
           ],
         ),
         ListTile(
@@ -197,8 +317,75 @@ class ProfilePage extends StatelessWidget {
               ? Text('Data not available')
               : Text(account_data['account_data'].printAmbassador()),
         ),
-      ]),
-    );
+      ]);}else{
+        return Center(child: CircularProgressIndicator());
+      }});
+  }));
   } //build
 
+
+Future<Color> _defineColor(passi)async {
+    final sp = await SharedPreferences.getInstance();
+    if (passi >= 15000){
+      
+      sp.setInt('Badge1', 1);
+      return const Color.fromARGB(255, 66, 165, 245);
+    }else if (sp.getInt('Badge1') == 1){
+      return const Color.fromARGB(255, 66, 165, 245);
+    }else{
+      return const Color.fromARGB(150, 50, 50, 50);
+    }
+  }
+
+  Future<Color> _defineColor1(passi)async {
+    final sp = await SharedPreferences.getInstance();
+    if (passi >= 100000){
+      
+      sp.setInt('Badge2', 1);
+      return Color.fromARGB(255, 243, 218, 37);
+    }else if (sp.getInt('Badge2') == 1){
+      return const Color.fromARGB(255, 243, 218, 37);
+    }else{
+      return const Color.fromARGB(150, 50, 50, 50);
+    }
+  }
+
+  Future<Color> _defineColor2(min)async {
+    final sp = await SharedPreferences.getInstance();
+    if (min >= 50){
+      
+      sp.setInt('Badge3', 1);
+      return Color.fromARGB(255, 197, 44, 6);
+    }else if (sp.getInt('Badge2') == 1){
+      return const Color.fromARGB(255, 197, 44, 6);
+    }else{
+      return const Color.fromARGB(150, 50, 50, 50);
+    }
+  }
+
+
+
+Future<List<dynamic>> dbQuery(context) async {
+  final sp = await SharedPreferences.getInstance();
+  String? usern = sp.getString('UserName');
+    final dati = await Provider.of<DatabaseRepository>(context, listen: false)
+        .findAllData(usern!);
+    List<dynamic> to_plot = [];
+    List<int> passi = [];
+    
+    int passi_tot = 0;
+    for (var i = dati.length - 1; i >= dati.length - 7; i--) {
+      int to_add = dati[i].passi_week ~/10;
+      passi_tot = passi_tot + to_add;
+    }
+    int passi_ieri = dati[dati.length-1].passi_week;
+    
+    to_plot.add(passi_ieri);
+    to_plot.add(passi_tot);
+    
+    // print('lunghezza lista db: '+dati.length.toString());
+    // print('Passi: '+dati[7].passi_week.toString());
+    // print('Date: '+dati[0].date_steps.toString());
+    return to_plot;
+  }
 } //ProfilePage

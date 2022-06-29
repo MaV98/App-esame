@@ -52,7 +52,9 @@ class ScoresPage extends StatelessWidget {
             prov.currentFriends = sel;
             return Consumer<IndicePag>(builder: (context, currentIndex, _) {
               int sel = currentIndex.setFriends();
-              int pag = currentIndex.setIndex();
+              currentIndex.currentIndex = 1;
+              int index = currentIndex.setIndex();
+              print('Pag: '+index.toString());
               return
             
     Scaffold(
@@ -65,7 +67,7 @@ class ScoresPage extends StatelessWidget {
             await deleteAllData(context,usern);
             sp.setInt('Scores', 0);
             Navigator.of(context).
-              push(MaterialPageRoute(builder: (context)=>HomePage(index: pag, usern:usern)));
+              push(MaterialPageRoute(builder: (context)=>HomePage(index: index, usern:usern)));
           }, 
             icon: Icon(
               Icons.delete_forever,

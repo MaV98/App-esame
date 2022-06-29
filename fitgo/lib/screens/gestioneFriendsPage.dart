@@ -285,9 +285,9 @@ class Fpage1 extends StatelessWidget {
                                 // Navigator.popAndPushNamed(
                                 //     context, GestioneFriendsPage.route);
                                 // final prov_page = Provider.of<NavBar>(context, listen: false);
-                                int pag = pagina.setIndex();
+                                int index = pagina.setIndex();
                                 Navigator.of(context).
-                                  push(MaterialPageRoute(builder: (context)=>HomePage(index: pag, usern:usern)));
+                                  push(MaterialPageRoute(builder: (context)=>HomePage(index: index, usern:usern)));
                                 //Navigator.of(context).pushNamed(HomePage.route);
                                 //Navigator.pop(context);
                                 //return selectSituation(context, sel),
@@ -334,7 +334,7 @@ class _situazione2State extends State<Fpage2> {
     Consumer<IndicePag>(builder: (context, value, _){
       return
     Scaffold(
-      appBar: AppBar(title: Text('Situation2'),
+      appBar: AppBar(title: Text('Classification'),
       backgroundColor: Color.fromARGB(255, 255, 186, 8),
       automaticallyImplyLeading: false,
       actions: <Widget>[
@@ -346,9 +346,9 @@ class _situazione2State extends State<Fpage2> {
           deleteUser(usern);
           getUsersList();
           //Navigator.popAndPushNamed(context, GestioneFriendsPage.route);
-          final pag = value.setIndex();
+          final index = value.setIndex();
           Navigator.of(context).
-          push(MaterialPageRoute(builder: (context)=>HomePage(index: pag, usern:usern)));
+          push(MaterialPageRoute(builder: (context)=>HomePage(index: index, usern:usern)));
         }, 
         icon: Icon(
           Icons.logout,

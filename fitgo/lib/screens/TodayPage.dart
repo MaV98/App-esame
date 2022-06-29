@@ -1112,7 +1112,9 @@ void _toDevicePage(BuildContext context, dati_device) {
       arguments: {'device_data': dati_device}); //, 'account_data': dati_account
 }
 
-void _toProfilePage(BuildContext context, dati_account) {
+void _toProfilePage(BuildContext context, dati_account) async{
+  var sp = await SharedPreferences.getInstance();
+  String? usern = sp.getString('Username');
   Navigator.pushNamed(context, '/profile/',
       arguments: {'account_data': dati_account});
 }
