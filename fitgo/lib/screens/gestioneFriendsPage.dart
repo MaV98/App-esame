@@ -12,6 +12,7 @@ import 'package:fitgo/utils/fitbit_data_class.dart';
 import 'package:fitgo/views/classifica.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -143,10 +144,11 @@ class GestioneFriendsPage extends StatelessWidget {
               dynamic sel = currentFrends.setFriends();
               //dynamic usern = indice.setUserName();
               return Scaffold(
-                // appBar: AppBar(
-                //   backgroundColor: Color.fromARGB(255, 255, 186, 8),
-                //   title: Text('Friends Page'),
-                //   automaticallyImplyLeading: false,
+                //appBar: AppBar(
+                //backgroundColor: Color.fromARGB(255, 255, 186, 8),
+                // title: Text('Friends Page'),
+                //  automaticallyImplyLeading: false,
+                //,
                 //   actions: <Widget>[
                 //     IconButton(
                 //         onPressed: () async {
@@ -223,7 +225,6 @@ class GestioneFriendsPage extends StatelessWidget {
   // );
 }
 
-
 class Fpage1 extends StatelessWidget {
   //static const route = '/fpage1';
   //static const routename = 'FriendsPage1';
@@ -238,79 +239,109 @@ class Fpage1 extends StatelessWidget {
     print('situazione1');
     var prov = Provider.of<IndicePag>(context);
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Situation1'),
-      //   automaticallyImplyLeading: false,
-      // ),
-      body: Consumer<IndicePag>(builder: (context, pagina,_){
-        return
-      Center(
-        child: ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-            Color.fromARGB(255, 255, 186, 8),
-          )),
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                      height: 200,
-                      child: Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                              20,
-                              0,
-                              20,
-                              10,
-                            ),
-                            child: Text(
-                                'By joining the community you agree that your data relavively to your daily steps will be shared with third part entities'),
-                          ),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 255, 186, 8),
-                              )),
-                              onPressed: () async {
-                                final sp =
-                                    await SharedPreferences.getInstance();
-                                sp.setInt('Friends', 1);
-                                final usern = sp.getString('UserName');
-                                uploadUser(context,usern);
-
-                                // Navigator.popAndPushNamed(
-                                //     context, GestioneFriendsPage.route);
-                                // final prov_page = Provider.of<NavBar>(context, listen: false);
-                                int pag = pagina.setIndex();
-                                Navigator.of(context).
-                                  push(MaterialPageRoute(builder: (context)=>HomePage(index: pag, usern:usern)));
-                                //Navigator.of(context).pushNamed(HomePage.route);
-                                //Navigator.pop(context);
-                                //return selectSituation(context, sel),
-                              },
-                              child: Text('Join'))
-                        ],
-                      )));
-                });
-          },
-          child: Text('Join the community!'),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 255, 186, 8),
+          title: Text('Friends'),
+          automaticallyImplyLeading: false,
         ),
-      );}
-    ));
+        body: Consumer<IndicePag>(builder: (context, pagina, _) {
+          return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Container(
+                padding: EdgeInsets.all(15),
+                margin: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromARGB(255, 255, 186, 8), width: 1),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                child: Text(
+                    'Share the number of your steps with your friends, challenge them, climb the leaderboard and keep fit!',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
+
+            // Padding(
+            // padding: const EdgeInsets.all(15.0),
+            // child: Text(
+            //   'Share the number of your steps with your friends, challenge them, climb the leaderboard and keep fit!',
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(fontSize: 17),
+            // ),
+            //),
+
+            Lottie.network(
+                'https://assets5.lottiefiles.com/packages/lf20_ghg0pifn.json'),
+
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                Color.fromARGB(255, 255, 186, 8),
+              )),
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                          height: 200,
+                          child: Center(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  20,
+                                  0,
+                                  20,
+                                  10,
+                                ),
+                                child: Text(
+                                    'By joining the community you agree that your data relavively to your daily steps will be shared with third part entities'),
+                              ),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                    Color.fromARGB(255, 255, 186, 8),
+                                  )),
+                                  onPressed: () async {
+                                    final sp =
+                                        await SharedPreferences.getInstance();
+                                    sp.setInt('Friends', 1);
+                                    final usern = sp.getString('UserName');
+                                    uploadUser(context, usern);
+
+                                    // Navigator.popAndPushNamed(
+                                    //     context, GestioneFriendsPage.route);
+                                    // final prov_page = Provider.of<NavBar>(context, listen: false);
+                                    int pag = pagina.setIndex();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage(
+                                                index: pag, usern: usern)));
+                                    //Navigator.of(context).pushNamed(HomePage.route);
+                                    //Navigator.pop(context);
+                                    //return selectSituation(context, sel),
+                                  },
+                                  child: Text('Join'))
+                            ],
+                          )));
+                    });
+              },
+              child: Text('Join the community!'),
+            ),
+          ]);
+        }));
   }
 }
 
-
-
-class Fpage2 extends StatefulWidget{
-
+class Fpage2 extends StatefulWidget {
   static const route = '/fpage2';
   static const routename = 'FriendsPage2';
-  
+
   @override
   State<Fpage2> createState() => _situazione2State();
 }
@@ -330,158 +361,147 @@ class _situazione2State extends State<Fpage2> {
     //print(nonso);
     dynamic data1 = fitbit_data_class();
     print('situazione 2');
-    return
-    Consumer<IndicePag>(builder: (context, value, _){
-      return
-    Scaffold(
-      appBar: AppBar(title: Text('Situation2'),
-      backgroundColor: Color.fromARGB(255, 255, 186, 8),
-      automaticallyImplyLeading: false,
-      actions: <Widget>[
-        IconButton(onPressed: () async{
-          
-          final sp = await SharedPreferences.getInstance();
-          sp.setInt('Friends', 0);
-          final usern = sp.getString('UserName');
-          deleteUser(usern);
-          getUsersList();
-          //Navigator.popAndPushNamed(context, GestioneFriendsPage.route);
-          final pag = value.setIndex();
-          Navigator.of(context).
-          push(MaterialPageRoute(builder: (context)=>HomePage(index: pag, usern:usern)));
-        }, 
-        icon: Icon(
-          Icons.logout,
-          color: Colors.white,
-        ))
-      ],),
-      
-      body: RefreshIndicator(
-        onRefresh:() async{
-          List dati = await data1.fetchIstantData();
-          int passi_istant = dati[0].round();
-          //print(passi_istant.toString());
-          final sp = await SharedPreferences.getInstance();
-          final usern = sp.getString('UserName');
-          int query = await dbQuery(context,usern);
-          int new_tot = _UserData + query;
-          int new_istant = new_tot + passi_istant;
-          refreshUser(usern, new_istant, new_tot);
-          getUsersList();
-          getUserData(usern);
+    return Consumer<IndicePag>(builder: (context, value, _) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text('Classification'),
+            backgroundColor: Color.fromARGB(255, 255, 186, 8),
+            automaticallyImplyLeading: false,
+            actions: <Widget>[
+              IconButton(
+                  onPressed: () async {
+                    final sp = await SharedPreferences.getInstance();
+                    sp.setInt('Friends', 0);
+                    final usern = sp.getString('UserName');
+                    deleteUser(usern);
+                    getUsersList();
+                    //Navigator.popAndPushNamed(context, GestioneFriendsPage.route);
+                    final pag = value.setIndex();
 
-          },
-          child: 
-      SafeArea(
-        child: 
-          ListView.builder(
-            itemCount: _listUsers.length,
-            itemBuilder: (context,index){
-              return ClassificaCard(_listUsers[index] as ProfiliFirebase);
-            }
-          )
-      )
-    ));});
-}
-
-Future getUsersList() async{
-  //final uid = AuthService().currentUser?.uid;
-  var data = await FirebaseFirestore.instance
-    .collection('Game')
-    .doc('3NsG2FKtVbEkmifSuFfw')
-    .collection('Players')
-    .orderBy('passi', descending: true)
-    .get();
-
-  setState((){
-    _listUsers = List.from(data.docs.map((doc) => ProfiliFirebase.fromSnapshot(doc)));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            HomePage(index: pag, usern: usern)));
+                  },
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  ))
+            ],
+          ),
+          body: RefreshIndicator(
+              color: Color.fromARGB(255, 255, 186, 8),
+              onRefresh: () async {
+                List dati = await data1.fetchIstantData();
+                int passi_istant = dati[0].round();
+                //print(passi_istant.toString());
+                final sp = await SharedPreferences.getInstance();
+                final usern = sp.getString('UserName');
+                int query = await dbQuery(context, usern);
+                int new_tot = _UserData + query;
+                int new_istant = new_tot + passi_istant;
+                refreshUser(usern, new_istant, new_tot);
+                getUsersList();
+                getUserData(usern);
+              },
+              child: SafeArea(
+                  child: ListView.builder(
+                      itemCount: _listUsers.length,
+                      itemBuilder: (context, index) {
+                        return ClassificaCard(
+                            _listUsers[index] as ProfiliFirebase);
+                      }))));
+    });
   }
 
-  );
+  Future getUsersList() async {
+    //final uid = AuthService().currentUser?.uid;
+    var data = await FirebaseFirestore.instance
+        .collection('Game')
+        .doc('3NsG2FKtVbEkmifSuFfw')
+        .collection('Players')
+        .orderBy('passi', descending: true)
+        .get();
 
+    setState(() {
+      _listUsers =
+          List.from(data.docs.map((doc) => ProfiliFirebase.fromSnapshot(doc)));
+    });
+  }
+
+  Future getUserData(usern) async {
+    //final uid = AuthService().currentUser?.uid;
+    var data = await FirebaseFirestore.instance
+        .collection('Game')
+        .doc('3NsG2FKtVbEkmifSuFfw')
+        .collection('Players')
+        .doc('ProfiloApp')
+        .get();
+
+    // setState((){
+    //   _listUserData = List.from(data.docs.map((doc) => ProfiliFirebase.fromSnapshot(doc)));
+    // });
+    var res = data.data();
+    //var passi_tot = res['passi_totali'];
+    int passi_tot = res!['passi_totali'];
+
+    setState(() {
+      _UserData = passi_tot;
+    });
+  }
 }
 
-Future getUserData(usern) async{
-  //final uid = AuthService().currentUser?.uid;
-  var data = await FirebaseFirestore.instance
-    .collection('Game')
-    .doc('3NsG2FKtVbEkmifSuFfw')
-    .collection('Players')
-    .doc('ProfiloApp')
-    .get();
-
-  // setState((){
-  //   _listUserData = List.from(data.docs.map((doc) => ProfiliFirebase.fromSnapshot(doc)));
-  // });
-  var res = data.data();
-  //var passi_tot = res['passi_totali'];
-  int passi_tot = res!['passi_totali'];
-  
-  setState((){
-    _UserData = passi_tot;
+Future refreshUser(usern, new_istant, new_tot) async {
+  await FirebaseFirestore.instance
+      .collection('Game')
+      .doc('3NsG2FKtVbEkmifSuFfw')
+      .collection('Players')
+      .doc('ProfiloApp')
+      .update({
+    'passi': new_istant,
+    'passi_totali': new_tot,
   });
-  
-}
 }
 
-Future refreshUser(usern, new_istant, new_tot) async{
-  await FirebaseFirestore.instance
-    .collection('Game')
-    .doc('3NsG2FKtVbEkmifSuFfw')
-    .collection('Players')
-    .doc('ProfiloApp')
-    .update({
-      'passi': new_istant,
-      'passi_totali': new_tot,
-    }
-
-    );
-}
-
-
-Future deleteUser(usern) async{
+Future deleteUser(usern) async {
   //final uid = AuthService().currentUser?.uid;
   await FirebaseFirestore.instance
-    .collection('Game')
-    .doc('3NsG2FKtVbEkmifSuFfw')
-    .collection('Players')
-    .doc(usern)
-    .delete();
+      .collection('Game')
+      .doc('3NsG2FKtVbEkmifSuFfw')
+      .collection('Players')
+      .doc(usern)
+      .delete();
 
   // setState((){
   //   _listUsers = List.from(data.docs.map((doc) => ProfiliFirebase.fromSnapshot(doc)));
   // }
 
   // );
-
 }
 
-
-Future uploadUser(context,usern) async{
+Future uploadUser(context, usern) async {
   //final uid = AuthService().currentUser?.uid;
   var data = await FirebaseFirestore.instance
-    .collection('Game')
-    .doc('3NsG2FKtVbEkmifSuFfw')
-    .collection('Players')
-    .doc('ProfiloApp')
-    .set({
-      'UserName': usern,
-      'passi': 0,
-      'passi_totali': 0,
-    }
-    );
+      .collection('Game')
+      .doc('3NsG2FKtVbEkmifSuFfw')
+      .collection('Players')
+      .doc('ProfiloApp')
+      .set({
+    'UserName': usern,
+    'passi': 0,
+    'passi_totali': 0,
+  });
 }
 
 Future<int> dbQuery(context, usern) async {
-    final dati = await Provider.of<DatabaseRepository>(context, listen: false)
-        .findAllData(usern);
-    
-    var i = dati.length - 1;
-    int passi_istant = (dati[i].passi_week)~/10;
-      
-    print('lunghezza lista db: '+dati.length.toString());
-    print('Passi: '+dati[i].passi_week.toString());
-    print('Date: '+dati[i].date_steps.toString());
-    print(passi_istant);
-    return passi_istant;
-  }
+  final dati = await Provider.of<DatabaseRepository>(context, listen: false)
+      .findAllData(usern);
+
+  var i = dati.length - 1;
+  int passi_istant = (dati[i].passi_week) ~/ 10;
+
+  print('lunghezza lista db: ' + dati.length.toString());
+  print('Passi: ' + dati[i].passi_week.toString());
+  print('Date: ' + dati[i].date_steps.toString());
+  print(passi_istant);
+  return passi_istant;
+}
