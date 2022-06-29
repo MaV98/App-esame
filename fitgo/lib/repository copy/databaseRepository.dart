@@ -50,6 +50,11 @@ class DatabaseRepository extends ChangeNotifier{
     await database.dataDao.insertData(dati);
     notifyListeners();
   }
+
+  Future<void> deleteData(List<DatiDB> dati) async{
+    await database.dataDao.deleteData(dati);
+    notifyListeners();
+  }
   
   // Future<String?> returnPassword(String username) async{
   //   await database.profileDao.returnPassword(username);

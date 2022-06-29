@@ -7,6 +7,7 @@ import 'package:fitgo/screens/TodayPage.dart';
 import 'package:fitgo/screens/bottomNavBar.dart';
 import 'package:fitgo/screens/friendsPage.dart';
 import 'package:fitgo/screens/gestioneFriendsPage.dart';
+
 import 'package:fitgo/screens/scores.dart';
 //import 'package:fitgo/screens/scores.dart';
 import 'package:fitgo/screens/shopPage.dart';

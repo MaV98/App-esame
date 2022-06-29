@@ -10,6 +10,7 @@ import 'package:fitgo/screens/devicePage.dart';
 import 'package:fitgo/screens/gestioneFriendsPage.dart';
 import 'package:fitgo/screens/Fpage_1.dart';
 import 'package:fitgo/screens/Fpage_2.dart';
+
 import 'package:fitgo/screens/heartDataPage.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage2.dart';
 import 'package:fitgo/screens/heartdatapages/heartPage3.dart';
@@ -114,9 +115,10 @@ class MyApp extends StatelessWidget {
           TodayPage.route: (context) => TodayPage(),
           ScoresPage.route: (context) => ScoresPage(),
           GestioneFriendsPage.route: (context) => GestioneFriendsPage(),
-          Fpage1.route: (context) => Fpage1(),
-          Fpage2.route: (context) => Fpage2(),
-          FriendsPage.route: (context) => FriendsPage(),
+          //gestioneFriendsPage2.route: (context) => gestioneFriendsPage2(),
+          //Fpage1.route: (context) => Fpage1(),
+          //Fpage2.route: (context) => Fpage2(),
+          //FriendsPage.route: (context) => FriendsPage(),
           ShopPage.route: (context) => ShopPage(),
           CryptoPage.route: (context) => CryptoPage(),
           StorePage.route: (context) => StorePage(),

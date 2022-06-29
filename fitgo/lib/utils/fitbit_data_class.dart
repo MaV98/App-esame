@@ -8,6 +8,8 @@ class fitbit_data_class {
   List<dynamic?> lista_data = [];
   List<dynamic> fitbitDeviceData = [];
 
+  List<dynamic> lista_IstantData = [];
+
   fitbit_data_class();
 
   void authorize(context) async {
@@ -545,6 +547,31 @@ class fitbit_data_class {
 
     return lista_data;
   }
+
+////////////FETCH SOLO PASSI ISTANTANEI
+Future<List> fetchIstantData() async {
+    FitbitActivityTimeseriesDataManager fitbit_steps1 =
+        FitbitActivityTimeseriesDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+      type: 'steps',
+    );
+
+    //Fetch data
+
+    dynamic stepsData =
+        await fitbit_steps1.fetch(FitbitActivityTimeseriesAPIURL.dayWithResource(
+      date: DateTime.now().subtract(Duration(days: 0)),
+      userID: Strings.userID,
+      resource: fitbit_steps1.type,
+    )) as List<FitbitActivityTimeseriesData>;
+
+    lista_IstantData.add(stepsData[0].value);
+    return lista_IstantData;
+}
+
+
+
 
   dynamic retVal() {
     return this.lista_data;

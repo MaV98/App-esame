@@ -183,6 +183,18 @@ class _$DataDao extends DataDao {
                   'profile_id': item.profile_id,
                   'passi_week': item.passi_week,
                   'date_steps': item.date_steps
+                }),
+        _datiDBDeletionAdapter = DeletionAdapter(
+            database,
+            'DatiDB',
+            ['ind'],
+            (DatiDB item) => <String, Object?>{
+                  'ind': item.ind,
+                  'profileName': item.profileName,
+                  'passi_today': item.passi_today,
+                  'profile_id': item.profile_id,
+                  'passi_week': item.passi_week,
+                  'date_steps': item.date_steps
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -192,6 +204,8 @@ class _$DataDao extends DataDao {
   final QueryAdapter _queryAdapter;
 
   final InsertionAdapter<DatiDB> _datiDBInsertionAdapter;
+
+  final DeletionAdapter<DatiDB> _datiDBDeletionAdapter;
 
   @override
   Future<DatiDB?> findAllUserId(String username) async {
@@ -223,5 +237,10 @@ class _$DataDao extends DataDao {
   @override
   Future<void> insertData(DatiDB dati) async {
     await _datiDBInsertionAdapter.insert(dati, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteData(List<DatiDB> dati) async {
+    await _datiDBDeletionAdapter.deleteList(dati);
   }
 }

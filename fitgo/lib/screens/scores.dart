@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitgo/database/entities/dati.dart';
 import 'package:fitgo/models/passi.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:fitgo/models/passi.dart';
@@ -46,6 +47,15 @@ class ScoresPage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 119, 76, 96),
         automaticallyImplyLeading: false,
         title: Text('Database'),
+        actions: <Widget>[
+          IconButton(onPressed: ()async {
+            await deleteAllData(context,usern);
+          }, 
+            icon: Icon(
+              Icons.delete_forever,
+              semanticLabel: 'Delete all data',
+            ))
+        ],
       ),
       body:
           // FutureBuilder<DocumentSnapshot>(
@@ -264,4 +274,13 @@ class ScoresPage extends StatelessWidget {
     // print('Date: '+dati[0].date_steps.toString());
     return to_plot;
   }
+
+  Future<void> deleteAllData(context,usern) async {
+    final dati = await Provider.of<DatabaseRepository>(context, listen: false)
+        .findAllData(usern);
+    await Provider.of<DatabaseRepository>(context, listen: false)
+        .deleteData(dati);
+  }
+
 } //HomePage
+

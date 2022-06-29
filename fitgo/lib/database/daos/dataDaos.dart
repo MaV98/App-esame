@@ -28,8 +28,8 @@ abstract class DataDao {
   // Future<void> updatePassi(double dati);
 
   //Query #3: DELETE -> this allows to delete a Todo from the table
-  // @delete
-  // Future<void> deleteProfile(Profile profile);
+  @delete
+  Future<void> deleteData(List<DatiDB> dati);
 
   
 }//T
