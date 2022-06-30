@@ -82,7 +82,70 @@ class ProfilePage extends StatelessWidget {
                           'Memeber since ${account_data['account_data'].printMemberSince()}',
                           style: TextStyle(fontSize: 15))
                     ],
-                  )
+                  ),
+        Row(
+              children: <Widget>[
+                FutureBuilder<Color>(
+                  initialData: null,
+                  future: _defineColor(passi_ieri),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return
+                        IconButton(
+                          icon: const Icon(Icons.ten_k),
+                          color: snapshot.data,
+                          iconSize: 20.0,
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Like an AT-AT',textAlign: TextAlign.center),
+                                content: Text('You have walked for 15k steps in one day! Impressive! Be careful not to trip over any cables'),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                            },
+                            child: Text("Ok"),
+                              )]
+                            ));
+                            //Card(child: Text('You walked 10k steps'),);
+                          });}
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          }),
+                FutureBuilder<Color>(
+                  initialData: null,
+                  future: _defineColor1(passi_tot),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return
+                        IconButton(
+                          icon: const Icon(Icons.king_bed),
+                          color: snapshot.data,
+                          iconSize: 20.0,
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Unstoppable',textAlign: TextAlign.center),
+                                content: Text("You have reached 100K steps!! Here's the king's bed, rest."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                            },
+                            child: Text("Ok"),
+                              )]
+                            ));
+                            //Card(child: Text('You walked 10k steps'),);
+                          });}
+                          else{
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          }),
+              ],)
           ],
         ),
         ListTile(
