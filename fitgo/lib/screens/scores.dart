@@ -52,9 +52,8 @@ class ScoresPage extends StatelessWidget {
             prov.currentFriends = sel;
             return Consumer<IndicePag>(builder: (context, currentIndex, _) {
               int sel = currentIndex.setFriends();
-              //int pag = currentIndex.setIndex();
-              int pag = 1;
-              print(pag);
+              int pag = currentIndex.setIndex();
+
               return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Color.fromARGB(255, 119, 76, 96),
