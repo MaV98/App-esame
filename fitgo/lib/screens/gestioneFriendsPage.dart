@@ -12,10 +12,13 @@ import 'package:fitgo/utils/fitbit_data_class.dart';
 import 'package:fitgo/views/classifica.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GestioneFriendsPage extends StatelessWidget {
+  dynamic stepsCount;
+  GestioneFriendsPage({this.stepsCount});
   // String? usern;
   // FriendsPage({this.usern});
 
@@ -167,21 +170,23 @@ class GestioneFriendsPage extends StatelessWidget {
                 //         ))
                 //   ],
                 // ),
-                body: selectSituation(context, sel),
+                body: selectSituation(context, sel, stepsCount),
               );
             });
           } else {
-            return CircularProgressIndicator();
+            return CircularProgressIndicator(
+              color: Color.fromARGB(255, 255, 186, 8),
+            );
           }
         });
   }
 
-  Widget selectSituation(BuildContext context, sel) {
+  Widget selectSituation(BuildContext context, sel, stepsCount) {
     print('SELCT SITUATION');
     if ((sel == null) || (sel == 0)) {
-      return Fpage1();
+      return Fpage1(stepsCount: stepsCount);
     } else {
-      return Fpage2();
+      return Fpage2(stepsCount: stepsCount);
     }
   }
 
@@ -224,6 +229,9 @@ class GestioneFriendsPage extends StatelessWidget {
 }
 
 class Fpage1 extends StatelessWidget {
+  dynamic stepsCount;
+  Fpage1({this.stepsCount});
+
   //static const route = '/fpage1';
   //static const routename = 'FriendsPage1';
 
@@ -237,83 +245,122 @@ class Fpage1 extends StatelessWidget {
     print('situazione1');
     var prov = Provider.of<IndicePag>(context);
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Situation1'),
-        //   automaticallyImplyLeading: false,
-        // ),
-        body: Consumer<IndicePag>(builder: (context, pagina, _) {
-      return Center(
-        child: ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-            Color.fromARGB(255, 255, 186, 8),
-          )),
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                      height: 200,
-                      child: Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                              20,
-                              0,
-                              20,
-                              10,
-                            ),
-                            child: Text(
-                                'By joining the community you agree that your data relavively to your daily steps will be shared with third part entities'),
-                          ),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 255, 186, 8),
-                              )),
-                              onPressed: () async {
-                                final sp =
-                                    await SharedPreferences.getInstance();
-                                sp.setInt('Friends', 1);
-                                final usern = sp.getString('UserName');
-                                uploadUser(context, usern);
-
-                                // Navigator.popAndPushNamed(
-                                //     context, GestioneFriendsPage.route);
-                                // final prov_page = Provider.of<NavBar>(context, listen: false);
-                                int pag = pagina.setIndex();
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage(index: pag, usern: usern)));
-                                //Navigator.of(context).pushNamed(HomePage.route);
-                                //Navigator.pop(context);
-                                //return selectSituation(context, sel),
-                              },
-                              child: Text('Join'))
-                        ],
-                      )));
-                });
-          },
-          child: Text('Join the community!'),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 255, 186, 8),
+          title: Text('Friends'),
+          automaticallyImplyLeading: false,
         ),
-      );
-    }));
+        body: Consumer<IndicePag>(builder: (context, pagina, _) {
+          return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Container(
+                padding: EdgeInsets.all(15),
+                margin: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromARGB(255, 255, 186, 8), width: 1),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                child: Text(
+                    'Share the number of your steps with your friends, challenge them, climb the leaderboard and keep fit!',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
+            Lottie.asset('assets/105437-friends.json'),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                Color.fromARGB(255, 255, 186, 8),
+              )),
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                          height: 200,
+                          child: Center(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  20,
+                                  0,
+                                  20,
+                                  10,
+                                ),
+                                child: Text(
+                                    'By joining the community you agree that your data relavively to your daily steps will be shared with third part entities'),
+                              ),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                    Color.fromARGB(255, 255, 186, 8),
+                                  )),
+                                  onPressed: () async {
+                                    final sp =
+                                        await SharedPreferences.getInstance();
+                                    sp.setInt('Friends', 1);
+                                    final usern = sp.getString('UserName');
+                                    uploadUser(context, usern);
+
+                                    // Navigator.popAndPushNamed(
+                                    //     context, GestioneFriendsPage.route);
+                                    // final prov_page = Provider.of<NavBar>(context, listen: false);
+
+                                    // int pag = pagina.setIndex();
+                                    // Navigator.of(context).push(
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) => HomePage(
+                                    //             index: pag, usern: usern)));
+
+                                    stepsCount == -1
+                                        ? Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => HomePage(
+                                                    index: 2, usern: usern)))
+                                        : Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => HomePage(
+                                                    index: 1, usern: usern)));
+                                    //Navigator.of(context).pushNamed(HomePage.route);
+                                    //Navigator.pop(context);
+                                    //return selectSituation(context, sel),
+                                  },
+                                  child: Text('Join'))
+                            ],
+                          )));
+                    });
+              },
+              child: Text('Join the community!'),
+            ),
+          ]);
+        }));
   }
 }
 
 class Fpage2 extends StatefulWidget {
+  dynamic stepsCount;
+  Fpage2({this.stepsCount});
+
   static const route = '/fpage2';
   static const routename = 'FriendsPage2';
 
   @override
-  State<Fpage2> createState() => _situazione2State();
+  State<Fpage2> createState() => _situazione2State(stepsCount: stepsCount);
 }
 
 class _situazione2State extends State<Fpage2> {
   List<Object> _listUsers = [];
   int _UserData = 0;
+
+  dynamic stepsCount;
+  _situazione2State({this.stepsCount});
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -329,7 +376,7 @@ class _situazione2State extends State<Fpage2> {
     return Consumer<IndicePag>(builder: (context, value, _) {
       return Scaffold(
           appBar: AppBar(
-            title: Text('Situation2'),
+            title: Text('Leaderboard'),
             backgroundColor: Color.fromARGB(255, 255, 186, 8),
             automaticallyImplyLeading: false,
             actions: <Widget>[
@@ -341,10 +388,20 @@ class _situazione2State extends State<Fpage2> {
                     deleteUser(usern);
                     getUsersList();
                     //Navigator.popAndPushNamed(context, GestioneFriendsPage.route);
-                    final pag = value.setIndex();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            HomePage(index: pag, usern: usern)));
+
+                    //int pag = pagina.setIndex();
+                    // Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage(
+                    //             index: pag, usern: usern)));
+
+                    stepsCount == -1
+                        ? Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                HomePage(index: 2, usern: usern)))
+                        : Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                HomePage(index: 1, usern: usern)));
                   },
                   icon: Icon(
                     Icons.logout,
@@ -353,6 +410,7 @@ class _situazione2State extends State<Fpage2> {
             ],
           ),
           body: RefreshIndicator(
+              color: Color.fromARGB(255, 255, 186, 8),
               onRefresh: () async {
                 List dati = await data1.fetchIstantData();
                 int passi_istant = dati[0].round();

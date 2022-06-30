@@ -19,7 +19,8 @@ import 'package:fitgo/utils/fitbit_data_class.dart';
 class ScoresPage extends StatelessWidget {
   String? calorie;
   String? usern;
-  ScoresPage({this.calorie, this.usern});
+  dynamic stepsCount;
+  ScoresPage({this.calorie, this.usern, this.stepsCount});
 
   static const route = '/scores';
   static const routename = 'ScoresPage';
@@ -63,9 +64,19 @@ class ScoresPage extends StatelessWidget {
                         onPressed: () async {
                           await deleteAllData(context, usern);
                           sp.setInt('Scores', 0);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  HomePage(index: pag, usern: usern)));
+
+                          // Navigator.of(context).push(
+                          //     MaterialPageRoute(
+                          //         builder: (context) => HomePage(
+                          //             index: pag, usern: usern)));
+
+                          stepsCount == -1
+                              ? Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      HomePage(index: 2, usern: usern)))
+                              : Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      HomePage(index: 1, usern: usern)));
                         },
                         icon: Icon(
                           Icons.delete_forever,
@@ -87,7 +98,10 @@ class ScoresPage extends StatelessWidget {
               );
             });
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: Color.fromARGB(255, 119, 76, 96),
+            ));
           }
         });
   }
@@ -131,7 +145,7 @@ class Spage1 extends StatelessWidget {
                       ],
                     ),
                     child: Text(
-                        'The following data refers to the steps taken in the previous seven days, and they are stored locally',
+                        'The following data refers to the steps taken in the previous seven days, and they are stored locally. If you want to delete these data click the top right button',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold))),
                 Lottie.asset(
@@ -325,7 +339,7 @@ class Spage2 extends StatelessWidget {
             ],
           ),
           child: Text(
-              'The following data refers to the steps taken in the previous seven days, and they are stored locally',
+              'Data regarding the steps have been erased from local memory',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
       Lottie.asset('assets/18517-the-travelers-walking-cycle-delivery.json',
           height: 200, animate: true),

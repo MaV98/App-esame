@@ -59,9 +59,15 @@ class HomePage extends StatelessWidget {
           index: index,
           usern: usern);
     } else if (page == 1) {
-      return ScoresPage(calorie: dati.printCalorie(), usern: usern);
+      return ScoresPage(
+        calorie: dati.printCalorie(),
+        usern: usern,
+        stepsCount: dati.returnStepsCount(),
+      );
     } else if (page == 2) {
-      return GestioneFriendsPage();
+      return GestioneFriendsPage(
+        stepsCount: dati.returnStepsCount(),
+      );
     } else if (page == 3)
       return ShopPage(
         stepsCount: dati.returnStepsCount(),
