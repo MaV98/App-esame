@@ -367,82 +367,17 @@ class situation1 extends StatelessWidget {
     // _refresh(context, data1);
     //print(data1.refresh(context));
     return Scaffold(
-      floatingActionButton: Consumer<Dati>(builder: (context, passi, _) {
-        return FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 0, 105, 140),
-          onPressed: () => displayCard(context, passi),
-          child: Image.network(
-              //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
-              //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
-              'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
-        );
-      }),
-      // appBar: AppBar(
-      //   title: Text('Home Page'),
-      // ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     padding: EdgeInsets.zero,
-      //     children: [
-      //       Consumer<Dati>(builder: (context, accountData, _) {
-      //         return ElevatedButton(
-      //           onPressed: () => _toProfilePage(context, accountData),
-      //           //Navigator.of(context)
-      //           //.pushReplacementNamed(ProfilePage.route),
-      //           child: DrawerHeader(
-      //               decoration: BoxDecoration(
-      //                 color: Colors.blue,
-      //               ),
-      //               child: Row(
-      //                 mainAxisAlignment:
-      //                     MainAxisAlignment.spaceEvenly,
-      //                 children: [
-      //                   CircleAvatar(
-      //                     backgroundColor: Colors.white,
-      //                     minRadius: 35.0,
-      //                     maxRadius: 45.0,
-      //                     child: CircleAvatar(
-      //                       radius: 40.0,
-      //                       backgroundImage: NetworkImage(
-      //                           'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
-      //                     ),
-      //                   ),
-      //                   Text('Giacomo Cappon',
-      //                       textAlign: TextAlign.right,
-      //                       style: TextStyle(
-      //                         fontSize: 16.0,
-      //                         fontWeight: FontWeight.bold,
-      //                         color: Colors.white,
-      //                       ))
-      //                 ],
-      //               )),
-      //         );
-      //       }),
-      //       Consumer<Dati>(builder: (context, deviceData, _) {
-      //         return ListTile(
-      //           leading: Icon(Icons.watch),
-      //           title: Text('Device'),
-      //           onTap: () => _toDevicePage(context, deviceData),
-      //         );
-      //       }),
-      //       ListTile(
-      //         leading: Icon(Icons.smoke_free),
-      //         title: Text('Unauthorize'),
-      //         onTap: () async {
-      //           await FitbitConnector.unauthorize(
-      //             clientID: Strings.fitbitClientID,
-      //             clientSecret: Strings.fitbitClientSecret,
-      //           );
-      //         },
-      //       ),
-      //       ListTile(
-      //         leading: Icon(Icons.logout),
-      //         title: Text('Logout'),
-      //         onTap: () => _toLoginPage(context),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      // floatingActionButton: Consumer<Dati>(builder: (context, passi, _) {
+      //   return FloatingActionButton(
+      //     backgroundColor: Color.fromARGB(255, 0, 105, 140),
+      //     onPressed: () => displayCard(context, passi),
+      //     child: Image.network(
+      //         //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+      //         //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+      //         'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+      //   );
+      // }),
+
       body:
           //Consumer<Dati>(
           //builder: (context, dati,_){
@@ -517,7 +452,7 @@ class situation1 extends StatelessWidget {
 
           int steps_count = 0;
           setScoreIndex(context);
-          
+
           for (var i = 0; i < dati_timeseries_steps.length; i++) {
             var currentElement = dati_timeseries_steps[i];
             var currentElement_value = double.parse(
@@ -608,88 +543,6 @@ class situation1 extends StatelessWidget {
               ],
             ),
           ),
-
-          //                 Container(
-          //                   child:
-          //                   Column(
-          //                     mainAxisAlignment: MainAxisAlignment.center,
-          //                     crossAxisAlignment: CrossAxisAlignment.start,
-          //                     children: [
-          //                       Text(accountData.printName(),
-          //                           textAlign: TextAlign.left,
-          //                           style: TextStyle(
-          //                             fontSize: 18.0,
-          //                             fontWeight: FontWeight.bold,
-          //                             color: Colors.white,
-          //                           )),
-          //                       Text(
-          //                           'Average daily steps: ${accountData.printAverageDailySteps()}',
-          //                           textAlign: TextAlign.right,
-          //                           style: TextStyle(
-          //                             fontSize: 12.5,
-          //                             fontWeight: FontWeight.bold,
-          //                             color: Colors.white,
-          //                           )),
-          //                     ],
-          //                   )
-          //                 ],
-          //               )),
-          //         );
-          //       }),
-          //       Consumer<Dati>(builder: (context, accountData, _) {
-          //         return Consumer<Dati>(builder: (context, deviceData, _) {
-          //           return ListTile(
-          //             leading: Icon(Icons.watch),
-          //             title: Text('Device'),
-          //             onTap: () => _toDevicePage(context, deviceData, accountData),
-          //           );
-          //         });
-          //       }),
-          //       ListTile(
-          //         leading: Icon(Icons.smoke_free),
-          //         title: Text('Unauthorize'),
-          //         onTap: () async {
-          //           await FitbitConnector.unauthorize(
-          //             clientID: Strings.fitbitClientID,
-          //             clientSecret: Strings.fitbitClientSecret,
-          //           );
-          //         },
-          //       ),
-          //       ListTile(
-          //         leading: Icon(Icons.logout),
-          //         title: Text('Logout'),
-          //         onTap: () => _toLoginPage(context),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // body: RefreshIndicator(
-          //   onRefresh: () async {
-          //     List dati = await data1.fetchData();
-          //     provider.passi = dati[0];
-          //     provider.calorie = dati[1];
-          //   },
-          //   child: ListView(
-          //     children: <Widget>[
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Consumer<Dati>(builder: (context, accountData, _) {
-          //             return Text("Welcome back ${accountData.printName()}!",
-          //                 style:
-          //                     TextStyle(fontSize: 22, fontWeight: FontWeight.bold));
-          //           }),
-          //           IconButton(
-          //             onPressed: () {
-          //               Navigator.pushNamed(context, WeatherPage.route);
-          //             },
-          //             //icon: Icon(Icons.sunny),
-          //             icon: Icon(MdiIcons.weatherPartlyCloudy),
-          //             color: Colors.blue,
-          //             iconSize: 40,
-          //           )
-          //         ],
-          //       ),
           Padding(
               padding: EdgeInsets.fromLTRB(
                 20,
@@ -790,7 +643,6 @@ class situation1 extends StatelessWidget {
                   }),
                 );
               })),
-
           Padding(
             padding: EdgeInsets.fromLTRB(
               20,
@@ -952,7 +804,6 @@ class situation1 extends StatelessWidget {
               ]),
             ]),
           ),
-
           Padding(
             padding: EdgeInsets.fromLTRB(
               20,
@@ -1047,19 +898,15 @@ class situation2 extends StatelessWidget {
     provider.stepsCount = -1;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 0, 105, 140),
-        onPressed: () => displayCardUnhautorize(context),
-        child: Image.network(
-            //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
-            //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
-            'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Color.fromARGB(255, 0, 105, 140),
+      //   onPressed: () => displayCardUnhautorize(context),
+      //   child: Image.network(
+      //       //'https://w7.pngwing.com/pngs/442/860/png-transparent-grogu-baby-yoda.png'
+      //       //  'https://seeklogo.com/images/B/baby-yoda-logo-624AE4E7B3-seeklogo.com.png'
+      //       'https://icons-for-free.com/download-icon-jedi+master+starwars+yoda+icon-1320166755293974043_512.png'),
+      // ),
 
-      //appBar: AppBar(
-      //title: Text('Situation2'),
-      //automaticallyImplyLeading: false,
-      //),
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -1215,66 +1062,66 @@ Future<void> _addDataDB(context, dati, dati_week, usern) async {
   }
 }
 
-void displayCard(BuildContext context, passi) {
-  showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-            title: Text("What does Yoda have to say?"),
-            content: (double.parse(passi.printPassi()) >= 0) &
-                    (double.parse(passi.printPassi()) < 3000)
-                ? Text("testo 1")
-                : (double.parse(passi.printPassi()) >= 3000) &
-                        (double.parse(passi.printPassi()) < 6000)
-                    ? Text('testo 2')
-                    : (double.parse(passi.printPassi()) >= 6000) &
-                            (double.parse(passi.printPassi()) < 9000)
-                        ? Text('Testo 3')
-                        : (double.parse(passi.printPassi()) >= 9000) &
-                                (double.parse(passi.printPassi()) < 12000)
-                            ? Text('Testo 4')
-                            : (double.parse(passi.printPassi()) >= 12000) &
-                                    (double.parse(passi.printPassi()) < 15000)
-                                ? Text('Testo 5')
-                                : Text('Testo 6'),
-            actions: <Widget>[
-              ElevatedButton(
-                  child: Text("Got it"),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 0, 105, 140),
-                  )),
-                  onPressed: () {
-                    //remove the dialog popup
-                    Navigator.of(context).pop();
-                  })
-            ]);
-      });
-}
+// void displayCard(BuildContext context, passi) {
+//   showDialog(
+//       context: context,
+//       builder: (context) {
+//         return AlertDialog(
+//             title: Text("What does Yoda have to say?"),
+//             content: (double.parse(passi.printPassi()) >= 0) &
+//                     (double.parse(passi.printPassi()) < 3000)
+//                 ? Text("testo 1")
+//                 : (double.parse(passi.printPassi()) >= 3000) &
+//                         (double.parse(passi.printPassi()) < 6000)
+//                     ? Text('testo 2')
+//                     : (double.parse(passi.printPassi()) >= 6000) &
+//                             (double.parse(passi.printPassi()) < 9000)
+//                         ? Text('Testo 3')
+//                         : (double.parse(passi.printPassi()) >= 9000) &
+//                                 (double.parse(passi.printPassi()) < 12000)
+//                             ? Text('Testo 4')
+//                             : (double.parse(passi.printPassi()) >= 12000) &
+//                                     (double.parse(passi.printPassi()) < 15000)
+//                                 ? Text('Testo 5')
+//                                 : Text('Testo 6'),
+//             actions: <Widget>[
+//               ElevatedButton(
+//                   child: Text("Got it"),
+//                   style: ButtonStyle(
+//                       backgroundColor: MaterialStateProperty.all(
+//                     Color.fromARGB(255, 0, 105, 140),
+//                   )),
+//                   onPressed: () {
+//                     //remove the dialog popup
+//                     Navigator.of(context).pop();
+//                   })
+//             ]);
+//       });
+// }
 
-void displayCardUnhautorize(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-            title: Text("What does Yoda have to say?"),
-            content: Text('No authorizaton to download data granted'),
-            actions: <Widget>[
-              ElevatedButton(
-                  child: Text("Got it"),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 0, 105, 140),
-                  )),
-                  onPressed: () {
-                    //remove the dialog popup
-                    Navigator.of(context).pop();
-                  })
-            ]);
-      });
-}
+// void displayCardUnhautorize(BuildContext context) {
+//   showDialog(
+//       context: context,
+//       builder: (context) {
+//         return AlertDialog(
+//             title: Text("What does Yoda have to say?"),
+//             content: Text('No authorizaton to download data granted'),
+//             actions: <Widget>[
+//               ElevatedButton(
+//                   child: Text("Got it"),
+//                   style: ButtonStyle(
+//                       backgroundColor: MaterialStateProperty.all(
+//                     Color.fromARGB(255, 0, 105, 140),
+//                   )),
+//                   onPressed: () {
+//                     //remove the dialog popup
+//                     Navigator.of(context).pop();
+//                   })
+//             ]);
+//       });
+// }
 
-void setScoreIndex(context) async{
+void setScoreIndex(context) async {
   var sp = await SharedPreferences.getInstance();
   sp.setInt('Scores', 1);
 }

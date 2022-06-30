@@ -53,7 +53,6 @@ class ScoresPage extends StatelessWidget {
             return Consumer<IndicePag>(builder: (context, currentIndex, _) {
               int sel = currentIndex.setFriends();
               int pag = currentIndex.setIndex();
-
               return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Color.fromARGB(255, 119, 76, 96),
@@ -422,4 +421,8 @@ Future<void> deleteAllData(context, usern) async {
 }
 
  //HomePage
+
+
+
+
 
