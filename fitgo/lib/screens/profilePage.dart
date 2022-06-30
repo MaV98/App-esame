@@ -27,7 +27,17 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Profile'),
       ),
-      body: ListView(children: [
+      body: FutureBuilder<List<dynamic>>(
+        initialData: null,
+          future: dbQuery(context),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final dati_db = snapshot.data as List;
+              int passi_ieri = dati_db[0];
+              int passi_tot = dati_db[1];
+              return
+      
+      ListView(children: [
         Column(
           children: [
             Stack(
@@ -97,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.ten_k),
                           color: snapshot.data,
-                          iconSize: 20.0,
+                          iconSize: 44.0,
                           onPressed: (){
                             showDialog(
                               context: context,
@@ -127,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.king_bed),
                           color: snapshot.data,
-                          iconSize: 20.0,
+                          iconSize: 44.0,
                           onPressed: (){
                             showDialog(
                               context: context,
@@ -263,7 +273,9 @@ class ProfilePage extends StatelessWidget {
               ? Text('Data not available')
               : Text(account_data['account_data'].printAmbassador()),
         ),
-      ]),
+      ]);}else{
+        return Center(child: CircularProgressIndicator());
+      }}),
     );
   } //build
 
