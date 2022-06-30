@@ -58,6 +58,8 @@ class LoginPage extends StatelessWidget {
     print('LOGIN PAGE Built');
     //var provider = Provider.of<IndicePag>(context);
     var providerPC = Provider.of<ProfileCheck>(context);
+
+    var _isVisible = false;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 105, 140),
@@ -149,13 +151,16 @@ class LoginPage extends StatelessWidget {
                                 listen: false)
                             .findAllUsernames(providerPC.retUsername());
                         print('prova');
-                        print(profile!.retUsername());
+                        // print(
+                        //     'name == name${(providerPC.retUsername() == profile?.retUsername())}');
+                        // print(
+                        //     'pwd == pwd${(providerPC.retPassword() == profile?.retPassword())}');
 
-                        if ((profile.retUsername() ==
+                        if ((profile?.retUsername() ==
                                 providerPC.retUsername()) & //_username
 
                             (providerPC.retPassword() ==
-                                profile.retPassword())) {
+                                profile?.retPassword())) {
                           //_password
                           //provider.currentUserName(_username);
 
@@ -210,8 +215,10 @@ class LoginPage extends StatelessWidget {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomePage(index: pag1,
-                                                        usern: providerPC.retUsername())));
+                                                        HomePage(
+                                                            index: pag1,
+                                                            usern: providerPC
+                                                                .retUsername())));
                                           },
                                           child: Text(
                                               'Continue without authorize'),
@@ -230,18 +237,27 @@ class LoginPage extends StatelessWidget {
                             ..removeCurrentSnackBar()
                             ..showSnackBar(SnackBar(
                                 backgroundColor: Colors.red,
-                                content: (_username != profile?.retUsername()) &
-                                        (_password != profile?.retPassword())
-                                    ? Text('Wrong username and password',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold))
-                                    : _username != profile?.retUsername()
-                                        ? Text('Wrong username',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                        : Text('Wrong password',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))));
+                                content: Text('Wrong username or password',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold))
+
+                                // ((providerPC.retUsername() !=
+                                //             profile?.retUsername()) &
+                                //         (providerPC.retPassword() !=
+                                //             profile?.retPassword()))
+                                //     ? Text('Wrong username and password',
+                                //         style: TextStyle(
+                                //             fontWeight: FontWeight.bold))
+                                //     : providerPC.retUsername() !=
+                                //             profile?.retUsername()
+                                //         ? Text('Wrong username',
+                                //             style: TextStyle(
+                                //                 fontWeight: FontWeight.bold))
+                                //         : Text('Wrong password',
+                                //             style: TextStyle(
+                                //                 fontWeight: FontWeight.bold))
+                                ));
+
                           // await ScaffoldMessenger.of(context)
                           //   ..removeCurrentSnackBar()
                           //   ..showSnackBar(SnackBar(

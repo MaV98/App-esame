@@ -73,7 +73,7 @@ class ScoresPage extends StatelessWidget {
                           stepsCount == -1
                               ? Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      HomePage(index: 2, usern: usern)))
+                                      HomePage(index: 3, usern: usern)))
                               : Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
                                       HomePage(index: 1, usern: usern)));

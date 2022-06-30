@@ -382,495 +382,563 @@ class situation1 extends StatelessWidget {
           //Consumer<Dati>(
           //builder: (context, dati,_){
           //return
+
           RefreshIndicator(
-        color: Color.fromARGB(255, 0, 105, 140),
-        onRefresh: () async {
-          List dati = await data1.fetchData();
-          provider.passi = dati[0];
-          provider.calorie = dati[1];
-          final dati_device = dati[2].toString().split(' ');
-          final dati_account = dati[3].toString().split(' ');
-          final dati_heart = dati[4].toString().split(' ');
-          final dati_sleep_today = dati[5];
-          final dati_sleep_2 = dati[6];
-          final dati_sleep_3 = dati[7];
-          final dati_sleep_4 = dati[8];
-          final dati_sleep_5 = dati[9];
-          final dati_sleep_6 = dati[10];
-          final dati_sleep_7 = dati[11];
-          final dati_sleep = [];
-          dati_sleep.add(dati_sleep_today);
-          dati_sleep.add(dati_sleep_2);
-          dati_sleep.add(dati_sleep_3);
-          dati_sleep.add(dati_sleep_4);
-          dati_sleep.add(dati_sleep_5);
-          dati_sleep.add(dati_sleep_6);
-          dati_sleep.add(dati_sleep_7);
-          final dati_activity_today = dati[12];
-          final dati_activity_2 = dati[13];
-          final dati_activity_3 = dati[14];
-          final dati_activity_4 = dati[15];
-          final dati_activity_5 = dati[16];
-          final dati_activity_6 = dati[17];
-          final dati_activity_7 = dati[18];
-          final dati_activity = [];
-          dati_activity.add(dati_activity_today);
-          dati_activity.add(dati_activity_2);
-          dati_activity.add(dati_activity_3);
-          dati_activity.add(dati_activity_4);
-          dati_activity.add(dati_activity_5);
-          dati_activity.add(dati_activity_6);
-          dati_activity.add(dati_activity_7);
-          final dati_timeseries_calories = dati[19];
-          final dati_timeseries_steps = dati[20];
-          final dati_timeseries_distance = dati[21];
-          final dati_timeseries_floors = dati[22];
-          final dati_timeseries_elevation = dati[23];
-          final dati_timeseries_minutesSedentary = dati[24];
-          final dati_timeseries_minutesLightliActive = dati[25];
-          final dati_timeseries_minutesFairlyActive = dati[26];
-          final dati_timeseries_minutesVeryActive = dati[27];
-          final dati_timeseries_activityCalories = dati[28];
-          final dati_timeseries = [];
-          dati_timeseries.add(dati_timeseries_calories);
-          dati_timeseries.add(dati_timeseries_steps);
-          dati_timeseries.add(dati_timeseries_distance);
-          dati_timeseries.add(dati_timeseries_floors);
-          dati_timeseries.add(dati_timeseries_elevation);
-          dati_timeseries.add(dati_timeseries_minutesSedentary);
-          dati_timeseries.add(dati_timeseries_minutesLightliActive);
-          dati_timeseries.add(dati_timeseries_minutesFairlyActive);
-          dati_timeseries.add(dati_timeseries_minutesVeryActive);
-          dati_timeseries.add(dati_timeseries_activityCalories);
+              color: Color.fromARGB(255, 0, 105, 140),
+              onRefresh: () async {
+                List dati = await data1.fetchData();
+                provider.passi = dati[0];
+                provider.calorie = dati[1];
+                final dati_device = dati[2].toString().split(' ');
+                final dati_account = dati[3].toString().split(' ');
+                final dati_heart = dati[4].toString().split(' ');
+                final dati_sleep_today = dati[5];
+                final dati_sleep_2 = dati[6];
+                final dati_sleep_3 = dati[7];
+                final dati_sleep_4 = dati[8];
+                final dati_sleep_5 = dati[9];
+                final dati_sleep_6 = dati[10];
+                final dati_sleep_7 = dati[11];
+                final dati_sleep = [];
+                dati_sleep.add(dati_sleep_today);
+                dati_sleep.add(dati_sleep_2);
+                dati_sleep.add(dati_sleep_3);
+                dati_sleep.add(dati_sleep_4);
+                dati_sleep.add(dati_sleep_5);
+                dati_sleep.add(dati_sleep_6);
+                dati_sleep.add(dati_sleep_7);
+                final dati_activity_today = dati[12];
+                final dati_activity_2 = dati[13];
+                final dati_activity_3 = dati[14];
+                final dati_activity_4 = dati[15];
+                final dati_activity_5 = dati[16];
+                final dati_activity_6 = dati[17];
+                final dati_activity_7 = dati[18];
+                final dati_activity = [];
+                dati_activity.add(dati_activity_today);
+                dati_activity.add(dati_activity_2);
+                dati_activity.add(dati_activity_3);
+                dati_activity.add(dati_activity_4);
+                dati_activity.add(dati_activity_5);
+                dati_activity.add(dati_activity_6);
+                dati_activity.add(dati_activity_7);
+                final dati_timeseries_calories = dati[19];
+                final dati_timeseries_steps = dati[20];
+                final dati_timeseries_distance = dati[21];
+                final dati_timeseries_floors = dati[22];
+                final dati_timeseries_elevation = dati[23];
+                final dati_timeseries_minutesSedentary = dati[24];
+                final dati_timeseries_minutesLightliActive = dati[25];
+                final dati_timeseries_minutesFairlyActive = dati[26];
+                final dati_timeseries_minutesVeryActive = dati[27];
+                final dati_timeseries_activityCalories = dati[28];
+                final dati_timeseries = [];
+                dati_timeseries.add(dati_timeseries_calories);
+                dati_timeseries.add(dati_timeseries_steps);
+                dati_timeseries.add(dati_timeseries_distance);
+                dati_timeseries.add(dati_timeseries_floors);
+                dati_timeseries.add(dati_timeseries_elevation);
+                dati_timeseries.add(dati_timeseries_minutesSedentary);
+                dati_timeseries.add(dati_timeseries_minutesLightliActive);
+                dati_timeseries.add(dati_timeseries_minutesFairlyActive);
+                dati_timeseries.add(dati_timeseries_minutesVeryActive);
+                dati_timeseries.add(dati_timeseries_activityCalories);
 
-          provider.accountData = dati_account;
-          provider.deviceData = dati_device;
-          provider.heartData = dati_heart;
-          provider.sleepData = dati_sleep;
-          provider.activityData = dati_activity;
-          provider.timeseriesData = dati_timeseries;
+                provider.accountData = dati_account;
+                provider.deviceData = dati_device;
+                provider.heartData = dati_heart;
+                provider.sleepData = dati_sleep;
+                provider.activityData = dati_activity;
+                provider.timeseriesData = dati_timeseries;
 
-          int steps_count = 0;
-          setScoreIndex(context);
+                int steps_count = 0;
+                setScoreIndex(context);
 
-          for (var i = 0; i < dati_timeseries_steps.length; i++) {
-            var currentElement = dati_timeseries_steps[i];
-            var currentElement_value = double.parse(
-              currentElement.toString().split(' ')[8].substring(
-                  0, currentElement.toString().split(' ')[8].length - 1),
-            );
-            if (currentElement_value >= 15000) {
-              ++steps_count;
-            }
-          }
-          provider.stepsCount = steps_count;
-          //steps_count;
-        },
-        child: ListView(children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              10,
-              20,
-              10,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Consumer<Dati>(builder: (context, accountData, _) {
-                  return Text(
-                    "Welcome back ${accountData.printName()}!",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                for (var i = 0; i < dati_timeseries_steps.length; i++) {
+                  var currentElement = dati_timeseries_steps[i];
+                  var currentElement_value = double.parse(
+                    currentElement.toString().split(' ')[8].substring(
+                        0, currentElement.toString().split(' ')[8].length - 1),
                   );
-                }),
-                Text("Let's check your activity",
-                    style: TextStyle(fontSize: 18)),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              0,
-              20,
-              10,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: <Color>[
-                          Colors.black12,
-                          Color.fromARGB(255, 0, 105, 140),
-                        ],
-                        begin: FractionalOffset(0.0, 0.0),
-                        end: FractionalOffset(1.0, 1.0),
-                        stops: <double>[0.0, 1.0],
-                        tileMode: TileMode.clamp),
-                  ),
-                  width: 150.0,
-                  height: 2.0,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                  child: Text(
-                    'o',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 105, 140),
-                      fontSize: 15.0,
-                      //fontFamily: 'WorkSansMedium'
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: <Color>[
-                          Color.fromARGB(255, 0, 105, 140),
-                          Colors.black12
-                        ],
-                        begin: FractionalOffset(0.0, 0.0),
-                        end: FractionalOffset(1.0, 1.0),
-                        stops: <double>[0.0, 1.0],
-                        tileMode: TileMode.clamp),
-                  ),
-                  width: 150.0,
-                  height: 2.0,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-              padding: EdgeInsets.fromLTRB(
-                20,
-                0,
-                20,
-                10,
-              ),
-              child: Consumer<Dati>(builder: (context, timeseriesData, _) {
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 12,
-                      fixedSize: const Size(320, 150),
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {
-                    _toTimeSeriesPage(context, timeseriesData);
-                  },
-                  child: Consumer<Dati>(builder: (context, passi, _) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        (15000 -
-                                    double.parse(
-                                      passi.printPassi(),
-                                    ) <
-                                0)
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                    Text(
-                                      'Activity timeseries',
-                                      style: TextStyle(
-                                          color: Color.fromARGB(131, 3, 78, 4),
-                                          fontSize: 18),
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text('Goal reached!',
-                                        style: TextStyle(
-                                            color:
-                                                Color.fromARGB(131, 3, 78, 4),
-                                            fontSize: 18))
-                                  ])
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                    Text(
-                                      'Activity timeseries',
-                                      style: TextStyle(
-                                          color: Color.fromARGB(131, 3, 78, 4),
-                                          fontSize: 18),
-                                    ),
-                                  ]),
-                        PieChart(
-                          initialAngleInDegree: 270,
-                          totalValue: 15000,
-                          dataMap: <String, double>{
-                            "Today steps": double.parse(
-                              passi.printPassi(),
-                            ),
-                            "15000 steps goal": 15000 -
-                                double.parse(
-                                  passi.printPassi(),
-                                ),
-                          }, //dataMap,
-                          colorList: (15000 -
-                                      double.parse(
-                                        passi.printPassi(),
-                                      ) <
-                                  0)
-                              ? <Color>[
-                                  Color.fromARGB(131, 3, 78, 4),
-                                  Colors.transparent
-                                ]
-                              : <Color>[
-                                  Color.fromARGB(131, 3, 78, 4),
-                                  Color.fromARGB(255, 177, 251, 182),
-                                ], //colorList,
-                          centerText: passi.printPassi(),
-                          centerTextStyle: TextStyle(
-                              backgroundColor: Colors.white,
-                              color: Colors.black,
-                              decorationColor: Colors.white),
-                          chartType: ChartType.ring,
-                          animationDuration: Duration(milliseconds: 1000),
-                          chartLegendSpacing: 32,
-                          chartRadius: MediaQuery.of(context).size.width / 3.2,
-                          legendOptions: LegendOptions(
-                              legendTextStyle: TextStyle(color: Colors.black)),
-                          chartValuesOptions: ChartValuesOptions(
-                              showChartValues: false,
-                              showChartValuesOutside: false),
-                        ),
-                      ],
-                    );
-                  }),
-                );
-              })),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              0,
-              20,
-              10,
-            ),
-            child: Column(children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Consumer<Dati>(builder: (context, activityData, _) {
-                  dynamic today_activity_data =
-                      activityData.selectElementActivity(0);
-                  if (today_activity_data.isEmpty) {
-                  } else {
-                    dynamic activity_name = today_activity_data.last
-                        .toString()
-                        .split(',')[10]
-                        .substring(6);
-                    provider.activityName = [activity_name];
+                  if (currentElement_value >= 15000) {
+                    ++steps_count;
                   }
-                  //dynamic name = activity_name;
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 12,
-                        fixedSize: const Size(155, 239),
-                        primary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                    onPressed: () {
-                      _toActivityPage(context, activityData);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Activity",
-                          style: TextStyle(color: Colors.orange, fontSize: 18),
-                        ),
-                        Lottie.asset('assets/787-progression.json',
-                            width: 130, height: 110),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        today_activity_data.isNotEmpty
-                            ? Consumer<Dati>(
-                                builder: (context, activityName, _) {
-                                return Column(children: [
-                                  Text('Last activity performed',
-                                      style: TextStyle(color: Colors.black),
-                                      textAlign: TextAlign.center),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                      activityName
-                                          .selectElementActivityName(0)
-                                          .toString(),
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 20),
-                                      textAlign: TextAlign.center)
-                                ]);
-                              })
-                            : Text(
-                                'No activity performed today',
-                                style: TextStyle(color: Colors.black),
-                                textAlign: TextAlign.center,
-                              )
-                      ],
-                    ),
-                  );
-                }),
-                SizedBox(
-                  height: 75,
-                  width: 10,
-                ),
-                Consumer<Dati>(builder: (context, sleepData, _) {
-                  dynamic today_sleep_data = sleepData.selectElement(0);
-                  int count = 0;
-                  if (today_sleep_data.isEmpty) {
-                    count = 0;
-                  } else {
-                    for (var i = 0; i < today_sleep_data.length; i++) {
-                      var currentElement = today_sleep_data[i];
-                      var currentElement_str =
-                          currentElement.toString().split(' ');
-                      if (currentElement_str[9]
-                              .substring(0,
-                                  currentElement_str[9].toString().length - 1)
-                              .toString() !=
-                          'wake') {
-                        ++count;
-                      }
-                    }
-                  }
-
-                  double seconds = count * 30;
-                  double total_minutes = seconds / 60;
-                  double hour = total_minutes / 60;
-                  double resto = hour - hour.toInt();
-                  double minutes = resto * 60;
-
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 12,
-                        fixedSize: const Size(155, 239),
-                        primary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                    onPressed: () {
-                      _toSleepPage(context, sleepData);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Sleep",
-                          style:
-                              TextStyle(color: Colors.deepPurple, fontSize: 18),
-                        ),
-                        Lottie.asset('assets/10686-the-moon.json',
-                            width: 130, height: 110),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        today_sleep_data.isEmpty
-                            ? Column(
-                                children: [
-                                  Text(
-                                    'No last sleep activity registered',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text('Device on charge',
-                                      style: TextStyle(color: Colors.black))
-                                ],
-                              )
-                            : Column(children: [
-                                Text('Last sleep duration',
-                                    style: TextStyle(color: Colors.black)),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text('${hour.toInt()}h ${minutes.toInt()}min',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20))
-                              ])
-                      ],
-                    ),
-                  );
-                }),
-              ]),
-            ]),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              0,
-              20,
-              10,
-            ),
-            child: Consumer<Dati>(builder: (context, heartData, _) {
-              dynamic todayheartdata = heartData.subList(192, null);
-              return ElevatedButton(
-                onPressed: () {
-                  _toHeartPage(context, heartData);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Heart',
-                          style: TextStyle(color: Colors.red, fontSize: 18),
-                        ),
-                        Lottie.asset(
-                            //'assets/9427-heartbeat.json',
-                            'assets/97571-beating-heart.json',
-                            width: 130,
-                            height: 110),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 0,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Today minutes spent in:',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text(
-                          'Fat Burn range: ${todayheartdata[16].substring(0, todayheartdata[16].toString().length - 1).toString()}',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text(
-                          'Cardio range: ${todayheartdata[22].substring(0, todayheartdata[22].toString().length - 1).toString()}',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Text(
-                          'Peak range: ${todayheartdata[28].substring(0, todayheartdata[28].toString().length - 1).toString()}',
-                          style: TextStyle(color: Colors.black),
+                }
+                provider.stepsCount = steps_count;
+                //steps_count;
+              },
+              child: Consumer<Dati>(builder: (context, accountData, _) {
+                return accountData.isEmpty()
+                    ? ListView(children: [
+                        SizedBox(height: 50),
+                        Center(
+                          child: Text(
+                              'Oh no, something went wrong. Try to reload the data'),
                         )
-                      ],
-                    )
-                  ],
-                ),
-                style: ElevatedButton.styleFrom(
-                    elevation: 12,
-                    fixedSize: const Size(320, 150),
-                    primary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              );
-            }),
-          )
-        ]),
-      ),
+                      ])
+                    : ListView(children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            20,
+                            10,
+                            20,
+                            10,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Consumer<Dati>(
+                                  builder: (context, accountData, _) {
+                                return Text(
+                                  "Welcome back ${accountData.printName()}!",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                );
+                              }),
+                              Text("Let's check your activity",
+                                  style: TextStyle(fontSize: 18)),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            20,
+                            0,
+                            20,
+                            10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: <Color>[
+                                        Colors.black12,
+                                        Color.fromARGB(255, 0, 105, 140),
+                                      ],
+                                      begin: FractionalOffset(0.0, 0.0),
+                                      end: FractionalOffset(1.0, 1.0),
+                                      stops: <double>[0.0, 1.0],
+                                      tileMode: TileMode.clamp),
+                                ),
+                                width: 150.0,
+                                height: 2.0,
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                                child: Text(
+                                  'o',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 105, 140),
+                                    fontSize: 15.0,
+                                    //fontFamily: 'WorkSansMedium'
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: <Color>[
+                                        Color.fromARGB(255, 0, 105, 140),
+                                        Colors.black12
+                                      ],
+                                      begin: FractionalOffset(0.0, 0.0),
+                                      end: FractionalOffset(1.0, 1.0),
+                                      stops: <double>[0.0, 1.0],
+                                      tileMode: TileMode.clamp),
+                                ),
+                                width: 150.0,
+                                height: 2.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(
+                              20,
+                              0,
+                              20,
+                              10,
+                            ),
+                            child: Consumer<Dati>(
+                                builder: (context, timeseriesData, _) {
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 12,
+                                    fixedSize: const Size(320, 150),
+                                    primary: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20))),
+                                onPressed: () {
+                                  _toTimeSeriesPage(context, timeseriesData);
+                                },
+                                child: Consumer<Dati>(
+                                    builder: (context, passi, _) {
+                                  return Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      (15000 -
+                                                  double.parse(
+                                                    passi.printPassi(),
+                                                  ) <
+                                              0)
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                  Text(
+                                                    'Activity timeseries',
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            131, 3, 78, 4),
+                                                        fontSize: 18),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                  Text('Goal reached!',
+                                                      style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              131, 3, 78, 4),
+                                                          fontSize: 18))
+                                                ])
+                                          : Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                  Text(
+                                                    'Activity timeseries',
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            131, 3, 78, 4),
+                                                        fontSize: 18),
+                                                  ),
+                                                ]),
+                                      PieChart(
+                                        initialAngleInDegree: 270,
+                                        totalValue: 15000,
+                                        dataMap: <String, double>{
+                                          "Today steps": double.parse(
+                                            passi.printPassi(),
+                                          ),
+                                          "15000 steps goal": 15000 -
+                                              double.parse(
+                                                passi.printPassi(),
+                                              ),
+                                        }, //dataMap,
+                                        colorList: (15000 -
+                                                    double.parse(
+                                                      passi.printPassi(),
+                                                    ) <
+                                                0)
+                                            ? <Color>[
+                                                Color.fromARGB(131, 3, 78, 4),
+                                                Colors.transparent
+                                              ]
+                                            : <Color>[
+                                                Color.fromARGB(131, 3, 78, 4),
+                                                Color.fromARGB(
+                                                    255, 177, 251, 182),
+                                              ], //colorList,
+                                        centerText: passi.printPassi(),
+                                        centerTextStyle: TextStyle(
+                                            backgroundColor: Colors.white,
+                                            color: Colors.black,
+                                            decorationColor: Colors.white),
+                                        chartType: ChartType.ring,
+                                        animationDuration:
+                                            Duration(milliseconds: 1000),
+                                        chartLegendSpacing: 32,
+                                        chartRadius:
+                                            MediaQuery.of(context).size.width /
+                                                3.2,
+                                        legendOptions: LegendOptions(
+                                            legendTextStyle:
+                                                TextStyle(color: Colors.black)),
+                                        chartValuesOptions: ChartValuesOptions(
+                                            showChartValues: false,
+                                            showChartValuesOutside: false),
+                                      ),
+                                    ],
+                                  );
+                                }),
+                              );
+                            })),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            20,
+                            0,
+                            20,
+                            10,
+                          ),
+                          child: Column(children: [
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Consumer<Dati>(
+                                      builder: (context, activityData, _) {
+                                    dynamic today_activity_data =
+                                        activityData.selectElementActivity(0);
+                                    if (today_activity_data.isEmpty) {
+                                    } else {
+                                      dynamic activity_name =
+                                          today_activity_data.last
+                                              .toString()
+                                              .split(',')[10]
+                                              .substring(6);
+                                      provider.activityName = [activity_name];
+                                    }
+                                    //dynamic name = activity_name;
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          elevation: 12,
+                                          fixedSize: const Size(155, 239),
+                                          primary: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20))),
+                                      onPressed: () {
+                                        _toActivityPage(context, activityData);
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Activity",
+                                            style: TextStyle(
+                                                color: Colors.orange,
+                                                fontSize: 18),
+                                          ),
+                                          Lottie.asset(
+                                              'assets/787-progression.json',
+                                              width: 130,
+                                              height: 110),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          today_activity_data.isNotEmpty
+                                              ? Consumer<Dati>(builder:
+                                                  (context, activityName, _) {
+                                                  return Column(children: [
+                                                    Text(
+                                                        'Last activity performed',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                        textAlign:
+                                                            TextAlign.center),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(
+                                                        activityName
+                                                            .selectElementActivityName(
+                                                                0)
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 20),
+                                                        textAlign:
+                                                            TextAlign.center)
+                                                  ]);
+                                                })
+                                              : Text(
+                                                  'No activity performed today',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                  textAlign: TextAlign.center,
+                                                )
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                                  SizedBox(
+                                    height: 75,
+                                    width: 10,
+                                  ),
+                                  Consumer<Dati>(
+                                      builder: (context, sleepData, _) {
+                                    dynamic today_sleep_data =
+                                        sleepData.selectElement(0);
+                                    int count = 0;
+                                    if (today_sleep_data.isEmpty) {
+                                      count = 0;
+                                    } else {
+                                      for (var i = 0;
+                                          i < today_sleep_data.length;
+                                          i++) {
+                                        var currentElement =
+                                            today_sleep_data[i];
+                                        var currentElement_str = currentElement
+                                            .toString()
+                                            .split(' ');
+                                        if (currentElement_str[9]
+                                                .substring(
+                                                    0,
+                                                    currentElement_str[9]
+                                                            .toString()
+                                                            .length -
+                                                        1)
+                                                .toString() !=
+                                            'wake') {
+                                          ++count;
+                                        }
+                                      }
+                                    }
+
+                                    double seconds = count * 30;
+                                    double total_minutes = seconds / 60;
+                                    double hour = total_minutes / 60;
+                                    double resto = hour - hour.toInt();
+                                    double minutes = resto * 60;
+
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          elevation: 12,
+                                          fixedSize: const Size(155, 239),
+                                          primary: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20))),
+                                      onPressed: () {
+                                        _toSleepPage(context, sleepData);
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Sleep",
+                                            style: TextStyle(
+                                                color: Colors.deepPurple,
+                                                fontSize: 18),
+                                          ),
+                                          Lottie.asset(
+                                              'assets/10686-the-moon.json',
+                                              width: 130,
+                                              height: 110),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          today_sleep_data.isEmpty
+                                              ? Column(
+                                                  children: [
+                                                    Text(
+                                                      'No last sleep activity registered',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                    Text('Device on charge',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black))
+                                                  ],
+                                                )
+                                              : Column(children: [
+                                                  Text('Last sleep duration',
+                                                      style: TextStyle(
+                                                          color: Colors.black)),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  Text(
+                                                      '${hour.toInt()}h ${minutes.toInt()}min',
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 20))
+                                                ])
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                                ]),
+                          ]),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            20,
+                            0,
+                            20,
+                            10,
+                          ),
+                          child:
+                              Consumer<Dati>(builder: (context, heartData, _) {
+                            dynamic todayheartdata =
+                                heartData.subList(192, null);
+                            return ElevatedButton(
+                              onPressed: () {
+                                _toHeartPage(context, heartData);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Heart',
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 18),
+                                      ),
+                                      Lottie.asset(
+                                          //'assets/9427-heartbeat.json',
+                                          'assets/97571-beating-heart.json',
+                                          width: 130,
+                                          height: 110),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 0,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Today minutes spent in:',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      Text(
+                                        'Fat Burn range: ${todayheartdata[16].substring(0, todayheartdata[16].toString().length - 1).toString()}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      Text(
+                                        'Cardio range: ${todayheartdata[22].substring(0, todayheartdata[22].toString().length - 1).toString()}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      Text(
+                                        'Peak range: ${todayheartdata[28].substring(0, todayheartdata[28].toString().length - 1).toString()}',
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 12,
+                                  fixedSize: const Size(320, 150),
+                                  primary: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20))),
+                            );
+                          }),
+                        )
+                      ]);
+              })),
     );
   }
 }
