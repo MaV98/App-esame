@@ -69,6 +69,7 @@ class TodayPage extends StatelessWidget {
       print('CREATION: ' + indpag.setCreation().toString());
       indpag.currentCreation = indpag.setCreation() + 1;
       final creat = indpag.setCreation();
+      //final index = indpag.setIndex();
       return //selectSituation(context, index, creat, data1, usern);
           Scaffold(
               // floatingActionButton:
@@ -444,9 +445,9 @@ class situation1 extends StatelessWidget {
       //   ),
       // ),
       body:
-          //Consumer<Dati>(
-          //builder: (context, dati,_){
-          //return
+          Consumer<Dati>(
+          builder: (context, dati,_){
+          return
           RefreshIndicator(
         color: Color.fromARGB(255, 0, 105, 140),
         onRefresh: () async {
@@ -543,12 +544,13 @@ class situation1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Consumer<Dati>(builder: (context, accountData, _) {
-                  return Text(
-                    "Welcome back ${accountData.printName()}!",
+                //Consumer<Dati>(builder: (context, accountData, _) {
+                  //return
+                  Text(
+                    "Welcome back ${dati.printName()}!",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  );
-                }),
+                  ),
+                //}),
                 Text("Let's check your activity",
                     style: TextStyle(fontSize: 18)),
               ],
@@ -1019,7 +1021,7 @@ class situation1 extends StatelessWidget {
             }),
           )
         ]),
-      ),
+      );})
     );
   }
 }

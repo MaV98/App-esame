@@ -285,7 +285,7 @@ class Fpage1 extends StatelessWidget {
                                 // Navigator.popAndPushNamed(
                                 //     context, GestioneFriendsPage.route);
                                 // final prov_page = Provider.of<NavBar>(context, listen: false);
-                                int index = pagina.setIndex();
+                                final index = sp.getInt('indice');
                                 Navigator.of(context).
                                   push(MaterialPageRoute(builder: (context)=>HomePage(index: index, usern:usern)));
                                 //Navigator.of(context).pushNamed(HomePage.route);
@@ -346,7 +346,7 @@ class _situazione2State extends State<Fpage2> {
           deleteUser(usern);
           getUsersList();
           //Navigator.popAndPushNamed(context, GestioneFriendsPage.route);
-          final index = value.setIndex();
+          final index = sp.getInt('indice');
           Navigator.of(context).
           push(MaterialPageRoute(builder: (context)=>HomePage(index: index, usern:usern)));
         }, 

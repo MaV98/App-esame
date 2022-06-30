@@ -28,11 +28,7 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 0, 105, 140),
         title: Text('Profile'),
       ),
-      body: Consumer<Dati>(builder: (context, heartData, child) {
-                        dynamic todayheartdata = heartData.subList(192, null);
-                        double min_cardio = double.parse("${todayheartdata[22]
-                    .substring(0, todayheartdata[22].toString().length - 1).toString()}");
-                        return
+      body: 
       
       FutureBuilder<List<dynamic>>(
         initialData: null,
@@ -171,37 +167,7 @@ class ProfilePage extends StatelessWidget {
                 //     .substring(0, todayheartdata[22].toString().length - 1));
                 //         return
                 
-                FutureBuilder<Color>(
-                  initialData: null,
-                  future: _defineColor2(min_cardio),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      
-                        return
-                        IconButton(
-                          icon: const Icon(Icons.shower),
-                          color: snapshot.data,
-                          iconSize: 20.0,
-                          onPressed: (){
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('Cardio Master',textAlign: TextAlign.center),
-                                content: Text("Enough cardio for today! Now take a shower."),
-                                actions: <Widget>[
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                            },
-                            child: Text("Ok"),
-                              )]
-                            ));
-                            
-                          });}
-                          else{
-                            return Center(child: CircularProgressIndicator());
-                          }
-                          }),
+                
               ],)
           ],
         ),
@@ -319,9 +285,9 @@ class ProfilePage extends StatelessWidget {
         ),
       ]);}else{
         return Center(child: CircularProgressIndicator());
-      }});
-  }));
-  } //build
+      }}));
+  }
+   //build
 
 
 Future<Color> _defineColor(passi)async {
@@ -350,18 +316,6 @@ Future<Color> _defineColor(passi)async {
     }
   }
 
-  Future<Color> _defineColor2(min)async {
-    final sp = await SharedPreferences.getInstance();
-    if (min >= 50){
-      
-      sp.setInt('Badge3', 1);
-      return Color.fromARGB(255, 197, 44, 6);
-    }else if (sp.getInt('Badge2') == 1){
-      return const Color.fromARGB(255, 197, 44, 6);
-    }else{
-      return const Color.fromARGB(150, 50, 50, 50);
-    }
-  }
 
 
 
