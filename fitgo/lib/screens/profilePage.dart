@@ -1,9 +1,12 @@
+import 'package:fitgo/repository%20copy/databaseRepository.dart';
 import 'package:fitgo/screens/TodayPage.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:app_demo/screens/loginPage.dart';
 
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
@@ -264,4 +267,58 @@ class ProfilePage extends StatelessWidget {
     );
   } //build
 
+Future<Color> _defineColor(passi)async {
+    final sp = await SharedPreferences.getInstance();
+    if (passi >= 15000){
+      
+      sp.setInt('Badge1', 1);
+      return const Color.fromARGB(255, 66, 165, 245);
+    }else if (sp.getInt('Badge1') == 1){
+      return const Color.fromARGB(255, 66, 165, 245);
+    }else{
+      return const Color.fromARGB(150, 50, 50, 50);
+    }
+  }
+
+  Future<Color> _defineColor1(passi)async {
+    final sp = await SharedPreferences.getInstance();
+    if (passi >= 100000){
+      
+      sp.setInt('Badge2', 1);
+      return Color.fromARGB(255, 243, 218, 37);
+    }else if (sp.getInt('Badge2') == 1){
+      return const Color.fromARGB(255, 243, 218, 37);
+    }else{
+      return const Color.fromARGB(150, 50, 50, 50);
+    }
+  }
+
+
+
+
+Future<List<dynamic>> dbQuery(context) async {
+  final sp = await SharedPreferences.getInstance();
+  String? usern = sp.getString('UserName');
+    final dati = await Provider.of<DatabaseRepository>(context, listen: false)
+        .findAllData(usern!);
+    List<dynamic> to_plot = [];
+    List<int> passi = [];
+    
+    int passi_tot = 0;
+    for (var i = dati.length - 1; i >= dati.length - 7; i--) {
+      int to_add = dati[i].passi_week ~/10;
+      passi_tot = passi_tot + to_add;
+    }
+    int passi_ieri = dati[dati.length-1].passi_week;
+    
+    to_plot.add(passi_ieri);
+    to_plot.add(passi_tot);
+    
+    // print('lunghezza lista db: '+dati.length.toString());
+    // print('Passi: '+dati[7].passi_week.toString());
+    // print('Date: '+dati[0].date_steps.toString());
+    return to_plot;
+  }
 } //ProfilePage
+
+//ProfilePage
